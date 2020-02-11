@@ -58,7 +58,7 @@ set(sdl2wrapSDL2Includes
 
 
 # project
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 project(sdl2wrap C CXX)
 
 # the core sdl project
