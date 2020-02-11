@@ -1,7 +1,7 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*,clang-analyzer-*,bugprone-*,cert-*,hicpp-*,modernize-*,readability-*,-readability-named-parameter,portability-*,cppcoreguidelines-*,performance-*,-modernize-use-trailing-return-type'
+Checks:          'clang-diagnostic-*,clang-analyzer-*,bugprone-*,cert-*,hicpp-*,modernize-*,readability-*,-readability-named-parameter,portability-*,cppcoreguidelines-*,performance-*,-modernize-use-trailing-return-type,-readability-convert-member-functions-to-static'
 WarningsAsErrors: '*'
-HeaderFilterRegex: 'src/*'
+HeaderFilterRegex: './*'
 AnalyzeTemporaryDtors: false
 FormatStyle:     file
 User:            mkalte
