@@ -1,0 +1,33 @@
+name: CI
+
+on: 
+  push: {}
+  pull_request: {}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get remove -y clang-6.0 libclang-common-6.0-dev libclang1-6.0 libllvm6.0
+        sudo apt-get install -y clang clang-format clang-tidy
+        hg clone https://hg.libsdl.org/SDL SDL
+        cd SDL
+        mkdir build
+        cd build
+        ../configure
+        make
+        sudo make install
+        
+    - name: Build with Examples and clang-tidy 
+      run: | 
+        mkdir build
+        cd build
+        CC=clang CXX=clang++ cmake -DbuildEnableClangTidy=ON -DbuildExamples=ON  ../
+        make clean
+        make
