@@ -22,5 +22,14 @@
 
 # this target is only for linting. It includes everything, uses everything, and
 # really only builds when clang-tidy allows it
-add_executable(lint lint/lint.cpp)
-target_link_libraries(lint PRIVATE sdl2wrap::everything)
+macro(createExample targetName)
+  add_executable(${targetName} ${ARGN})
+  target_link_libraries(${targetName} PRIVATE sdl2wrap::everything)
+  enablestrictoptions(${targetName})
+endmacro()
+
+# this one is a bit special, just leave it
+createexample(lint lint/lint.cpp)
+
+# init examples
+createexample(init init/init.cpp)

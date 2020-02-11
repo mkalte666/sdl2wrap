@@ -29,13 +29,18 @@
 #define sdl2wrap_sdl2base_h
 
 // std includes
+#ifdef SDL2WRAP_USE_STL
+#include <string>
+#include <utility>
+#endif // SDL2WRAP_USE_STL
 
 // external includes
 #include <SDL.h>
 
 namespace sdl2wrap {
+
 /**
-     * \brief Due to us not using anything of the STL, we dont have std::move and std::remove_reference
+     * \brief Due to us maybe not using anything of the STL, we dont have std::move and std::remove_reference
      * \tparam T
      */
 ///\{
@@ -60,6 +65,7 @@ constexpr typename removeRef<T>::type&& move(T&& arg)
     return static_cast<typename removeRef<T>::type&&>(arg);
 }
 ///\}
+
 }; // namespace sdl2wrap
 
 #ifdef NDEBUG

@@ -48,7 +48,8 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/result.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/typewrapper.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h)
 
 # includes for the sdl2image target
 # includes for the sdl2mixer target
@@ -57,7 +58,7 @@ set(sdl2wrapSDL2Includes
 
 
 # project
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 project(sdl2wrap C CXX)
 
 # the core sdl project

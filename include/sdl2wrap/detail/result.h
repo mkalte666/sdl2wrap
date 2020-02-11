@@ -39,7 +39,7 @@ public:
     struct ErrorInfo {
         /// return code of the failed sdl function
         int rc = 0;
-        /// c style array cause sdl only gives us these back and we do not have std::string available
+        /// c style array cause sdl only gives us these back and we may not have std::string available
         char msg[1024] = {}; //NOLINT
     };
 
@@ -137,6 +137,17 @@ public:
         SDL2WRAP_ASSERT(hasError());
         return *info;
     }
+
+#ifdef SDL2WRAP_USE_STL
+    /**
+     * \brief Get the message, if there is an error
+     * \return std::string containing the message of the error
+     */
+    std::string getErrorMessage() noexcept
+    {
+        return std::string(&(getError().msg[0]));
+    }
+#endif // SDL2WRAP_USE_STL
 
     /**
      * \return true if there is a value, false otherwise

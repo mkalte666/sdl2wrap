@@ -39,8 +39,8 @@
  */
 namespace sdl2wrap {
 /**
-     * \brief Init Flags for SDL2
-     */
+ * \brief Init Flags for SDL2
+ */
 enum class InitFlags : Uint32 {
     None = 0U,
     Timer = SDL_INIT_TIMER,
@@ -56,10 +56,10 @@ enum class InitFlags : Uint32 {
 };
 
 /**
-     * \brief SDL2 Class
-     * Manages the Lifetime of SDL2.
-     * As soon as this object is destroyed, SDL_Quit() is called as well.
-     */
+ * \brief SDL2 Class
+ * Manages the Lifetime of SDL2.
+ * As soon as this object is destroyed, SDL_Quit() is called as well.
+ */
 class SDL2 {
 public:
     /// Result may use our default constructor
@@ -86,8 +86,8 @@ public:
     };
 
     /**
-         * \brief Destructor calls SDL2_Quit as long as the object is valid
-         */
+     * \brief Destructor calls SDL2_Quit as long as the object is valid
+     */
     ~SDL2()
     {
         if (valid) {
@@ -96,10 +96,10 @@ public:
     }
 
     /**
-         * \brief Initialize SDL2
-         * \param flags The init flags from InitFlags, xored togehter
-         * \return Result holding a valid SDL2 on success, or an error.
-         */
+     * \brief Initialize SDL2
+     * \param flags The init flags from InitFlags, xored togehter
+     * \return Result holding a valid SDL2 on success, or an error.
+     */
     static Result<SDL2> init(InitFlags flags = InitFlags::Everything)
     {
         SDL2 sdl2;
@@ -113,6 +113,34 @@ public:
         return Result<SDL2>::success(move(sdl2));
     }
 
+    /**
+     * \brief Initalize a sub system
+     * \param subsystem
+     * \return EmptyResult. Hods the sdl error if something went wrong
+     */
+    EmptyResult initSubSystem(InitFlags subsystem) const noexcept
+    {
+        auto rc = SDL_InitSubSystem(static_cast<Uint32>(subsystem));
+        if (rc != 0) {
+            return EmptyResult::error(rc);
+        }
+        return EmptyResult::success(true);
+    }
+
+    /**
+     * \brief Clean up a specific subsystem
+     * \param subsystem  subsytem to clean up
+     */
+    void quitSubSystem(InitFlags subsystem) const noexcept
+    {
+        SDL_QuitSubSystem(static_cast<Uint32>(subsystem));
+    }
+
+    /**
+     * \brief Check if a SDL feature was initialized
+     * \param flags the feature(s), ored to gether
+     * \return if the selected features are already init
+     */
     bool wasInit(InitFlags flags) const noexcept
     {
         if (flags == InitFlags::None) {
@@ -121,6 +149,15 @@ public:
 
         auto acutallyInit = static_cast<InitFlags>(SDL_WasInit(static_cast<Uint32>(flags)));
         return flags == acutallyInit;
+    }
+
+    /**
+     * \brief Get all features that are initialized
+     * \return ored-together flags of present features
+     */
+    InitFlags wasInit() const noexcept
+    {
+        return static_cast<InitFlags>(SDL_WasInit(0));
     }
 
 private:

@@ -77,3 +77,4 @@ _deps
 # More things
 cmake-build-*/
 .idea/
+venv/

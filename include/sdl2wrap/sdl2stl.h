@@ -19,19 +19,19 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <sdl2wrap/sdl2stl.h>
+/**
+ * \file sdl2st.h
+ * Enables stl types (mostly std::string)
+ */
 
-namespace s2 = sdl2wrap;
+#ifndef sdl2wrap_sdl2stl_h
+#define sdl2wrap_sdl2stl_h
 
-int main(int, char**)
-{
-    auto result = s2::SDL2::init();
-    if (!result) {
-        // meh
-        return -1;
-    }
+#ifndef SDL2WRAP_USE_STL
+#define SDL2WRAP_USE_STL
 
-    auto sdl2 = result.extractValue();
+#include "sdl2.h"
 
-    return 0;
-}
+#endif // SDL2WRAP_USE_STL
+
+#endif //sdl2wrap_sdl2stl_h
