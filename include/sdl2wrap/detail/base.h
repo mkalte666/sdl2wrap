@@ -28,7 +28,20 @@
 #ifndef sdl2wrap_sdl2base_h
 #define sdl2wrap_sdl2base_h
 
-// std includes
+// logic is as follows:
+// if SDL2WRAP_DEFINITIONS is explicitly defined, someone wants to create their static file
+// so we disable inline
+#if defined(SDL2WRAP_DEFINITIONS)
+#define SDL2WRAP_INLINE
+#endif
+
+// however, if its not defined, and we dont have SDL2WRAP_STATIC, we need inline to do its thing
+#if !defined(SDL2WRAP_DEFINITIONS) && (defined(SDL2WRAP_HEADER_ONLY) || !defined(SDL2WRAP_STATIC))
+#define SDL2WRAP_DEFINITIONS
+#define SDL2WRAP_INLINE inline //NOLINT(cppcoreguidelines-macro-usage)
+#endif
+
+// std includes, if requested
 #ifdef SDL2WRAP_USE_STL
 #include <string>
 #include <utility>

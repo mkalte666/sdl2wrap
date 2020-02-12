@@ -20,24 +20,13 @@
 */
 
 /**
- * \file window.h
- * Contains the class for the SDL_Window struct
+ * \file static.cpp
+ * Example cpp file that will contain all of sdl2wraps definitions.
+ * Note that this file then really should not be anything else but these two lines
+ *
  */
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
-
-// always first!
-#include "detail/base.h"
-
-#include "detail/typewrapper.h"
-
-namespace sdl2wrap {
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+// this renables the definitions in the headers that are disabled when SDL2WRAP_STATIC is defined
+// also removes the inline keyword from them so that this can actually work.
+#define SDL2WRAP_DEFINITIONS
+#include <sdl2wrap/sdl2stl.h>

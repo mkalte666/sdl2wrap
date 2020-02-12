@@ -20,24 +20,18 @@
 */
 
 /**
- * \file window.h
- * Contains the class for the SDL_Window struct
+ * \file sharedheader.h
+ * An example header (that could be your pre compiled header) for static usage of sdl2wrap
  */
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
+#ifndef sdl2wrap_sharedheader_h
+#define sdl2wrap_sharedheader_h
 
-// always first!
-#include "detail/base.h"
+#include <iostream>
 
-#include "detail/typewrapper.h"
+// define SDL2WRAP_STATIC each time BEFORE you include anything related to sdl2wrap
+// like shown here, a shared header is the best place to do so
+#define SDL2WRAP_STATIC
+#include <sdl2wrap/sdl2stl.h>
 
-namespace sdl2wrap {
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+#endif //sdl2wrap_sharedheader_h

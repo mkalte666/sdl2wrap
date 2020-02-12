@@ -20,24 +20,17 @@
 */
 
 /**
- * \file window.h
- * Contains the class for the SDL_Window struct
+ * \file dosomeotherthings.cpp
+ * Example file with static linking instead of header-online include
  */
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
+// shared header
+#include "sharedheader.h"
 
-// always first!
-#include "detail/base.h"
-
-#include "detail/typewrapper.h"
-
-namespace sdl2wrap {
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+// proceed as usual
+int someApi(sdl2wrap::SDL2& sdl)
+{
+    // do something with sdl
+    (void)sdl;
+    return 0;
+}

@@ -36,3 +36,7 @@ createexample(init init/init.cpp)
 
 # video example
 createexample(video video/video.cpp)
+
+# static linking example
+createexample(staticlink static/sharedheader.h static/dosomethings.cpp
+              static/dosomeotherthings.cpp static/static.cpp)
