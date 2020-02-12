@@ -33,3 +33,6 @@ createexample(lint lint/lint.cpp)
 
 # init examples
 createexample(init init/init.cpp)
+
+# video example
+createexample(video video/video.cpp)

@@ -32,6 +32,8 @@
 #include "sdl2wrap/detail/base.h"
 #include "sdl2wrap/detail/result.h"
 
+#include "window.h"
+
 /**
  * \brief Namsespace for all SDL2Wrapper related functionality
  *
@@ -158,6 +160,16 @@ public:
     InitFlags wasInit() const noexcept
     {
         return static_cast<InitFlags>(SDL_WasInit(0));
+    }
+
+    Window::Result createWindow() const noexcept
+    {
+        SDL_Window* window = SDL_CreateWindow("test window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 768, 0); //NOLINT
+        if (window == nullptr) {
+            return Window::Result::error(0);
+        }
+
+        return Window::Result::success(Window(window));
     }
 
 private:

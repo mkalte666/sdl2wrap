@@ -205,6 +205,7 @@ private:
     {
     }
 
+private:
     /// value
     T value = {};
     /// error, or null if there is a valid value

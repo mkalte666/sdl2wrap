@@ -22,9 +22,56 @@
 #ifndef sdl2wrap_sdl2typewrapper_h
 #define sdl2wrap_sdl2typewrapper_h
 
+#include "result.h"
+
 namespace sdl2wrap {
 
+template <class T>
+using SDLDestructorFunc = void (*)(T);
+
+template <class Child, class SDLPtrType, SDLDestructorFunc<SDLPtrType> destructorFunc>
 class TypeWrapper {
+public:
+    friend class Result<Child>;
+    using Result = Result<Child>;
+    using PtrType = SDLPtrType;
+
+    TypeWrapper() noexcept = default;
+
+    explicit TypeWrapper(SDLPtrType ptr) noexcept
+        : ptr(ptr)
+    {
+    }
+    TypeWrapper(const TypeWrapper&) = delete;
+    TypeWrapper(TypeWrapper&& rhs) noexcept
+        : ptr(rhs.ptr)
+    {
+        rhs.ptr = nullptr;
+    }
+    TypeWrapper& operator=(const TypeWrapper&) = delete;
+    TypeWrapper& operator=(TypeWrapper&& rhs) noexcept
+    {
+        if (ptr != nullptr) {
+            destructorFunc(ptr);
+        }
+        ptr = rhs.ptr;
+        rhs.ptr = nullptr;
+        return *this;
+    }
+    ~TypeWrapper() noexcept
+    {
+        if (ptr != nullptr) {
+            destructorFunc(ptr);
+        }
+    }
+
+    SDLPtrType get() const noexcept
+    {
+        return ptr;
+    }
+
+private:
+    SDLPtrType ptr = nullptr;
 };
 
 } // namespace sdl2wrap
