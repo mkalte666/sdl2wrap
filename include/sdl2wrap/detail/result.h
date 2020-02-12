@@ -22,6 +22,7 @@
 #ifndef sdl2wrap_result_h
 #define sdl2wrap_result_h
 
+// always first!
 #include "base.h"
 
 namespace sdl2wrap {

@@ -22,6 +22,8 @@
 #ifndef sdl2wrap_sdl2typewrapper_h
 #define sdl2wrap_sdl2typewrapper_h
 
+// always first!
+#include "base.h"
 #include "result.h"
 
 namespace sdl2wrap {

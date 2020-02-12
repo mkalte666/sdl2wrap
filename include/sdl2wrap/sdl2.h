@@ -29,9 +29,11 @@
 #ifndef sdl2wrap_sdl2_h
 #define sdl2wrap_sdl2_h
 
-#include "sdl2wrap/detail/base.h"
-#include "sdl2wrap/detail/result.h"
+// always first!
+#include "detail/base.h"
+#include "detail/result.h"
 
+#include "log.h"
 #include "window.h"
 
 /**
