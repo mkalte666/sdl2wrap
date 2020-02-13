@@ -33,6 +33,7 @@
 #include "detail/base.h"
 #include "detail/result.h"
 
+#include "hints.h"
 #include "log.h"
 #include "window.h"
 
