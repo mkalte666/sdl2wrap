@@ -77,4 +77,9 @@ _deps
 # More things
 cmake-build-*/
 .idea/
+
+# windows 
+.vs/
 venv/
+out/
+CMakeSettings.json
