@@ -36,6 +36,7 @@
 
 #include "hints.h"
 #include "log.h"
+#include "rect.h"
 #include "video.h"
 
 /**
@@ -67,6 +68,8 @@ public:
 
     /// move assignment invalidates the other object
     SDL2& operator=(SDL2&& rhs) noexcept;
+
+    // init and destruction functions
 
     /**
      * \brief Destructor calls SDL2_Quit as long as the object is valid
@@ -105,6 +108,16 @@ public:
      * \return ored-together flags of present features
      */
     InitFlags wasInit() const noexcept;
+
+    // video functions
+
+    int getNumVideoDrivers() const noexcept;
+    const char* getVideoDriver(int index) const noexcept;
+    EmptyResult videoInit(const char* driverName) const noexcept;
+    void videoQuit() const noexcept;
+    const char* getCurrentVideoDriver() const noexcept;
+    int getNumVideoDisplays() const noexcept;
+    const char* getDisplayName(int displayIndex);
 
     Window::Result createWindow() const noexcept;
 

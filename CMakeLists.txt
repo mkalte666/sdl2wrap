@@ -53,6 +53,7 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/hints.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/log.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/rect.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/video.h)
