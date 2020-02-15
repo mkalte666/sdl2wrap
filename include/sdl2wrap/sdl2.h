@@ -160,7 +160,7 @@ SDL2WRAP_INLINE Result<SDL2> SDL2::init(InitFlags flags)
 {
     SDL2 sdl2;
 
-    auto rc = SDL_Init(initFlagsToBase(flags));
+    auto rc = SDL_Init(static_cast<Uint32>(flags));
     if (rc != 0) {
         return Result<SDL2>::error(rc);
     }
@@ -171,7 +171,7 @@ SDL2WRAP_INLINE Result<SDL2> SDL2::init(InitFlags flags)
 
 SDL2WRAP_INLINE bool SDL2::wasInit(InitFlags flags) const noexcept
 {
-    auto afterInitFlags = static_cast<InitFlags>(SDL_WasInit(initFlagsToBase(flags)));
+    auto afterInitFlags = static_cast<InitFlags>(SDL_WasInit(static_cast<Uint32>(flags)));
     return flags == afterInitFlags;
 }
 

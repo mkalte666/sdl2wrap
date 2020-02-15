@@ -9,13 +9,13 @@ if len(sys.argv) != 3:
 
 headers = [
     ["SDL.h", [
-        DefineToEnumSettings("SDL_INIT_", "InitFlags", True, "Uint32", "0")
+        DefineToEnumSettings("SDL_INIT_", "InitFlags")
     ]],
     ["SDL_video.h", [
 
     ]],
     ["SDL_hints.h", [
-        DefineToEnumSettings("SDL_HINT_", "Hint", True, "const char*", "\"\"")
+        DefineToEnumSettings("SDL_HINT_", "Hint", "const char*", True, "\"\"")
     ]],
 ]
 

@@ -30,9 +30,10 @@ namespace sdl2wrap {
 
 /**
  * \brief Scoped version of SDL_WindowFlags
+ * 
  * Generated From SDL_video.h:122
  */
-enum class WindowFlags {
+enum class WindowFlags : Uint32 {
     WindowFullscreen = SDL_WINDOW_FULLSCREEN,
     WindowOpengl = SDL_WINDOW_OPENGL,
     WindowShown = SDL_WINDOW_SHOWN,
@@ -58,9 +59,10 @@ enum class WindowFlags {
 
 /**
  * \brief Scoped version of SDL_WindowEventID
+ * 
  * Generated From SDL_video.h:169
  */
-enum class WindowEventID {
+enum class WindowEventID : Uint32 {
     WindoweventNone = SDL_WINDOWEVENT_NONE,
     WindoweventShown = SDL_WINDOWEVENT_SHOWN,
     WindoweventHidden = SDL_WINDOWEVENT_HIDDEN,
@@ -82,18 +84,20 @@ enum class WindowEventID {
 
 /**
  * \brief Scoped version of SDL_DisplayEventID
+ * 
  * Generated From SDL_video.h:178
  */
-enum class DisplayEventID {
+enum class DisplayEventID : Uint32 {
     DisplayeventNone = SDL_DISPLAYEVENT_NONE,
     DisplayeventOrientation = SDL_DISPLAYEVENT_ORIENTATION,
 };
 
 /**
  * \brief Scoped version of SDL_DisplayOrientation
+ * 
  * Generated From SDL_video.h:187
  */
-enum class DisplayOrientation {
+enum class DisplayOrientation : Uint32 {
     OrientationUnknown = SDL_ORIENTATION_UNKNOWN,
     OrientationLandscape = SDL_ORIENTATION_LANDSCAPE,
     OrientationLandscapeFlipped = SDL_ORIENTATION_LANDSCAPE_FLIPPED,
@@ -103,9 +107,10 @@ enum class DisplayOrientation {
 
 /**
  * \brief Scoped version of SDL_GLattr
+ * 
  * Generated From SDL_video.h:226
  */
-enum class GLattr {
+enum class GLattr : Uint32 {
     GlRedSize = SDL_GL_RED_SIZE,
     GlGreenSize = SDL_GL_GREEN_SIZE,
     GlBlueSize = SDL_GL_BLUE_SIZE,
@@ -137,9 +142,10 @@ enum class GLattr {
 
 /**
  * \brief Scoped version of SDL_GLprofile
+ * 
  * Generated From SDL_video.h:233
  */
-enum class GLprofile {
+enum class GLprofile : Uint32 {
     GlContextProfileCore = SDL_GL_CONTEXT_PROFILE_CORE,
     GlContextProfileCompatibility = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY,
     GlContextProfileEs = SDL_GL_CONTEXT_PROFILE_ES,
@@ -147,9 +153,10 @@ enum class GLprofile {
 
 /**
  * \brief Scoped version of SDL_GLcontextFlag
+ * 
  * Generated From SDL_video.h:241
  */
-enum class GLcontextFlag {
+enum class GLcontextFlag : Uint32 {
     GlContextDebugFlag = SDL_GL_CONTEXT_DEBUG_FLAG,
     GlContextForwardCompatibleFlag = SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG,
     GlContextRobustAccessFlag = SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG,
@@ -158,27 +165,30 @@ enum class GLcontextFlag {
 
 /**
  * \brief Scoped version of SDL_GLcontextReleaseFlag
+ * 
  * Generated From SDL_video.h:247
  */
-enum class GLcontextReleaseFlag {
+enum class GLcontextReleaseFlag : Uint32 {
     GlContextReleaseBehaviorNone = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE,
     GlContextReleaseBehaviorFlush = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH,
 };
 
 /**
  * \brief Scoped version of SDL_GLContextResetNotification
+ * 
  * Generated From SDL_video.h:253
  */
-enum class GLContextResetNotification {
+enum class GLContextResetNotification : Uint32 {
     GlContextResetNoNotification = SDL_GL_CONTEXT_RESET_NO_NOTIFICATION,
     GlContextResetLoseContext = SDL_GL_CONTEXT_RESET_LOSE_CONTEXT,
 };
 
 /**
  * \brief Scoped version of SDL_HitTestResult
+ * 
  * Generated From SDL_video.h:1031
  */
-enum class HitTestResult {
+enum class HitTestResult : Uint32 {
     HittestNormal = SDL_HITTEST_NORMAL,
     HittestDraggable = SDL_HITTEST_DRAGGABLE,
     HittestResizeTopleft = SDL_HITTEST_RESIZE_TOPLEFT,

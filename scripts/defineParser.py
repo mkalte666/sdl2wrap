@@ -2,7 +2,7 @@ import re
 import os
 
 class DefineToEnumSettings:
-    def __init__(self, prefix, newName, createConverter = False, basetype="", caseDefault=""):
+    def __init__(self, prefix, newName, basetype="Uint32", createConverter=False, caseDefault=""):
         self.infile = ""
         self.prefix = prefix
         self.newName = newName
@@ -26,7 +26,10 @@ class DefineToEnumResult:
  */     
 """ \
         % {"prefix": self.settings.prefix, "filename": os.path.basename(self.settings.infile)}
-        txt += "enum class " + self.settings.newName + " {\n"
+        if self.settings.createConverter:
+            txt += "enum class " + self.settings.newName + " {\n"
+        else:
+            txt += "enum class " + self.settings.newName + " : " + self.settings.basetype + " {\n"
         txt += self.enumBody
         txt += "};\n"
         if self.settings.createConverter:
@@ -77,7 +80,10 @@ def defineToEnum(infile, settings):
         name = name.lower()
         name = name.capitalize()
         name = re.sub(r"_([a-z0-1A-Z]{1})", lambda pat : pat.group(1).upper(), name)
-        result.enumBody += "    " + name + ", ///< " + define + "\n"
-        result.convertBody += "        case "+settings.newName+"::" + name + ": return " + define + ";\n"
+        if settings.createConverter:
+            result.enumBody += "    " + name + ", ///< " + define + "\n"
+            result.convertBody += "        case "+settings.newName+"::" + name + ": return " + define + ";\n"
+        else:
+            result.enumBody += "    " + name + " = " + define + ",\n"
 
     return result

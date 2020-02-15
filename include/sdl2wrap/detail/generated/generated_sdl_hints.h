@@ -30,9 +30,10 @@ namespace sdl2wrap {
 
 /**
  * \brief Scoped version of SDL_HintPriority
+ * 
  * Generated From SDL_hints.h:1265
  */
-enum class HintPriority {
+enum class HintPriority : Uint32 {
     HintDefault = SDL_HINT_DEFAULT,
     HintNormal = SDL_HINT_NORMAL,
     HintOverride = SDL_HINT_OVERRIDE,
@@ -40,6 +41,7 @@ enum class HintPriority {
 
 /**
  * \brief scoped enum for SDL_HINT_* defines
+ * 
  * Generated from SDL_hints.h
  */
 enum class Hint {

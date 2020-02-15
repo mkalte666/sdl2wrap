@@ -33,55 +33,18 @@ namespace sdl2wrap {
  * 
  * Generated from SDL.h
  */
-enum class InitFlags {
-    Timer, ///< SDL_INIT_TIMER
-    Audio, ///< SDL_INIT_AUDIO
-    Video, ///< SDL_INIT_VIDEO
-    Joystick, ///< SDL_INIT_JOYSTICK
-    Haptic, ///< SDL_INIT_HAPTIC
-    Gamecontroller, ///< SDL_INIT_GAMECONTROLLER
-    Events, ///< SDL_INIT_EVENTS
-    Sensor, ///< SDL_INIT_SENSOR
-    Noparachute, ///< SDL_INIT_NOPARACHUTE
-    Everything, ///< SDL_INIT_EVERYTHING
+enum class InitFlags : Uint32 {
+    Timer = SDL_INIT_TIMER,
+    Audio = SDL_INIT_AUDIO,
+    Video = SDL_INIT_VIDEO,
+    Joystick = SDL_INIT_JOYSTICK,
+    Haptic = SDL_INIT_HAPTIC,
+    Gamecontroller = SDL_INIT_GAMECONTROLLER,
+    Events = SDL_INIT_EVENTS,
+    Sensor = SDL_INIT_SENSOR,
+    Noparachute = SDL_INIT_NOPARACHUTE,
+    Everything = SDL_INIT_EVERYTHING,
 };
-
-/**
- * \brief convert InitFlags to its basetype (Uint32)
- */
-Uint32 initFlagsToBase(InitFlags value) noexcept;
-#ifdef SDL2WRAP_DEFINITIONS
-SDL2WRAP_INLINE Uint32 initFlagsToBase(InitFlags value) noexcept
-{
-    switch (value) {
-    case InitFlags::Timer:
-        return SDL_INIT_TIMER;
-    case InitFlags::Audio:
-        return SDL_INIT_AUDIO;
-    case InitFlags::Video:
-        return SDL_INIT_VIDEO;
-    case InitFlags::Joystick:
-        return SDL_INIT_JOYSTICK;
-    case InitFlags::Haptic:
-        return SDL_INIT_HAPTIC;
-    case InitFlags::Gamecontroller:
-        return SDL_INIT_GAMECONTROLLER;
-    case InitFlags::Events:
-        return SDL_INIT_EVENTS;
-    case InitFlags::Sensor:
-        return SDL_INIT_SENSOR;
-    case InitFlags::Noparachute:
-        return SDL_INIT_NOPARACHUTE;
-    case InitFlags::Everything:
-        return SDL_INIT_EVERYTHING;
-
-    default:
-        break;
-    }
-
-    return 0;
-}
-#endif // SDL2WRAP_DEFINITIONS
 
 }; // namespace sdl2wrap
 

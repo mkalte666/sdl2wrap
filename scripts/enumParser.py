@@ -31,7 +31,7 @@ class Enum:
  * Generated From %(filename)s:%(line)d
  */
 """ % {"origName": self.name, "filename": os.path.basename(self.sourceFile.name), "line": self.sourceLine}
-        txt += "enum class " + stripPrefix(self.name, "SDL_") + " {\n"
+        txt += "enum class " + stripPrefix(self.name, "SDL_") + " : Uint32 {\n"
         for decl in self.constantDecls:
             txt += "    " + decl.rewrite() + "\n"
         txt += "};\n"
