@@ -42,6 +42,10 @@ public:
     using TypeWrapper::TypeWrapper;
 };
 
+#ifdef SDL2WRAP_DEFINITIONS
+
+#endif // SDL2WRAP_DEFINITIONS
+
 }; // sdl2wrap
 
 #endif //sdl2wrap_window_h

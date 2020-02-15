@@ -111,15 +111,27 @@ public:
 
     // video functions
 
+    /** up next in our lineup:
     int getNumVideoDrivers() const noexcept;
     const char* getVideoDriver(int index) const noexcept;
     EmptyResult videoInit(const char* driverName) const noexcept;
     void videoQuit() const noexcept;
     const char* getCurrentVideoDriver() const noexcept;
     int getNumVideoDisplays() const noexcept;
-    const char* getDisplayName(int displayIndex);
+    const char* getDisplayName(int displayIndex) const noexcept;
+    Result<Rect> getDisplayBounds(int displayIndex) const noexcept;
+    Result<Rect> getDisplayUseableBounds(int displayIndex) const noexcept;
+    EmptyResult getDisplayDPI(int diplayIndex, float& ddpi, float& hdpi, float& vdpi) const noexcept;
+    DisplayOrientation getDisplayOrientation(int displayIndex) const noexcept;
+    int getNumDisplayModes(int displayIndex) const noexcept;
+    Result<DisplayMode> getDisplayMode(int displayIndex, int modeIndex) const noexcept;
+    Result<DisplayMode> getDesktopDisplayMode(int displayIndex) const noexcept;
+    Result<DisplayMode> getCurrentDisplayMode(int displayIndex) const noexcept;
 
-    Window::Result createWindow() const noexcept;
+    bool getClosestDisplayMode(int displayIndex, const DisplayMode& mode, DisplayMode& closest) const noexcept;
+*/
+    Window::Result createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) const noexcept;
+    Window::Result createCenteredWindow(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) const noexcept;
 
 private:
     /// default ctor
@@ -193,14 +205,21 @@ SDL2WRAP_INLINE InitFlags SDL2::wasInit() const noexcept
     return static_cast<InitFlags>(SDL_WasInit(0));
 }
 
-SDL2WRAP_INLINE Window::Result SDL2::createWindow() const noexcept
+SDL2WRAP_INLINE Window::Result SDL2::createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags) const noexcept
 {
-    SDL_Window* window = SDL_CreateWindow("test window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 768, 0); //NOLINT
+    SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
     if (window == nullptr) {
         return Window::Result::error(0);
     }
 
     return Window::Result::success(Window(window));
+}
+
+SDL2WRAP_INLINE Window::Result SDL2::createCenteredWindow(const char* title, int w, int h, WindowFlags flags) const noexcept
+{
+    // sign conversion for SDL_WINDOWPOS_CENTERED
+    // NOLINTNEXTLINE
+    return createWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
 }
 
 #endif // SDL2WRAP_DEFINITIONS
