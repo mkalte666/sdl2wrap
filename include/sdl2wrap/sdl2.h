@@ -31,11 +31,12 @@
 
 // always first!
 #include "detail/base.h"
+#include "detail/generated/generated_sdl.h"
 #include "detail/result.h"
 
 #include "hints.h"
 #include "log.h"
-#include "window.h"
+#include "video.h"
 
 /**
  * \brief Namsespace for all SDL2Wrapper related functionality
@@ -43,22 +44,6 @@
  *
  */
 namespace sdl2wrap {
-/**
- * \brief Init Flags for SDL2
- */
-enum class InitFlags : Uint32 {
-    None = 0U,
-    Timer = SDL_INIT_TIMER,
-    Audio = SDL_INIT_AUDIO,
-    Video = SDL_INIT_JOYSTICK,
-    Joystick = SDL_INIT_JOYSTICK,
-    Haptic = SDL_INIT_HAPTIC,
-    Gamecontroller = SDL_INIT_GAMECONTROLLER,
-    Events = SDL_INIT_EVENTS,
-    Sensor = SDL_INIT_SENSOR,
-    NoParachute = SDL_INIT_NOPARACHUTE,
-    Everything = SDL_INIT_EVERYTHING
-};
 
 /**
  * \brief SDL2 Class
@@ -175,7 +160,7 @@ SDL2WRAP_INLINE Result<SDL2> SDL2::init(InitFlags flags)
 {
     SDL2 sdl2;
 
-    auto rc = SDL_Init(static_cast<Uint32>(flags));
+    auto rc = SDL_Init(initFlagsToBase(flags));
     if (rc != 0) {
         return Result<SDL2>::error(rc);
     }
@@ -186,11 +171,7 @@ SDL2WRAP_INLINE Result<SDL2> SDL2::init(InitFlags flags)
 
 SDL2WRAP_INLINE bool SDL2::wasInit(InitFlags flags) const noexcept
 {
-    if (flags == InitFlags::None) {
-        return false;
-    }
-
-    auto afterInitFlags = static_cast<InitFlags>(SDL_WasInit(static_cast<Uint32>(flags)));
+    auto afterInitFlags = static_cast<InitFlags>(SDL_WasInit(initFlagsToBase(flags)));
     return flags == afterInitFlags;
 }
 

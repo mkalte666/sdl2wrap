@@ -45,14 +45,17 @@ endif()
 # includes for the sdl2 target
 set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/base.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated_hints.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/result.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/typewrapper.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_hints.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_video.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/hints.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/log.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/video.h)
 
 # includes for the sdl2image target
 # includes for the sdl2mixer target

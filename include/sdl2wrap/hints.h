@@ -29,18 +29,9 @@
 
 // always first!
 #include "detail/base.h"
-#include "detail/generated_hints.h"
+#include "detail/generated/generated_sdl_hints.h"
 
 namespace sdl2wrap {
-
-/**
- * \brief Wrapps SDL_HintPriority
- */
-enum class HintPriority : int {
-    Default = SDL_HINT_DEFAULT,
-    Normal = SDL_HINT_NORMAL,
-    Override = SDL_HINT_OVERRIDE
-};
 
 /**
  * \brief Static class providing SDL hinting
@@ -169,7 +160,7 @@ SDL2WRAP_INLINE bool Hints::set(const char* hint, const char* value) noexcept
 
 SDL2WRAP_INLINE bool Hints::set(Hint hint, const char* value) noexcept
 {
-    return set(hintToString(hint), value);
+    return set(hintToBase(hint), value);
 }
 
 SDL2WRAP_INLINE bool Hints::setWithPriority(const char* hint, const char* value, HintPriority priority) noexcept
@@ -179,7 +170,7 @@ SDL2WRAP_INLINE bool Hints::setWithPriority(const char* hint, const char* value,
 
 SDL2WRAP_INLINE bool Hints::setWithPriority(Hint hint, const char* value, HintPriority priority) noexcept
 {
-    return setWithPriority(hintToString(hint), value, priority);
+    return setWithPriority(hintToBase(hint), value, priority);
 }
 
 SDL2WRAP_INLINE const char* Hints::get(const char* hint) noexcept
@@ -189,7 +180,7 @@ SDL2WRAP_INLINE const char* Hints::get(const char* hint) noexcept
 
 SDL2WRAP_INLINE const char* Hints::get(Hint hint) noexcept
 {
-    return get(hintToString(hint));
+    return get(hintToBase(hint));
 }
 
 SDL2WRAP_INLINE bool Hints::getBoolean(const char* hint, bool defaultValue) noexcept
@@ -199,7 +190,7 @@ SDL2WRAP_INLINE bool Hints::getBoolean(const char* hint, bool defaultValue) noex
 
 SDL2WRAP_INLINE bool Hints::getBoolean(Hint hint, bool defaultValue) noexcept
 {
-    return getBoolean(hintToString(hint), defaultValue);
+    return getBoolean(hintToBase(hint), defaultValue);
 }
 
 SDL2WRAP_INLINE void Hints::addCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept
@@ -209,7 +200,7 @@ SDL2WRAP_INLINE void Hints::addCallback(const char* hint, HintCallback callback,
 
 SDL2WRAP_INLINE void Hints::addCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept
 {
-    addCallback(hintToString(hint), callback, userdata);
+    addCallback(hintToBase(hint), callback, userdata);
 }
 
 SDL2WRAP_INLINE void Hints::delCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept
@@ -219,7 +210,7 @@ SDL2WRAP_INLINE void Hints::delCallback(const char* hint, HintCallback callback,
 
 SDL2WRAP_INLINE void Hints::delCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept
 {
-    delCallback(hintToString(hint), callback, userdata);
+    delCallback(hintToBase(hint), callback, userdata);
 }
 
 SDL2WRAP_INLINE void Hints::clear() noexcept
@@ -236,7 +227,7 @@ SDL2WRAP_INLINE std::string Hints::getStr(const std::string& hint) noexcept
 
 SDL2WRAP_INLINE std::string Hints::getStr(Hint hint) noexcept
 {
-    return std::string(get(hintToString(hint)));
+    return std::string(get(hintToBase(hint)));
 }
 
 #endif // SDL2WRAP_USE_STL

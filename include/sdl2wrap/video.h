@@ -29,10 +29,14 @@
 
 // always first!
 #include "detail/base.h"
-
+#include "detail/generated/generated_sdl_video.h"
 #include "detail/typewrapper.h"
 
 namespace sdl2wrap {
+
+/// Wraps SDL_DisplayMode
+using DisplayMode = SDL_DisplayMode;
+
 class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
 public:
     using TypeWrapper::TypeWrapper;
