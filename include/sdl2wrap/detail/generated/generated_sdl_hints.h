@@ -34,9 +34,9 @@ namespace sdl2wrap {
  * Generated From SDL_hints.h:1265
  */
 enum class HintPriority : Uint32 {
-    HintDefault = SDL_HINT_DEFAULT,
-    HintNormal = SDL_HINT_NORMAL,
-    HintOverride = SDL_HINT_OVERRIDE,
+    Default = SDL_HINT_DEFAULT,
+    Normal = SDL_HINT_NORMAL,
+    Override = SDL_HINT_OVERRIDE,
 };
 
 /**

@@ -34,27 +34,27 @@ namespace sdl2wrap {
  * Generated From SDL_video.h:122
  */
 enum class WindowFlags : Uint32 {
-    WindowFullscreen = SDL_WINDOW_FULLSCREEN,
-    WindowOpengl = SDL_WINDOW_OPENGL,
-    WindowShown = SDL_WINDOW_SHOWN,
-    WindowHidden = SDL_WINDOW_HIDDEN,
-    WindowBorderless = SDL_WINDOW_BORDERLESS,
-    WindowResizable = SDL_WINDOW_RESIZABLE,
-    WindowMinimized = SDL_WINDOW_MINIMIZED,
-    WindowMaximized = SDL_WINDOW_MAXIMIZED,
-    WindowInputGrabbed = SDL_WINDOW_INPUT_GRABBED,
-    WindowInputFocus = SDL_WINDOW_INPUT_FOCUS,
-    WindowMouseFocus = SDL_WINDOW_MOUSE_FOCUS,
-    WindowFullscreenDesktop = SDL_WINDOW_FULLSCREEN_DESKTOP,
-    WindowForeign = SDL_WINDOW_FOREIGN,
-    WindowAllowHighdpi = SDL_WINDOW_ALLOW_HIGHDPI,
-    WindowMouseCapture = SDL_WINDOW_MOUSE_CAPTURE,
-    WindowAlwaysOnTop = SDL_WINDOW_ALWAYS_ON_TOP,
-    WindowSkipTaskbar = SDL_WINDOW_SKIP_TASKBAR,
-    WindowUtility = SDL_WINDOW_UTILITY,
-    WindowTooltip = SDL_WINDOW_TOOLTIP,
-    WindowPopupMenu = SDL_WINDOW_POPUP_MENU,
-    WindowVulkan = SDL_WINDOW_VULKAN,
+    Fullscreen = SDL_WINDOW_FULLSCREEN,
+    Opengl = SDL_WINDOW_OPENGL,
+    Shown = SDL_WINDOW_SHOWN,
+    Hidden = SDL_WINDOW_HIDDEN,
+    Borderless = SDL_WINDOW_BORDERLESS,
+    Resizable = SDL_WINDOW_RESIZABLE,
+    Minimized = SDL_WINDOW_MINIMIZED,
+    Maximized = SDL_WINDOW_MAXIMIZED,
+    InputGrabbed = SDL_WINDOW_INPUT_GRABBED,
+    InputFocus = SDL_WINDOW_INPUT_FOCUS,
+    MouseFocus = SDL_WINDOW_MOUSE_FOCUS,
+    FullscreenDesktop = SDL_WINDOW_FULLSCREEN_DESKTOP,
+    Foreign = SDL_WINDOW_FOREIGN,
+    AllowHighdpi = SDL_WINDOW_ALLOW_HIGHDPI,
+    MouseCapture = SDL_WINDOW_MOUSE_CAPTURE,
+    AlwaysOnTop = SDL_WINDOW_ALWAYS_ON_TOP,
+    SkipTaskbar = SDL_WINDOW_SKIP_TASKBAR,
+    Utility = SDL_WINDOW_UTILITY,
+    Tooltip = SDL_WINDOW_TOOLTIP,
+    PopupMenu = SDL_WINDOW_POPUP_MENU,
+    Vulkan = SDL_WINDOW_VULKAN,
 };
 
 /**
@@ -63,23 +63,23 @@ enum class WindowFlags : Uint32 {
  * Generated From SDL_video.h:169
  */
 enum class WindowEventID : Uint32 {
-    WindoweventNone = SDL_WINDOWEVENT_NONE,
-    WindoweventShown = SDL_WINDOWEVENT_SHOWN,
-    WindoweventHidden = SDL_WINDOWEVENT_HIDDEN,
-    WindoweventExposed = SDL_WINDOWEVENT_EXPOSED,
-    WindoweventMoved = SDL_WINDOWEVENT_MOVED,
-    WindoweventResized = SDL_WINDOWEVENT_RESIZED,
-    WindoweventSizeChanged = SDL_WINDOWEVENT_SIZE_CHANGED,
-    WindoweventMinimized = SDL_WINDOWEVENT_MINIMIZED,
-    WindoweventMaximized = SDL_WINDOWEVENT_MAXIMIZED,
-    WindoweventRestored = SDL_WINDOWEVENT_RESTORED,
-    WindoweventEnter = SDL_WINDOWEVENT_ENTER,
-    WindoweventLeave = SDL_WINDOWEVENT_LEAVE,
-    WindoweventFocusGained = SDL_WINDOWEVENT_FOCUS_GAINED,
-    WindoweventFocusLost = SDL_WINDOWEVENT_FOCUS_LOST,
-    WindoweventClose = SDL_WINDOWEVENT_CLOSE,
-    WindoweventTakeFocus = SDL_WINDOWEVENT_TAKE_FOCUS,
-    WindoweventHitTest = SDL_WINDOWEVENT_HIT_TEST,
+    None = SDL_WINDOWEVENT_NONE,
+    Shown = SDL_WINDOWEVENT_SHOWN,
+    Hidden = SDL_WINDOWEVENT_HIDDEN,
+    Exposed = SDL_WINDOWEVENT_EXPOSED,
+    Moved = SDL_WINDOWEVENT_MOVED,
+    Resized = SDL_WINDOWEVENT_RESIZED,
+    SizeChanged = SDL_WINDOWEVENT_SIZE_CHANGED,
+    Minimized = SDL_WINDOWEVENT_MINIMIZED,
+    Maximized = SDL_WINDOWEVENT_MAXIMIZED,
+    Restored = SDL_WINDOWEVENT_RESTORED,
+    Enter = SDL_WINDOWEVENT_ENTER,
+    Leave = SDL_WINDOWEVENT_LEAVE,
+    FocusGained = SDL_WINDOWEVENT_FOCUS_GAINED,
+    FocusLost = SDL_WINDOWEVENT_FOCUS_LOST,
+    Close = SDL_WINDOWEVENT_CLOSE,
+    TakeFocus = SDL_WINDOWEVENT_TAKE_FOCUS,
+    HitTest = SDL_WINDOWEVENT_HIT_TEST,
 };
 
 /**
@@ -88,8 +88,8 @@ enum class WindowEventID : Uint32 {
  * Generated From SDL_video.h:178
  */
 enum class DisplayEventID : Uint32 {
-    DisplayeventNone = SDL_DISPLAYEVENT_NONE,
-    DisplayeventOrientation = SDL_DISPLAYEVENT_ORIENTATION,
+    None = SDL_DISPLAYEVENT_NONE,
+    Orientation = SDL_DISPLAYEVENT_ORIENTATION,
 };
 
 /**
@@ -98,11 +98,11 @@ enum class DisplayEventID : Uint32 {
  * Generated From SDL_video.h:187
  */
 enum class DisplayOrientation : Uint32 {
-    OrientationUnknown = SDL_ORIENTATION_UNKNOWN,
-    OrientationLandscape = SDL_ORIENTATION_LANDSCAPE,
-    OrientationLandscapeFlipped = SDL_ORIENTATION_LANDSCAPE_FLIPPED,
-    OrientationPortrait = SDL_ORIENTATION_PORTRAIT,
-    OrientationPortraitFlipped = SDL_ORIENTATION_PORTRAIT_FLIPPED,
+    Unknown = SDL_ORIENTATION_UNKNOWN,
+    Landscape = SDL_ORIENTATION_LANDSCAPE,
+    LandscapeFlipped = SDL_ORIENTATION_LANDSCAPE_FLIPPED,
+    Portrait = SDL_ORIENTATION_PORTRAIT,
+    PortraitFlipped = SDL_ORIENTATION_PORTRAIT_FLIPPED,
 };
 
 /**
@@ -111,33 +111,33 @@ enum class DisplayOrientation : Uint32 {
  * Generated From SDL_video.h:226
  */
 enum class GLattr : Uint32 {
-    GlRedSize = SDL_GL_RED_SIZE,
-    GlGreenSize = SDL_GL_GREEN_SIZE,
-    GlBlueSize = SDL_GL_BLUE_SIZE,
-    GlAlphaSize = SDL_GL_ALPHA_SIZE,
-    GlBufferSize = SDL_GL_BUFFER_SIZE,
-    GlDoublebuffer = SDL_GL_DOUBLEBUFFER,
-    GlDepthSize = SDL_GL_DEPTH_SIZE,
-    GlStencilSize = SDL_GL_STENCIL_SIZE,
-    GlAccumRedSize = SDL_GL_ACCUM_RED_SIZE,
-    GlAccumGreenSize = SDL_GL_ACCUM_GREEN_SIZE,
-    GlAccumBlueSize = SDL_GL_ACCUM_BLUE_SIZE,
-    GlAccumAlphaSize = SDL_GL_ACCUM_ALPHA_SIZE,
-    GlStereo = SDL_GL_STEREO,
-    GlMultisamplebuffers = SDL_GL_MULTISAMPLEBUFFERS,
-    GlMultisamplesamples = SDL_GL_MULTISAMPLESAMPLES,
-    GlAcceleratedVisual = SDL_GL_ACCELERATED_VISUAL,
-    GlRetainedBacking = SDL_GL_RETAINED_BACKING,
-    GlContextMajorVersion = SDL_GL_CONTEXT_MAJOR_VERSION,
-    GlContextMinorVersion = SDL_GL_CONTEXT_MINOR_VERSION,
-    GlContextEgl = SDL_GL_CONTEXT_EGL,
-    GlContextFlags = SDL_GL_CONTEXT_FLAGS,
-    GlContextProfileMask = SDL_GL_CONTEXT_PROFILE_MASK,
-    GlShareWithCurrentContext = SDL_GL_SHARE_WITH_CURRENT_CONTEXT,
-    GlFramebufferSrgbCapable = SDL_GL_FRAMEBUFFER_SRGB_CAPABLE,
-    GlContextReleaseBehavior = SDL_GL_CONTEXT_RELEASE_BEHAVIOR,
-    GlContextResetNotification = SDL_GL_CONTEXT_RESET_NOTIFICATION,
-    GlContextNoError = SDL_GL_CONTEXT_NO_ERROR,
+    RedSize = SDL_GL_RED_SIZE,
+    GreenSize = SDL_GL_GREEN_SIZE,
+    BlueSize = SDL_GL_BLUE_SIZE,
+    AlphaSize = SDL_GL_ALPHA_SIZE,
+    BufferSize = SDL_GL_BUFFER_SIZE,
+    Doublebuffer = SDL_GL_DOUBLEBUFFER,
+    DepthSize = SDL_GL_DEPTH_SIZE,
+    StencilSize = SDL_GL_STENCIL_SIZE,
+    AccumRedSize = SDL_GL_ACCUM_RED_SIZE,
+    AccumGreenSize = SDL_GL_ACCUM_GREEN_SIZE,
+    AccumBlueSize = SDL_GL_ACCUM_BLUE_SIZE,
+    AccumAlphaSize = SDL_GL_ACCUM_ALPHA_SIZE,
+    Stereo = SDL_GL_STEREO,
+    Multisamplebuffers = SDL_GL_MULTISAMPLEBUFFERS,
+    Multisamplesamples = SDL_GL_MULTISAMPLESAMPLES,
+    AcceleratedVisual = SDL_GL_ACCELERATED_VISUAL,
+    RetainedBacking = SDL_GL_RETAINED_BACKING,
+    ContextMajorVersion = SDL_GL_CONTEXT_MAJOR_VERSION,
+    ContextMinorVersion = SDL_GL_CONTEXT_MINOR_VERSION,
+    ContextEgl = SDL_GL_CONTEXT_EGL,
+    ContextFlags = SDL_GL_CONTEXT_FLAGS,
+    ContextProfileMask = SDL_GL_CONTEXT_PROFILE_MASK,
+    ShareWithCurrentContext = SDL_GL_SHARE_WITH_CURRENT_CONTEXT,
+    FramebufferSrgbCapable = SDL_GL_FRAMEBUFFER_SRGB_CAPABLE,
+    ContextReleaseBehavior = SDL_GL_CONTEXT_RELEASE_BEHAVIOR,
+    ContextResetNotification = SDL_GL_CONTEXT_RESET_NOTIFICATION,
+    ContextNoError = SDL_GL_CONTEXT_NO_ERROR,
 };
 
 /**
@@ -146,9 +146,9 @@ enum class GLattr : Uint32 {
  * Generated From SDL_video.h:233
  */
 enum class GLprofile : Uint32 {
-    GlContextProfileCore = SDL_GL_CONTEXT_PROFILE_CORE,
-    GlContextProfileCompatibility = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY,
-    GlContextProfileEs = SDL_GL_CONTEXT_PROFILE_ES,
+    ContextProfileCore = SDL_GL_CONTEXT_PROFILE_CORE,
+    ContextProfileCompatibility = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY,
+    ContextProfileEs = SDL_GL_CONTEXT_PROFILE_ES,
 };
 
 /**
@@ -157,10 +157,10 @@ enum class GLprofile : Uint32 {
  * Generated From SDL_video.h:241
  */
 enum class GLcontextFlag : Uint32 {
-    GlContextDebugFlag = SDL_GL_CONTEXT_DEBUG_FLAG,
-    GlContextForwardCompatibleFlag = SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG,
-    GlContextRobustAccessFlag = SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG,
-    GlContextResetIsolationFlag = SDL_GL_CONTEXT_RESET_ISOLATION_FLAG,
+    ContextDebugFlag = SDL_GL_CONTEXT_DEBUG_FLAG,
+    ContextForwardCompatibleFlag = SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG,
+    ContextRobustAccessFlag = SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG,
+    ContextResetIsolationFlag = SDL_GL_CONTEXT_RESET_ISOLATION_FLAG,
 };
 
 /**
@@ -169,8 +169,8 @@ enum class GLcontextFlag : Uint32 {
  * Generated From SDL_video.h:247
  */
 enum class GLcontextReleaseFlag : Uint32 {
-    GlContextReleaseBehaviorNone = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE,
-    GlContextReleaseBehaviorFlush = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH,
+    ContextReleaseBehaviorNone = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE,
+    ContextReleaseBehaviorFlush = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH,
 };
 
 /**
@@ -179,8 +179,8 @@ enum class GLcontextReleaseFlag : Uint32 {
  * Generated From SDL_video.h:253
  */
 enum class GLContextResetNotification : Uint32 {
-    GlContextResetNoNotification = SDL_GL_CONTEXT_RESET_NO_NOTIFICATION,
-    GlContextResetLoseContext = SDL_GL_CONTEXT_RESET_LOSE_CONTEXT,
+    ContextResetNoNotification = SDL_GL_CONTEXT_RESET_NO_NOTIFICATION,
+    ContextResetLoseContext = SDL_GL_CONTEXT_RESET_LOSE_CONTEXT,
 };
 
 /**
@@ -189,16 +189,16 @@ enum class GLContextResetNotification : Uint32 {
  * Generated From SDL_video.h:1031
  */
 enum class HitTestResult : Uint32 {
-    HittestNormal = SDL_HITTEST_NORMAL,
-    HittestDraggable = SDL_HITTEST_DRAGGABLE,
-    HittestResizeTopleft = SDL_HITTEST_RESIZE_TOPLEFT,
-    HittestResizeTop = SDL_HITTEST_RESIZE_TOP,
-    HittestResizeTopright = SDL_HITTEST_RESIZE_TOPRIGHT,
-    HittestResizeRight = SDL_HITTEST_RESIZE_RIGHT,
-    HittestResizeBottomright = SDL_HITTEST_RESIZE_BOTTOMRIGHT,
-    HittestResizeBottom = SDL_HITTEST_RESIZE_BOTTOM,
-    HittestResizeBottomleft = SDL_HITTEST_RESIZE_BOTTOMLEFT,
-    HittestResizeLeft = SDL_HITTEST_RESIZE_LEFT,
+    Normal = SDL_HITTEST_NORMAL,
+    Draggable = SDL_HITTEST_DRAGGABLE,
+    ResizeTopleft = SDL_HITTEST_RESIZE_TOPLEFT,
+    ResizeTop = SDL_HITTEST_RESIZE_TOP,
+    ResizeTopright = SDL_HITTEST_RESIZE_TOPRIGHT,
+    ResizeRight = SDL_HITTEST_RESIZE_RIGHT,
+    ResizeBottomright = SDL_HITTEST_RESIZE_BOTTOMRIGHT,
+    ResizeBottom = SDL_HITTEST_RESIZE_BOTTOM,
+    ResizeBottomleft = SDL_HITTEST_RESIZE_BOTTOMLEFT,
+    ResizeLeft = SDL_HITTEST_RESIZE_LEFT,
 };
 
 }; // namespace sdl2wrap

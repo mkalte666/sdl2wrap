@@ -17,6 +17,7 @@ headers = [
     ["SDL_hints.h", [
         DefineToEnumSettings("SDL_HINT_", "Hint", "const char*", True, "\"\"")
     ]],
+    ["SDL_log.h", []]
 ]
 
 for header in headers:

@@ -24,47 +24,18 @@
 
 // always first!
 #include "detail/base.h"
+#include "detail/generated/generated_sdl_log.h"
 
 namespace sdl2wrap {
 
 /**
- * \brief Predefined log categories
- * Instead of a scoped enum we use LogCategory as a struct containing an enum,
- * We want to allow implicit casting to int, as all functions accepting a category allow user defined categories too.
- */
-struct LogCategory {
-    enum {
-        Application = SDL_LOG_CATEGORY_APPLICATION,
-        Error = SDL_LOG_CATEGORY_ERROR,
-        Assert = SDL_LOG_CATEGORY_ASSERT,
-        System = SDL_LOG_CATEGORY_SYSTEM,
-        Audio = SDL_LOG_CATEGORY_AUDIO,
-        Video = SDL_LOG_CATEGORY_VIDEO,
-        Render = SDL_LOG_CATEGORY_RENDER,
-        Input = SDL_LOG_CATEGORY_INPUT,
-        Test = SDL_LOG_CATEGORY_TEST,
-        Custom = SDL_LOG_CATEGORY_CUSTOM
-    };
-};
-
-enum class LogPriority : int {
-    Verbose = SDL_LOG_PRIORITY_VERBOSE,
-    Debug = SDL_LOG_PRIORITY_DEBUG,
-    Info = SDL_LOG_PRIORITY_INFO,
-    Warn = SDL_LOG_PRIORITY_WARN,
-    Error = SDL_LOG_PRIORITY_ERROR,
-    Critical = SDL_LOG_PRIORITY_CRITICAL
-};
-
-/**
  * \brief static class around sdl2 logging functions
- * Since logging is always available, this class is completly static
+ * Since logging is always available, this stuff can always be called!
  *
  * Currently there is no overload for the normal log functions as they are vararg functions
  * There are however functions returning an object of type "LogWriter" that implements them
  */
-class Log {
-public:
+namespace Log {
     ///
     using OutputFunction = SDL_LogOutputFunction;
     ///
@@ -74,35 +45,35 @@ public:
      * \brief Set the priority of all log categories
      * \param priority
      */
-    static void setAllPriority(LogPriority priority) noexcept;
+    void setAllPriority(LogPriority priority) noexcept;
 
     /**
      * \brief Set the priority of one log function
      * \param category
      * \param priority
      */
-    static void setPriority(int category, LogPriority priority) noexcept;
+    void setPriority(int category, LogPriority priority) noexcept;
 
     /**
      * \brief Get the priority of one log category
      * \param category
      * \return
      */
-    static LogPriority getPriority(int category) noexcept;
+    LogPriority getPriority(int category) noexcept;
 
     /**
      * \brief Cet the current output function and its userdata
      * \param function
      * \param data
      */
-    static void getOutputFunction(OutputFunction& function, OutputFunctionDataT& data) noexcept;
+    void getOutputFunction(OutputFunction& function, OutputFunctionDataT& data) noexcept;
 
     /**
      * \brief Set the output function and its parameter
      * \param function
      * \param data
      */
-    static void setOutputFunction(OutputFunction function, OutputFunctionDataT data) noexcept;
+    void setOutputFunction(OutputFunction function, OutputFunctionDataT data) noexcept;
 
     /**
      * \brief Output a log message
@@ -110,8 +81,8 @@ public:
      * \param priority
      * \param str
      */
-    static void message(int category, LogPriority priority, const char* str) noexcept;
-};
+    void message(int category, LogPriority priority, const char* str) noexcept;
+}; // namespace Log
 
 #ifdef SDL2WRAP_DEFINITIONS
 

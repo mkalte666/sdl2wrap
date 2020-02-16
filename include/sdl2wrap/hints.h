@@ -34,10 +34,10 @@
 namespace sdl2wrap {
 
 /**
- * \brief Static class providing SDL hinting
+ * \brief namespace providing SDL hinting
  * Hints are static cause they work before sdl2 init!
  */
-class Hints {
+namespace Hints {
     /// callback used by addCallback
     using HintCallback = SDL_HintCallback;
     /// userdata (just a void*) used by
@@ -49,22 +49,14 @@ class Hints {
      * \param value
      * \return
      */
-    static bool set(const char* hint, const char* value) noexcept;
+    bool set(const char* hint, const char* value) noexcept;
     /**
      * \brief
      * \param hint
      * \param value
      * \return
      */
-    static bool set(Hint hint, const char* value) noexcept;
-    /**
-     * \brief
-     * \param hint
-     * \param value
-     * \param priority
-     * \return
-     */
-    static bool setWithPriority(const char* hint, const char* value, HintPriority priority) noexcept;
+    bool set(Hint hint, const char* value) noexcept;
     /**
      * \brief
      * \param hint
@@ -72,34 +64,42 @@ class Hints {
      * \param priority
      * \return
      */
-    static bool setWithPriority(Hint hint, const char* value, HintPriority priority) noexcept;
+    bool setWithPriority(const char* hint, const char* value, HintPriority priority) noexcept;
+    /**
+     * \brief
+     * \param hint
+     * \param value
+     * \param priority
+     * \return
+     */
+    bool setWithPriority(Hint hint, const char* value, HintPriority priority) noexcept;
 
     /**
      * \brief
      * \param hint
      * \return
      */
-    static const char* get(const char* hint) noexcept;
+    const char* get(const char* hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
      */
-    static const char* get(Hint hint) noexcept;
+    const char* get(Hint hint) noexcept;
     /**
      * \brief
      * \param hint
      * \param defaultValue
      * \return
      */
-    static bool getBoolean(const char* hint, bool defaultValue) noexcept;
+    bool getBoolean(const char* hint, bool defaultValue) noexcept;
     /**
      * \brief
      * \param hint
      * \param defaultValue
      * \return
      */
-    static bool getBoolean(Hint hint, bool defaultValue) noexcept;
+    bool getBoolean(Hint hint, bool defaultValue) noexcept;
 
     /**
      * \brief
@@ -107,33 +107,33 @@ class Hints {
      * \param callback
      * \param userdata
      */
-    static void addCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
+    void addCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
      * \brief
      * \param hint
      * \param callback
      * \param userdata
      */
-    static void addCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
+    void addCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
      * \brief
      * \param hint
      * \param callback
      * \param userdata
      */
-    static void delCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
+    void delCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
      * \brief
      * \param hint
      * \param callback
      * \param userdata
      */
-    static void delCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
+    void delCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
 
     /**
      * \brief
      */
-    static void clear() noexcept;
+    void clear() noexcept;
 
 #ifdef SDL2WRAP_USE_STL
     /**
@@ -141,15 +141,15 @@ class Hints {
      * \param hint
      * \return
      */
-    static std::string getStr(const std::string& hint) noexcept;
+    std::string getStr(const std::string& hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
      */
-    static std::string getStr(Hint hint) noexcept;
+    std::string getStr(Hint hint) noexcept;
 #endif // SDL2WRAP_USE_STL
-};
+}; // namespace Hints
 
 #ifdef SDL2WRAP_DEFINITIONS
 

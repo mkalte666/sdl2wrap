@@ -34,6 +34,7 @@
 #include "detail/generated/generated_sdl.h"
 #include "detail/result.h"
 
+#include "error.h"
 #include "hints.h"
 #include "log.h"
 #include "rect.h"
