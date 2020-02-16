@@ -57,7 +57,7 @@ namespace Error {
      * \brief Set error with std::string. SDL_SetError
      * \param str
      */
-    void set(const std::string& str) noexcept;
+    void set(const std::string& err) noexcept;
 
     /**
      * \brief Get error as std::string. SDL_GetError
@@ -72,7 +72,7 @@ namespace Error {
 
 SDL2WRAP_INLINE void Error::set(const char* err) noexcept
 {
-    (void)SDL_SetError("%s", err);
+    (void)SDL_SetError("%s", err); //NOLINT
 }
 
 SDL2WRAP_INLINE const char* Error::get() noexcept
@@ -89,7 +89,7 @@ SDL2WRAP_INLINE void Error::clear() noexcept
 
 SDL2WRAP_INLINE void Error::set(const std::string& err) noexcept
 {
-    (void)SDL_SetError("%s", err.c_str());
+    (void)SDL_SetError("%s", err.c_str()); //NOLINT
 }
 
 SDL2WRAP_INLINE std::string Error::getStr() noexcept

@@ -58,6 +58,7 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/rect.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/version.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/video.h)
 
 # includes for the sdl2image target
