@@ -13,7 +13,7 @@ class EnumConstDecl:
         niceName = stripPrefixCount(self.name, 2)
         niceName = niceName.lower()
         niceName = niceName.capitalize()
-        niceName = re.sub(r"_([a-z0-1A-Z]{1})", lambda pat: pat.group(1).upper(), niceName)
+        niceName = re.sub(r"_([a-z0-9A-Z]{1})", lambda pat: pat.group(1).upper(), niceName)
         return niceName + " = " + self.name + ","
 
 class Enum:
@@ -62,5 +62,6 @@ def findEnums(file):
     enums = []
     index = clang.cindex.Index.create()
     tu = index.parse(file)
+    print("this print prevents a segfault in libclang and i cant even")
     findRecursion(enums,file, tu.cursor)
     return enums

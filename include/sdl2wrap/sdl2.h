@@ -37,7 +37,6 @@
 #include "error.h"
 #include "hints.h"
 #include "log.h"
-#include "rect.h"
 #include "version.h"
 #include "video.h"
 

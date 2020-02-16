@@ -7,7 +7,11 @@ def stripPrefixCount(str, count):
         p = workStr.find("_")
         if p == -1:
             return str
-        workStr = workStr[p+1:]
+
+        newWorkStr = workStr[p+1:]
+        if newWorkStr.isnumeric():
+            break
+        workStr = newWorkStr
     return workStr
 
 def stripPrefix(str, name):

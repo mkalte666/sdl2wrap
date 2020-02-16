@@ -76,5 +76,16 @@ private:
     SDLPtrType ptr = nullptr;
 };
 
+template <class Child, class SDLPtrType, SDLDestructorFunc<SDLPtrType> destructorFunc>
+class TypeWrapperWithPtrOp : public TypeWrapper<Child, SDLPtrType, destructorFunc> {
+public:
+    using TypeWrapper<Child, SDLPtrType, destructorFunc>::TypeWrapper;
+
+    SDLPtrType operator->() noexcept
+    {
+        return TypeWrapper<Child, SDLPtrType, destructorFunc>::get();
+    }
+};
+
 } // namespace sdl2wrap
 #endif //sdl2wrap_sdl2typewrapper_h

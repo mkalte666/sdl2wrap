@@ -11,13 +11,12 @@ headers = [
     ["SDL.h", [
         DefineToEnumSettings("SDL_INIT_", "InitFlags")
     ]],
-    ["SDL_video.h", [
-
-    ]],
     ["SDL_hints.h", [
         DefineToEnumSettings("SDL_HINT_", "Hint", "const char*", True, "\"\"")
     ]],
-    ["SDL_log.h", []]
+    ["SDL_log.h", []],
+    ["SDL_pixels.h", []],
+    ["SDL_video.h", []]
 ]
 
 for header in headers:

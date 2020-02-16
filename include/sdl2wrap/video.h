@@ -32,6 +32,9 @@
 #include "detail/generated/generated_sdl_video.h"
 #include "detail/typewrapper.h"
 
+#include "pixels.h"
+#include "rect.h"
+
 namespace sdl2wrap {
 
 /// Wraps SDL_DisplayMode
