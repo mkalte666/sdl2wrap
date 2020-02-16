@@ -36,6 +36,25 @@ namespace Video {
     using Colour = Color;
 
     /**
+     * \brief Wraps SDL_Palette
+     * \sa SDL_Palette
+     */
+    class Palette : public TypeWrapperWithPtrOp<Palette, SDL_Palette*, SDL_FreePalette> {
+    public:
+        using TypeWrapperWithPtrOp::TypeWrapperWithPtrOp;
+
+        /**
+         * \brief alloc a palette.
+         * \param ncolors
+         * \return
+         * \sa SDL_AllocPalette
+         */
+        static Result alloc(int ncolors) noexcept;
+
+        EmptyResult setColors(const Color* colors, int firstcolor, int ncolors) noexcept;
+    };
+
+    /**
      * \brief Wraps SDL_PixelFormat
      * \sa SDL_AllocFormat
      */
@@ -58,6 +77,87 @@ namespace Video {
          * \sa SDL_GetPixelFormatName
          */
         const char* getName() const noexcept;
+
+        /**
+         * \brief Sets the palette of this Format
+         * \return
+         * \sa SDL_SetPixelFormatPalette
+         */
+        EmptyResult setPalette(Palette& palette) noexcept;
+
+        /**
+         * \brief Maps an RGB triple to an opaque pixel value for a given pixel format.
+         * \param r
+         * \param g
+         * \param b
+         * \return
+         * \sa SDL_MapRGB
+         */
+        Uint32 mapRGB(Uint8 r, Uint8 g, Uint8 b) const noexcept;
+
+        /**
+         * \brief Maps an RGB triple to an opaque pixel value for a given pixel format.
+         * \param color
+         * \return
+         * \sa SDL_MapRGB
+         */
+        Uint32 mapRGB(const Color& color) const noexcept;
+
+        /**
+         * \brief Maps an RGBA quadruple to a pixel value for a given pixel format.
+         * \param r
+         * \param g
+         * \param b
+         * \param a
+         * \return
+         * \sa SDL_MapRGB
+         */
+        Uint32 mapRGBA(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept;
+
+        /**
+         * \brief Maps an RGBA quadruple to a pixel value for a given pixel format.
+         * \param collr
+         * \return
+         * \sa SDL_MapRGB
+         */
+        Uint32 mapRGBA(const Color& collr) const noexcept;
+
+        /**
+         * \brief Get the RGB components from a pixel of the specified format.
+         * \param pixel
+         * \param r
+         * \param g
+         * \param b
+         * \sa SDL_GetRGB
+         */
+        void getRGB(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b) const noexcept;
+
+        /**
+         * \brief Get the RGB components from a pixel of the specified format.
+         * \param pixel
+         * \return
+         * \sa SDL_GetRGB
+         */
+        Color getRGB(Uint32 pixel) const noexcept;
+
+        /**
+         * \brief Get the RGBA components from a pixel of the specified format.
+         * \param pixel
+         * \param r
+         * \param g
+         * \param b
+         * \param a
+         * \sa SDL_GetRGBA
+         */
+        void getRGBA(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b, Uint8& a) const noexcept;
+
+        /**
+         * \brief Get the RGBA components from a pixel of the specified format.
+         * \param pixel
+         * \return
+         * \sa SDL_GetRGBA
+         */
+        Color getRGBA(Uint32 pixel) const noexcept;
 
         /**
          * \brief Return the printable name for a enum format.
@@ -93,11 +193,37 @@ namespace Video {
         static PixelFormatEnum maskToEnum(int bpp, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
     };
 
-    using Palette = SDL_Palette;
+    /**
+     * \brief Calculate a 256 entry gamma ramp for a gamma value.
+     * \param gamma
+     * \param ramp
+     * \sa SDL_CalculateGammaRamp
+     */
+    void calculateGammaRamp(float gamma, Uint16* ramp) noexcept;
 
 }; // namespace Video
 
 #ifdef SDL2WRAP_DEFINITIONS
+
+SDL2WRAP_INLINE Video::Palette::Result Video::Palette::alloc(int ncolors) noexcept
+{
+    auto ptr = SDL_AllocPalette(ncolors);
+    if (ptr == nullptr) {
+        return Result::error(0);
+    }
+
+    return Result::success(Palette(ptr));
+}
+
+SDL2WRAP_INLINE EmptyResult Video::Palette::setColors(const Color* colors, int firstcolor, int ncolors) noexcept
+{
+    auto rc = SDL_SetPaletteColors(get(), colors, firstcolor, ncolors);
+    if (rc != 0) {
+        return EmptyResult::error(rc);
+    }
+
+    return EmptyResult::success(true);
+}
 
 SDL2WRAP_INLINE Video::PixelFormat::Result Video::PixelFormat::alloc(PixelFormatEnum format) noexcept
 {
@@ -109,9 +235,63 @@ SDL2WRAP_INLINE Video::PixelFormat::Result Video::PixelFormat::alloc(PixelFormat
     return Result::success(PixelFormat(ptr));
 }
 
+SDL2WRAP_INLINE Uint32 Video::PixelFormat::mapRGB(Uint8 r, Uint8 g, Uint8 b) const noexcept
+{
+    return SDL_MapRGB(get(), r, g, b);
+}
+
+SDL2WRAP_INLINE Uint32 Video::PixelFormat::mapRGB(const Color& color) const noexcept
+{
+    return mapRGB(color.r, color.g, color.b);
+}
+
+SDL2WRAP_INLINE Uint32 Video::PixelFormat::mapRGBA(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept
+{
+    return SDL_MapRGBA(get(), r, g, b, a);
+}
+
+SDL2WRAP_INLINE Uint32 Video::PixelFormat::mapRGBA(const Color& collr) const noexcept
+{
+    return mapRGBA(collr.r, collr.g, collr.b, collr.a);
+}
+
+SDL2WRAP_INLINE void Video::PixelFormat::getRGB(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b) const noexcept
+{
+    SDL_GetRGB(pixel, get(), &r, &g, &b);
+}
+
+SDL2WRAP_INLINE Video::Color Video::PixelFormat::getRGB(Uint32 pixel) const noexcept
+{
+    Color c {};
+    getRGB(pixel, c.r, c.g, c.b);
+    return c;
+}
+
+SDL2WRAP_INLINE void Video::PixelFormat::getRGBA(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b, Uint8& a) const noexcept
+{
+    SDL_GetRGBA(pixel, get(), &r, &g, &b, &a);
+}
+
+SDL2WRAP_INLINE Video::Color Video::PixelFormat::getRGBA(Uint32 pixel) const noexcept
+{
+    Color c {};
+    getRGBA(pixel, c.r, c.g, c.b, c.a);
+    return c;
+}
+
 SDL2WRAP_INLINE const char* Video::PixelFormat::getName() const noexcept
 {
     return getName(static_cast<PixelFormatEnum>(get()->format));
+}
+
+SDL2WRAP_INLINE EmptyResult Video::PixelFormat::setPalette(Palette& palette) noexcept
+{
+    auto rc = SDL_SetPixelFormatPalette(get(), palette.get());
+    if (rc != 0) {
+        return EmptyResult::error(rc);
+    }
+
+    return EmptyResult::success(true);
 }
 
 SDL2WRAP_INLINE const char* Video::PixelFormat::getName(PixelFormatEnum format) noexcept
@@ -128,6 +308,11 @@ SDL2WRAP_INLINE PixelFormatEnum Video::PixelFormat::maskToEnum(int bpp, Uint32 R
 {
     Uint32 result = SDL_MasksToPixelFormatEnum(bpp, Rmask, Gmask, Bmask, Amask);
     return static_cast<PixelFormatEnum>(result);
+}
+
+SDL2WRAP_INLINE void Video::calculateGammaRamp(float gamma, Uint16* ramp) noexcept
+{
+    SDL_CalculateGammaRamp(gamma, ramp);
 }
 
 #endif // SDL2WRAP_DEFINITIONS
