@@ -29,6 +29,7 @@ class Enum:
  * \\brief Scoped version of %(origName)s
  * 
  * Generated From %(filename)s:%(line)d
+ * \\sa %(origName)s
  */
 """ % {"origName": self.name, "filename": os.path.basename(self.sourceFile.name), "line": self.sourceLine}
         txt += "enum class " + stripPrefix(self.name, "SDL_") + " : Uint32 {\n"

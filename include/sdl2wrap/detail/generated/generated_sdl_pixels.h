@@ -32,6 +32,7 @@ namespace sdl2wrap {
  * \brief Scoped version of SDL_PixelType
  * 
  * Generated From SDL_pixels.h:65
+ * \sa SDL_PixelType
  */
 enum class PixelType : Uint32 {
     Unknown = SDL_PIXELTYPE_UNKNOWN,
@@ -52,6 +53,7 @@ enum class PixelType : Uint32 {
  * \brief Scoped version of SDL_BitmapOrder
  * 
  * Generated From SDL_pixels.h:73
+ * \sa SDL_BitmapOrder
  */
 enum class BitmapOrder : Uint32 {
     None = SDL_BITMAPORDER_NONE,
@@ -63,6 +65,7 @@ enum class BitmapOrder : Uint32 {
  * \brief Scoped version of SDL_PackedOrder
  * 
  * Generated From SDL_pixels.h:87
+ * \sa SDL_PackedOrder
  */
 enum class PackedOrder : Uint32 {
     None = SDL_PACKEDORDER_NONE,
@@ -80,6 +83,7 @@ enum class PackedOrder : Uint32 {
  * \brief Scoped version of SDL_ArrayOrder
  * 
  * Generated From SDL_pixels.h:101
+ * \sa SDL_ArrayOrder
  */
 enum class ArrayOrder : Uint32 {
     None = SDL_ARRAYORDER_NONE,
@@ -95,6 +99,7 @@ enum class ArrayOrder : Uint32 {
  * \brief Scoped version of SDL_PackedLayout
  * 
  * Generated From SDL_pixels.h:115
+ * \sa SDL_PackedLayout
  */
 enum class PackedLayout : Uint32 {
     None = SDL_PACKEDLAYOUT_NONE,
@@ -112,6 +117,7 @@ enum class PackedLayout : Uint32 {
  * \brief Scoped version of SDL_PixelFormatEnum
  * 
  * Generated From SDL_pixels.h:296
+ * \sa SDL_PixelFormatEnum
  */
 enum class PixelFormatEnum : Uint32 {
     Unknown = SDL_PIXELFORMAT_UNKNOWN,

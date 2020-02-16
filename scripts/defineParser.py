@@ -23,6 +23,7 @@ class DefineToEnumResult:
  * \\brief scoped enum for %(prefix)s* defines
  * 
  * Generated from %(filename)s
+ * \\sa %(prefix)s*
  */     
 """ \
         % {"prefix": self.settings.prefix, "filename": os.path.basename(self.settings.infile)}

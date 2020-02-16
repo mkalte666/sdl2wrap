@@ -32,6 +32,7 @@ namespace sdl2wrap {
  * \brief Scoped version of SDL_HintPriority
  * 
  * Generated From SDL_hints.h:1265
+ * \sa SDL_HintPriority
  */
 enum class HintPriority : Uint32 {
     Default = SDL_HINT_DEFAULT,
@@ -43,6 +44,7 @@ enum class HintPriority : Uint32 {
  * \brief scoped enum for SDL_HINT_* defines
  * 
  * Generated from SDL_hints.h
+ * \sa SDL_HINT_*
  */
 enum class Hint {
     FramebufferAcceleration, ///< SDL_HINT_FRAMEBUFFER_ACCELERATION

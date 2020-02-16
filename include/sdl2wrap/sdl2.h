@@ -81,6 +81,7 @@ public:
      * \brief Initialize SDL2
      * \param flags The init flags from InitFlags, xored togehter
      * \return Result holding a valid SDL2 on success, or an error.
+     * \sa SDL_Init
      */
     static Result<SDL2> init(InitFlags flags = InitFlags::Everything);
 
@@ -88,12 +89,14 @@ public:
      * \brief Initalize a sub system
      * \param subsystem
      * \return EmptyResult. Hods the sdl error if something went wrong
+     * \sa SDL_InitSubSystem
      */
     EmptyResult initSubSystem(InitFlags subsystem) const noexcept;
 
     /**
      * \brief Clean up a specific subsystem
      * \param subsystem  subsytem to clean up
+     * \sa SDL_QuitSubSystem
      */
     void quitSubSystem(InitFlags subsystem) const noexcept;
 
@@ -101,12 +104,14 @@ public:
      * \brief Check if a SDL feature was initialized
      * \param flags the feature(s), ored to gether
      * \return if the selected features are already init
+     * \sa SDL_WasInit
      */
     bool wasInit(InitFlags flags) const noexcept;
 
     /**
      * \brief Get all features that are initialized
      * \return ored-together flags of present features
+     * \sa SDL_WasInit
      */
     InitFlags wasInit() const noexcept;
 

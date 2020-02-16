@@ -94,6 +94,7 @@ constexpr typename removeRef<T>::type&& move(T&& arg)
 /**
  *
  * Wrapper around either SDL_Assert (debug builds) or just a custom assert that aborts() when the assert fails
+ * \sa SDL_Assert
  */
 #define SDL2WRAP_ASSERT(condition) SDL2WRAP_ASSERT_WRAPPER((condition)) //NOLINT
 

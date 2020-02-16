@@ -44,6 +44,7 @@ namespace Log {
     /**
      * \brief Set the priority of all log categories
      * \param priority
+     * \sa SDL_LogSetAllPriority
      */
     void setAllPriority(LogPriority priority) noexcept;
 
@@ -51,6 +52,7 @@ namespace Log {
      * \brief Set the priority of one log function
      * \param category
      * \param priority
+     * \sa SDL_LogSetPriority
      */
     void setPriority(int category, LogPriority priority) noexcept;
 
@@ -58,6 +60,7 @@ namespace Log {
      * \brief Get the priority of one log category
      * \param category
      * \return
+     * \sa SDL_LogGetPriority
      */
     LogPriority getPriority(int category) noexcept;
 
@@ -65,6 +68,7 @@ namespace Log {
      * \brief Cet the current output function and its userdata
      * \param function
      * \param data
+     * \sa SDL_LogGetOutputFunction
      */
     void getOutputFunction(OutputFunction& function, OutputFunctionDataT& data) noexcept;
 
@@ -72,6 +76,7 @@ namespace Log {
      * \brief Set the output function and its parameter
      * \param function
      * \param data
+     * \sa SDL_LogSetOutputFunction
      */
     void setOutputFunction(OutputFunction function, OutputFunctionDataT data) noexcept;
 
@@ -80,6 +85,7 @@ namespace Log {
      * \param category
      * \param priority
      * \param str
+     * \sa SDL_LogMessage
      */
     void message(int category, LogPriority priority, const char* str) noexcept;
 }; // namespace Log

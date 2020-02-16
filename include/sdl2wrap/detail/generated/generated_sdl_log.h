@@ -32,6 +32,7 @@ namespace sdl2wrap {
  * \brief Scoped version of SDL_LogCategory
  * 
  * Generated From SDL_log.h:97
+ * \sa SDL_LogCategory
  */
 enum class LogCategory : Uint32 {
     CategoryApplication = SDL_LOG_CATEGORY_APPLICATION,
@@ -60,6 +61,7 @@ enum class LogCategory : Uint32 {
  * \brief Scoped version of SDL_LogPriority
  * 
  * Generated From SDL_log.h:111
+ * \sa SDL_LogPriority
  */
 enum class LogPriority : Uint32 {
     PriorityVerbose = SDL_LOG_PRIORITY_VERBOSE,

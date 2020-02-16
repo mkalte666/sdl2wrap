@@ -53,76 +53,86 @@ struct Rect {
     FRect toFRect() const noexcept;
 
     /**
-         * \brief Convert this to a SDL_Rect
+         * \brief Convert this to a
          * \return
+         * \sa SDL_Rect
          */
     SDL_Rect toSDLRect() const noexcept;
 
     /**
-         * \brief Check if point is in this rect. SDL_PointInRect
+         * \brief Check if point is in this rect.
          * \param point
          * \return
+         * \sa SDL_PointInRect
          */
     bool pointInRect(const Point& point) const noexcept;
 
     /**
-         * \brief Check if this rect is empty. SDL_RectEmpty
+         * \brief Check if this rect is empty.
          * \return
+         * \sa SDL_RectEmpty
          */
     bool empty() const noexcept;
 
     /**
-         * \brief Check equality of two rects. SDL_RectEquals
+         * \brief Check equality of two rects.
          * \param other
          * \return
+         * \sa SDL_RectEquals
          */
     bool equals(const Rect& other) const noexcept;
     /**
          * \brief same as calling equals()
          * \param other
          * \return
+         * \sa SDL_HasIntersection
          */
     bool operator==(const Rect& other) const noexcept;
 
     /**
-         * \brief Checks if this rect intersects with another.  SDL_HasIntersection
+         * \brief Checks if this rect intersects with another.
          * \param other
          * \return
+         * \sa SDL_HasIntersection
          */
     bool hasIntersection(const Rect& other) const noexcept;
 
     /**
-         * \brief Calculate the intersection of two rectangles. SDL_IntersectRect
+         * \brief Calculate the intersection of two rectangles.
          * \param other Rect to intersect with
          * \param result result of SDL_IntersectRect goes here
          * \return
+         * \sa SDL_IntersectRect
          */
     bool intersectRect(const Rect& other, Rect& result) const noexcept;
 
     /**
-         * \brief Calculate the union of two rectangles. SDL_UnionRect
+         * \brief Calculate the union of two rectangles.
          * \param other Rect to calculate union with
          * \param result result of SDL_UnionRect goes here
+         * \sa SDL_UnionRect
          */
     void unionRect(const Rect& other, Rect& result) const noexcept;
 
     /**
-         * \brief Calculate the intersection of a rectangle and line segment. SDL_IntersectRectAndLine
+         * \brief Calculate the intersection of a rectangle and line segment.
          * \param x1
          * \param y1
          * \param x2
          * \param y2
          * \return
+         * \sa SDL_IntersectRectAndLine
          */
     bool intersectRectAndLine(int& x1, int& y1, int& x2, int& y2) const noexcept;
 
     /**
-         * \brief Calculate a minimal rectangle enclosing a set of points. SDL_EnclosePoints
+         * \brief Calculate a minimal rectangle enclosing a set of points.
          * \param points
          * \param count
          * \param clip
          * \param result
          * \return
+         * \sa SDL_EnclosePoints
          */
     static bool enclosePoints(Point points[], int count, const Rect& clip, Rect& result); // NOLINT
 

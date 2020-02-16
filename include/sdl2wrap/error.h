@@ -36,32 +36,37 @@ namespace sdl2wrap {
  */
 namespace Error {
     /**
-     * \brief Set error. SDL_SetError
+     * \brief Set error.
      * \param err
+     * \sa SDL_SetError
      */
     void set(const char* err) noexcept;
 
     /**
-     * \brief Get error. SDL_GetError
+     * \brief Get error.
      * \return
+     * \sa SDL_GetError
      */
     const char* get() noexcept;
 
     /**
-     * \brief Clear error. SDL_ClearError
+     * \brief Clear error.
+     * \sa SDL_ClearError
      */
     void clear() noexcept;
 
 #ifdef SDL2WRAP_USE_STL
     /**
-     * \brief Set error with std::string. SDL_SetError
+     * \brief Set error with std::string.
      * \param str
+     * \sa SDL_SetError
      */
     void set(const std::string& err) noexcept;
 
     /**
-     * \brief Get error as std::string. SDL_GetError
+     * \brief Get error as std::string.
      * \return
+     * \sa SDL_GetError
      */
     std::string getStr() noexcept;
 #endif

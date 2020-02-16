@@ -29,38 +29,42 @@ namespace sdl2wrap {
 
 namespace Version {
     /**
-     * \brief Get the version sdl2 was compiled as. Same as the SDL_VERSION macro
+     * \brief Get the version sdl2 was compiled as.
      * \return
+     * \sa SDL_VERSION
      */
     SDL_version getCompiledVersion() noexcept;
 
     /**
-     * \brief Get the version sdl2 is linked against. Same as the SDL_GetVersion function
+     * \brief Get the version sdl2 is linked against.
      * \return
+     * \sa SDL_GetVersion
      */
     SDL_version getLinkedVersion() noexcept;
 
     /**
-     * \brief Get the revision sdl2 is compiled against. Same as the SDL_REVISION macro
+     * \brief Get the revision sdl2 is compiled against.
      * \return
+     * \sa SDL_REVISION
      */
     const char* getCompiledRevision() noexcept;
 
     /**
-     * \brief Get the revision sdl2 is linked against. Same as the SDL_GetRevision function
-     * \return
+     * \brief Get the revision sdl2 is linked against.
+     * \sa SDL_GetRevision
      */
     const char* getLinkedRevision() noexcept;
 
     /**
-     * \brief Get the revision number sdl2 is compiled against. Same sd the SDL_REVISION_NUMBER macro
-     * \return
+     * \brief Get the revision number sdl2 is compiled against.
+     * \sa SDL_REVISION_NUMBER
      */
     int getCompiledRevisionNumber() noexcept;
 
     /**
-     * \brief Get the revision number sdl2 is linked against. Same as the SDL_GetRevisionNumber function
+     * \brief Get the revision number sdl2 is linked against.
      * \return
+     * \sa SDL_GetRevisionNumber
      */
     int getLinkedRevisionNumber() noexcept;
 }; // namespace Version

@@ -48,6 +48,7 @@ namespace Hints {
      * \param hint
      * \param value
      * \return
+     * \sa SDL_SetHint
      */
     bool set(const char* hint, const char* value) noexcept;
     /**
@@ -55,6 +56,7 @@ namespace Hints {
      * \param hint
      * \param value
      * \return
+     * \sa SDL_SetHint
      */
     bool set(Hint hint, const char* value) noexcept;
     /**
@@ -63,6 +65,7 @@ namespace Hints {
      * \param value
      * \param priority
      * \return
+     * \sa SDL_SetHintWithPriority
      */
     bool setWithPriority(const char* hint, const char* value, HintPriority priority) noexcept;
     /**
@@ -71,6 +74,7 @@ namespace Hints {
      * \param value
      * \param priority
      * \return
+     * \sa SDL_SetHintWithPriority
      */
     bool setWithPriority(Hint hint, const char* value, HintPriority priority) noexcept;
 
@@ -78,12 +82,14 @@ namespace Hints {
      * \brief
      * \param hint
      * \return
+     * \sa SDL_GetHint
      */
     const char* get(const char* hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
+     * \sa SDL_GetHint
      */
     const char* get(Hint hint) noexcept;
     /**
@@ -91,6 +97,7 @@ namespace Hints {
      * \param hint
      * \param defaultValue
      * \return
+     * \sa SDL_GetHintBoolean
      */
     bool getBoolean(const char* hint, bool defaultValue) noexcept;
     /**
@@ -98,6 +105,7 @@ namespace Hints {
      * \param hint
      * \param defaultValue
      * \return
+     * \sa SDL_GetHintBoolean
      */
     bool getBoolean(Hint hint, bool defaultValue) noexcept;
 
@@ -106,6 +114,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
+     * \sa SDL_AddHintCallback
      */
     void addCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -113,6 +122,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
+     * \sa SDL_AddHintCallback
      */
     void addCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -120,6 +130,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
+     * \sa SDL_DelHintCallback
      */
     void delCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -127,11 +138,13 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
+     * \sa SDL_DelHintCallback
      */
     void delCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
 
     /**
      * \brief
+     * \sa SDL_ClearHints
      */
     void clear() noexcept;
 
@@ -140,12 +153,14 @@ namespace Hints {
      * \brief
      * \param hint
      * \return
+     * \sa SDL_GetHint
      */
     std::string getStr(const std::string& hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
+     * \sa SDL_GetHint
      */
     std::string getStr(Hint hint) noexcept;
 #endif // SDL2WRAP_USE_STL

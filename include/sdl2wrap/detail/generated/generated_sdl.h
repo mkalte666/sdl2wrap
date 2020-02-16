@@ -32,6 +32,7 @@ namespace sdl2wrap {
  * \brief scoped enum for SDL_INIT_* defines
  * 
  * Generated from SDL.h
+ * \sa SDL_INIT_*
  */
 enum class InitFlags : Uint32 {
     Timer = SDL_INIT_TIMER,

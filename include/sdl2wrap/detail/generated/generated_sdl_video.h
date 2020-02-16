@@ -32,6 +32,7 @@ namespace sdl2wrap {
  * \brief Scoped version of SDL_WindowFlags
  * 
  * Generated From SDL_video.h:122
+ * \sa SDL_WindowFlags
  */
 enum class WindowFlags : Uint32 {
     Fullscreen = SDL_WINDOW_FULLSCREEN,
@@ -61,6 +62,7 @@ enum class WindowFlags : Uint32 {
  * \brief Scoped version of SDL_WindowEventID
  * 
  * Generated From SDL_video.h:169
+ * \sa SDL_WindowEventID
  */
 enum class WindowEventID : Uint32 {
     None = SDL_WINDOWEVENT_NONE,
@@ -86,6 +88,7 @@ enum class WindowEventID : Uint32 {
  * \brief Scoped version of SDL_DisplayEventID
  * 
  * Generated From SDL_video.h:178
+ * \sa SDL_DisplayEventID
  */
 enum class DisplayEventID : Uint32 {
     None = SDL_DISPLAYEVENT_NONE,
@@ -96,6 +99,7 @@ enum class DisplayEventID : Uint32 {
  * \brief Scoped version of SDL_DisplayOrientation
  * 
  * Generated From SDL_video.h:187
+ * \sa SDL_DisplayOrientation
  */
 enum class DisplayOrientation : Uint32 {
     Unknown = SDL_ORIENTATION_UNKNOWN,
@@ -109,6 +113,7 @@ enum class DisplayOrientation : Uint32 {
  * \brief Scoped version of SDL_GLattr
  * 
  * Generated From SDL_video.h:226
+ * \sa SDL_GLattr
  */
 enum class GLattr : Uint32 {
     RedSize = SDL_GL_RED_SIZE,
@@ -144,6 +149,7 @@ enum class GLattr : Uint32 {
  * \brief Scoped version of SDL_GLprofile
  * 
  * Generated From SDL_video.h:233
+ * \sa SDL_GLprofile
  */
 enum class GLprofile : Uint32 {
     ContextProfileCore = SDL_GL_CONTEXT_PROFILE_CORE,
@@ -155,6 +161,7 @@ enum class GLprofile : Uint32 {
  * \brief Scoped version of SDL_GLcontextFlag
  * 
  * Generated From SDL_video.h:241
+ * \sa SDL_GLcontextFlag
  */
 enum class GLcontextFlag : Uint32 {
     ContextDebugFlag = SDL_GL_CONTEXT_DEBUG_FLAG,
@@ -167,6 +174,7 @@ enum class GLcontextFlag : Uint32 {
  * \brief Scoped version of SDL_GLcontextReleaseFlag
  * 
  * Generated From SDL_video.h:247
+ * \sa SDL_GLcontextReleaseFlag
  */
 enum class GLcontextReleaseFlag : Uint32 {
     ContextReleaseBehaviorNone = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE,
@@ -177,6 +185,7 @@ enum class GLcontextReleaseFlag : Uint32 {
  * \brief Scoped version of SDL_GLContextResetNotification
  * 
  * Generated From SDL_video.h:253
+ * \sa SDL_GLContextResetNotification
  */
 enum class GLContextResetNotification : Uint32 {
     ContextResetNoNotification = SDL_GL_CONTEXT_RESET_NO_NOTIFICATION,
@@ -187,6 +196,7 @@ enum class GLContextResetNotification : Uint32 {
  * \brief Scoped version of SDL_HitTestResult
  * 
  * Generated From SDL_video.h:1031
+ * \sa SDL_HitTestResult
  */
 enum class HitTestResult : Uint32 {
     Normal = SDL_HITTEST_NORMAL,
