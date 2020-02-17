@@ -109,6 +109,19 @@ public:
     }
 
     /**
+     * \brief Create an error result from another result object
+     * \tparam otherT base type of other Result
+     * \param other
+     * \return new result object
+     */
+    template <class otherT>
+    static Result error(const Result<otherT>& other) noexcept
+    {
+        SDL2WRAP_ASSERT(other.hasError());
+        return Result(other.info.rc, other.info.msg);
+    }
+
+    /**
      * \brief Return value, if this result has one. Will assert if not
      * \return reference to the object
      */
