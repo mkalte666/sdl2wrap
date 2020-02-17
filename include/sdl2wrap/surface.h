@@ -27,6 +27,8 @@
 #include "detail/base.h"
 // clang-format on
 #include "blendmode.h"
+#include "detail/typewrapper.h"
+#include "detail/generated/generated_sdl_surface.h"
 #include "pixels.h"
 #include "rect.h"
 #include "rwops.h"
@@ -34,6 +36,11 @@
 namespace sdl2wrap {
 
 namespace Video {
+
+    class Surface : public TypeWrapperWithPtrOp<Surface, SDL_Surface*, SDL_FreeSurface> {
+    public:
+        using TypeWrapperWithPtrOp::TypeWrapperWithPtrOp;
+    };
 
 }; // namespace Video
 

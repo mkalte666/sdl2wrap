@@ -39,6 +39,14 @@ enum class HintPriority : Uint32 {
     Normal = SDL_HINT_NORMAL,
     Override = SDL_HINT_OVERRIDE,
 };
+inline bool operator==(SDL_HintPriority a, HintPriority b) noexcept
+{
+    return a == static_cast<SDL_HintPriority>(b);
+}
+inline bool operator==(HintPriority a, SDL_HintPriority b) noexcept
+{
+    return a == static_cast<HintPriority>(b);
+}
 
 /**
  * \brief scoped enum for SDL_HINT_* defines

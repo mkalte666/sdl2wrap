@@ -4,6 +4,24 @@ import re
 from pathlib import Path
 from strops import *
 
+def operatorLine(retType, op, atype, btype):
+    result = """\
+inline %(retType)s operator%(op)s (%(atype)s a, %(btype)s b) noexcept 
+{ 
+    return a %(op)s static_cast<%(atype)s>(b); 
+}\n""" % {"retType":retType, "op":op, "atype":atype, "btype":btype}
+
+    return result
+
+def makeEnumOperators(origType, newType):
+    result = operatorLine("bool", "==", origType, newType)
+    result += operatorLine("bool", "==", newType, origType)
+    # perhaps we want these one day?
+    # result += operatorLine(origType, "|", origType, newType)
+    # result += operatorLine(newType, "|", newType, origType)
+    # result += operatorLine(origType, "&", origType, newType)
+    # result += operatorLine(newType, "&", newType, origType)
+    return result
 
 class EnumConstDecl:
     def __init__(self):
@@ -36,6 +54,7 @@ class Enum:
         for decl in self.constantDecls:
             txt += "    " + decl.rewrite() + "\n"
         txt += "};\n"
+        txt += makeEnumOperators(self.name, stripPrefix(self.name, "SDL_"))
         return txt
 
 

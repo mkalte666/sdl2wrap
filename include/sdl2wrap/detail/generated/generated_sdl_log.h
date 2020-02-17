@@ -56,6 +56,14 @@ enum class LogCategory : Uint32 {
     CategoryReserved10 = SDL_LOG_CATEGORY_RESERVED10,
     CategoryCustom = SDL_LOG_CATEGORY_CUSTOM,
 };
+inline bool operator==(SDL_LogCategory a, LogCategory b) noexcept
+{
+    return a == static_cast<SDL_LogCategory>(b);
+}
+inline bool operator==(LogCategory a, SDL_LogCategory b) noexcept
+{
+    return a == static_cast<LogCategory>(b);
+}
 
 /**
  * \brief Scoped version of SDL_LogPriority
@@ -72,6 +80,14 @@ enum class LogPriority : Uint32 {
     PriorityCritical = SDL_LOG_PRIORITY_CRITICAL,
     LogPriorities = SDL_NUM_LOG_PRIORITIES,
 };
+inline bool operator==(SDL_LogPriority a, LogPriority b) noexcept
+{
+    return a == static_cast<SDL_LogPriority>(b);
+}
+inline bool operator==(LogPriority a, SDL_LogPriority b) noexcept
+{
+    return a == static_cast<LogPriority>(b);
+}
 
 }; // namespace sdl2wrap
 

@@ -48,6 +48,14 @@ enum class PixelType : Uint32 {
     Arrayf16 = SDL_PIXELTYPE_ARRAYF16,
     Arrayf32 = SDL_PIXELTYPE_ARRAYF32,
 };
+inline bool operator==(SDL_PixelType a, PixelType b) noexcept
+{
+    return a == static_cast<SDL_PixelType>(b);
+}
+inline bool operator==(PixelType a, SDL_PixelType b) noexcept
+{
+    return a == static_cast<PixelType>(b);
+}
 
 /**
  * \brief Scoped version of SDL_BitmapOrder
@@ -60,6 +68,14 @@ enum class BitmapOrder : Uint32 {
     Bitmaporder4321 = SDL_BITMAPORDER_4321,
     Bitmaporder1234 = SDL_BITMAPORDER_1234,
 };
+inline bool operator==(SDL_BitmapOrder a, BitmapOrder b) noexcept
+{
+    return a == static_cast<SDL_BitmapOrder>(b);
+}
+inline bool operator==(BitmapOrder a, SDL_BitmapOrder b) noexcept
+{
+    return a == static_cast<BitmapOrder>(b);
+}
 
 /**
  * \brief Scoped version of SDL_PackedOrder
@@ -78,6 +94,14 @@ enum class PackedOrder : Uint32 {
     Abgr = SDL_PACKEDORDER_ABGR,
     Bgra = SDL_PACKEDORDER_BGRA,
 };
+inline bool operator==(SDL_PackedOrder a, PackedOrder b) noexcept
+{
+    return a == static_cast<SDL_PackedOrder>(b);
+}
+inline bool operator==(PackedOrder a, SDL_PackedOrder b) noexcept
+{
+    return a == static_cast<PackedOrder>(b);
+}
 
 /**
  * \brief Scoped version of SDL_ArrayOrder
@@ -94,6 +118,14 @@ enum class ArrayOrder : Uint32 {
     Bgra = SDL_ARRAYORDER_BGRA,
     Abgr = SDL_ARRAYORDER_ABGR,
 };
+inline bool operator==(SDL_ArrayOrder a, ArrayOrder b) noexcept
+{
+    return a == static_cast<SDL_ArrayOrder>(b);
+}
+inline bool operator==(ArrayOrder a, SDL_ArrayOrder b) noexcept
+{
+    return a == static_cast<ArrayOrder>(b);
+}
 
 /**
  * \brief Scoped version of SDL_PackedLayout
@@ -112,6 +144,14 @@ enum class PackedLayout : Uint32 {
     Packedlayout2101010 = SDL_PACKEDLAYOUT_2101010,
     Packedlayout1010102 = SDL_PACKEDLAYOUT_1010102,
 };
+inline bool operator==(SDL_PackedLayout a, PackedLayout b) noexcept
+{
+    return a == static_cast<SDL_PackedLayout>(b);
+}
+inline bool operator==(PackedLayout a, SDL_PackedLayout b) noexcept
+{
+    return a == static_cast<PackedLayout>(b);
+}
 
 /**
  * \brief Scoped version of SDL_PixelFormatEnum
@@ -165,6 +205,14 @@ enum class PixelFormatEnum : Uint32 {
     Nv21 = SDL_PIXELFORMAT_NV21,
     ExternalOes = SDL_PIXELFORMAT_EXTERNAL_OES,
 };
+inline bool operator==(SDL_PixelFormatEnum a, PixelFormatEnum b) noexcept
+{
+    return a == static_cast<SDL_PixelFormatEnum>(b);
+}
+inline bool operator==(PixelFormatEnum a, SDL_PixelFormatEnum b) noexcept
+{
+    return a == static_cast<PixelFormatEnum>(b);
+}
 
 }; // namespace sdl2wrap
 

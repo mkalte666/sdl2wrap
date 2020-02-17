@@ -42,6 +42,14 @@ enum class BlendMode : Uint32 {
     Mul = SDL_BLENDMODE_MUL,
     Invalid = SDL_BLENDMODE_INVALID,
 };
+inline bool operator==(SDL_BlendMode a, BlendMode b) noexcept
+{
+    return a == static_cast<SDL_BlendMode>(b);
+}
+inline bool operator==(BlendMode a, SDL_BlendMode b) noexcept
+{
+    return a == static_cast<BlendMode>(b);
+}
 
 /**
  * \brief Scoped version of SDL_BlendOperation
@@ -56,6 +64,14 @@ enum class BlendOperation : Uint32 {
     Minimum = SDL_BLENDOPERATION_MINIMUM,
     Maximum = SDL_BLENDOPERATION_MAXIMUM,
 };
+inline bool operator==(SDL_BlendOperation a, BlendOperation b) noexcept
+{
+    return a == static_cast<SDL_BlendOperation>(b);
+}
+inline bool operator==(BlendOperation a, SDL_BlendOperation b) noexcept
+{
+    return a == static_cast<BlendOperation>(b);
+}
 
 /**
  * \brief Scoped version of SDL_BlendFactor
@@ -75,6 +91,14 @@ enum class BlendFactor : Uint32 {
     DstAlpha = SDL_BLENDFACTOR_DST_ALPHA,
     OneMinusDstAlpha = SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA,
 };
+inline bool operator==(SDL_BlendFactor a, BlendFactor b) noexcept
+{
+    return a == static_cast<SDL_BlendFactor>(b);
+}
+inline bool operator==(BlendFactor a, SDL_BlendFactor b) noexcept
+{
+    return a == static_cast<BlendFactor>(b);
+}
 
 }; // namespace sdl2wrap
 

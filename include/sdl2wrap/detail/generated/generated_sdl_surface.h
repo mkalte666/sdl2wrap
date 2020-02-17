@@ -40,6 +40,14 @@ enum class YUV_CONVERSION_MODE : Uint32 {
     ConversionBt709 = SDL_YUV_CONVERSION_BT709,
     ConversionAutomatic = SDL_YUV_CONVERSION_AUTOMATIC,
 };
+inline bool operator==(SDL_YUV_CONVERSION_MODE a, YUV_CONVERSION_MODE b) noexcept
+{
+    return a == static_cast<SDL_YUV_CONVERSION_MODE>(b);
+}
+inline bool operator==(YUV_CONVERSION_MODE a, SDL_YUV_CONVERSION_MODE b) noexcept
+{
+    return a == static_cast<YUV_CONVERSION_MODE>(b);
+}
 
 }; // namespace sdl2wrap
 

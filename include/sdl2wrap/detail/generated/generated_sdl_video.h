@@ -57,6 +57,14 @@ enum class WindowFlags : Uint32 {
     PopupMenu = SDL_WINDOW_POPUP_MENU,
     Vulkan = SDL_WINDOW_VULKAN,
 };
+inline bool operator==(SDL_WindowFlags a, WindowFlags b) noexcept
+{
+    return a == static_cast<SDL_WindowFlags>(b);
+}
+inline bool operator==(WindowFlags a, SDL_WindowFlags b) noexcept
+{
+    return a == static_cast<WindowFlags>(b);
+}
 
 /**
  * \brief Scoped version of SDL_WindowEventID
@@ -83,6 +91,14 @@ enum class WindowEventID : Uint32 {
     TakeFocus = SDL_WINDOWEVENT_TAKE_FOCUS,
     HitTest = SDL_WINDOWEVENT_HIT_TEST,
 };
+inline bool operator==(SDL_WindowEventID a, WindowEventID b) noexcept
+{
+    return a == static_cast<SDL_WindowEventID>(b);
+}
+inline bool operator==(WindowEventID a, SDL_WindowEventID b) noexcept
+{
+    return a == static_cast<WindowEventID>(b);
+}
 
 /**
  * \brief Scoped version of SDL_DisplayEventID
@@ -94,6 +110,14 @@ enum class DisplayEventID : Uint32 {
     None = SDL_DISPLAYEVENT_NONE,
     Orientation = SDL_DISPLAYEVENT_ORIENTATION,
 };
+inline bool operator==(SDL_DisplayEventID a, DisplayEventID b) noexcept
+{
+    return a == static_cast<SDL_DisplayEventID>(b);
+}
+inline bool operator==(DisplayEventID a, SDL_DisplayEventID b) noexcept
+{
+    return a == static_cast<DisplayEventID>(b);
+}
 
 /**
  * \brief Scoped version of SDL_DisplayOrientation
@@ -108,6 +132,14 @@ enum class DisplayOrientation : Uint32 {
     Portrait = SDL_ORIENTATION_PORTRAIT,
     PortraitFlipped = SDL_ORIENTATION_PORTRAIT_FLIPPED,
 };
+inline bool operator==(SDL_DisplayOrientation a, DisplayOrientation b) noexcept
+{
+    return a == static_cast<SDL_DisplayOrientation>(b);
+}
+inline bool operator==(DisplayOrientation a, SDL_DisplayOrientation b) noexcept
+{
+    return a == static_cast<DisplayOrientation>(b);
+}
 
 /**
  * \brief Scoped version of SDL_GLattr
@@ -144,6 +176,14 @@ enum class GLattr : Uint32 {
     ContextResetNotification = SDL_GL_CONTEXT_RESET_NOTIFICATION,
     ContextNoError = SDL_GL_CONTEXT_NO_ERROR,
 };
+inline bool operator==(SDL_GLattr a, GLattr b) noexcept
+{
+    return a == static_cast<SDL_GLattr>(b);
+}
+inline bool operator==(GLattr a, SDL_GLattr b) noexcept
+{
+    return a == static_cast<GLattr>(b);
+}
 
 /**
  * \brief Scoped version of SDL_GLprofile
@@ -156,6 +196,14 @@ enum class GLprofile : Uint32 {
     ContextProfileCompatibility = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY,
     ContextProfileEs = SDL_GL_CONTEXT_PROFILE_ES,
 };
+inline bool operator==(SDL_GLprofile a, GLprofile b) noexcept
+{
+    return a == static_cast<SDL_GLprofile>(b);
+}
+inline bool operator==(GLprofile a, SDL_GLprofile b) noexcept
+{
+    return a == static_cast<GLprofile>(b);
+}
 
 /**
  * \brief Scoped version of SDL_GLcontextFlag
@@ -169,6 +217,14 @@ enum class GLcontextFlag : Uint32 {
     ContextRobustAccessFlag = SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG,
     ContextResetIsolationFlag = SDL_GL_CONTEXT_RESET_ISOLATION_FLAG,
 };
+inline bool operator==(SDL_GLcontextFlag a, GLcontextFlag b) noexcept
+{
+    return a == static_cast<SDL_GLcontextFlag>(b);
+}
+inline bool operator==(GLcontextFlag a, SDL_GLcontextFlag b) noexcept
+{
+    return a == static_cast<GLcontextFlag>(b);
+}
 
 /**
  * \brief Scoped version of SDL_GLcontextReleaseFlag
@@ -180,6 +236,14 @@ enum class GLcontextReleaseFlag : Uint32 {
     ContextReleaseBehaviorNone = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE,
     ContextReleaseBehaviorFlush = SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH,
 };
+inline bool operator==(SDL_GLcontextReleaseFlag a, GLcontextReleaseFlag b) noexcept
+{
+    return a == static_cast<SDL_GLcontextReleaseFlag>(b);
+}
+inline bool operator==(GLcontextReleaseFlag a, SDL_GLcontextReleaseFlag b) noexcept
+{
+    return a == static_cast<GLcontextReleaseFlag>(b);
+}
 
 /**
  * \brief Scoped version of SDL_GLContextResetNotification
@@ -191,6 +255,14 @@ enum class GLContextResetNotification : Uint32 {
     ContextResetNoNotification = SDL_GL_CONTEXT_RESET_NO_NOTIFICATION,
     ContextResetLoseContext = SDL_GL_CONTEXT_RESET_LOSE_CONTEXT,
 };
+inline bool operator==(SDL_GLContextResetNotification a, GLContextResetNotification b) noexcept
+{
+    return a == static_cast<SDL_GLContextResetNotification>(b);
+}
+inline bool operator==(GLContextResetNotification a, SDL_GLContextResetNotification b) noexcept
+{
+    return a == static_cast<GLContextResetNotification>(b);
+}
 
 /**
  * \brief Scoped version of SDL_HitTestResult
@@ -210,6 +282,14 @@ enum class HitTestResult : Uint32 {
     ResizeBottomleft = SDL_HITTEST_RESIZE_BOTTOMLEFT,
     ResizeLeft = SDL_HITTEST_RESIZE_LEFT,
 };
+inline bool operator==(SDL_HitTestResult a, HitTestResult b) noexcept
+{
+    return a == static_cast<SDL_HitTestResult>(b);
+}
+inline bool operator==(HitTestResult a, SDL_HitTestResult b) noexcept
+{
+    return a == static_cast<HitTestResult>(b);
+}
 
 }; // namespace sdl2wrap
 
