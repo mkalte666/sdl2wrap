@@ -17,6 +17,11 @@ headers = [
     ]],
     ["SDL_log.h", []],
     ["SDL_pixels.h", []],
+    ["SDL_rwops.h", [
+        DefineToEnumSettings("SDL_RWOPS_", "RWType"),
+        DefineToEnumSettings("RW_SEEK_", "RWSeek")
+    ]],
+    ["SDL_surface.h", []],
     ["SDL_video.h", []]
 ]
 

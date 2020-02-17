@@ -19,37 +19,14 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file video.h
- * Wraps SDL_video.h
- */
+#ifndef sdl2wrap_surface_h
+#define sdl2wrap_surface_h
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
-
-// always first!
+// always first
+#include "blendmode.h"
 #include "detail/base.h"
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
-
 #include "pixels.h"
 #include "rect.h"
-#include "surface.h"
+#include "rwops.h"
 
-namespace sdl2wrap {
-
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
-
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-#ifdef SDL2WRAP_DEFINITIONS
-
-#endif // SDL2WRAP_DEFINITIONS
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+#endif //sdl2wrap_surface_h

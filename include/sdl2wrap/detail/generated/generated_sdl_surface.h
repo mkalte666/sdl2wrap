@@ -18,38 +18,29 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
 /**
- * \file video.h
- * Wraps SDL_video.h
+ * Everything in this file is generated. Please use scripts/generate.py to update it! 
  */
+#ifndef sdl2wrap_generated_SDL_surface
+#define sdl2wrap_generated_SDL_surface
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
-
-// always first!
-#include "detail/base.h"
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
-
-#include "pixels.h"
-#include "rect.h"
-#include "surface.h"
+#include "SDL_surface.h"
 
 namespace sdl2wrap {
 
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
-
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
+/**
+ * \brief Scoped version of SDL_YUV_CONVERSION_MODE
+ * 
+ * Generated From SDL_surface.h:110
+ * \sa SDL_YUV_CONVERSION_MODE
+ */
+enum class YUV_CONVERSION_MODE : Uint32 {
+    ConversionJpeg = SDL_YUV_CONVERSION_JPEG,
+    ConversionBt601 = SDL_YUV_CONVERSION_BT601,
+    ConversionBt709 = SDL_YUV_CONVERSION_BT709,
+    ConversionAutomatic = SDL_YUV_CONVERSION_AUTOMATIC,
 };
 
-#ifdef SDL2WRAP_DEFINITIONS
+}; // namespace sdl2wrap
 
-#endif // SDL2WRAP_DEFINITIONS
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+#endif // sdl2wrap_generated_*

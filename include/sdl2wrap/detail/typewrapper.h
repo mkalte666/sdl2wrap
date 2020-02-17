@@ -72,6 +72,13 @@ public:
         return ptr;
     }
 
+protected:
+    /// danger danger, use with care. this breaks the guarantee that ptr is freed before!
+    void forceReset(SDLPtrType newPtr) noexcept
+    {
+        ptr = newPtr;
+    }
+
 private:
     SDLPtrType ptr = nullptr;
 };

@@ -18,38 +18,43 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
 /**
- * \file video.h
- * Wraps SDL_video.h
+ * Everything in this file is generated. Please use scripts/generate.py to update it! 
  */
+#ifndef sdl2wrap_generated_SDL_rwops
+#define sdl2wrap_generated_SDL_rwops
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
-
-// always first!
-#include "detail/base.h"
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
-
-#include "pixels.h"
-#include "rect.h"
-#include "surface.h"
+#include "SDL_rwops.h"
 
 namespace sdl2wrap {
 
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
-
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
+/**
+ * \brief scoped enum for SDL_RWOPS_* defines
+ * 
+ * Generated from SDL_rwops.h
+ * \sa SDL_RWOPS_*
+ */
+enum class RWType : Uint32 {
+    Unknown = SDL_RWOPS_UNKNOWN,
+    Winfile = SDL_RWOPS_WINFILE,
+    Stdfile = SDL_RWOPS_STDFILE,
+    Jnifile = SDL_RWOPS_JNIFILE,
+    Memory = SDL_RWOPS_MEMORY,
+    MemoryRo = SDL_RWOPS_MEMORY_RO,
 };
 
-#ifdef SDL2WRAP_DEFINITIONS
+/**
+ * \brief scoped enum for RW_SEEK_* defines
+ * 
+ * Generated from SDL_rwops.h
+ * \sa RW_SEEK_*
+ */
+enum class RWSeek : Uint32 {
+    Set = RW_SEEK_SET,
+    Cur = RW_SEEK_CUR,
+    End = RW_SEEK_END,
+};
 
-#endif // SDL2WRAP_DEFINITIONS
+}; // namespace sdl2wrap
 
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+#endif // sdl2wrap_generated_*
