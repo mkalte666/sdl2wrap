@@ -11,6 +11,7 @@ headers = [
     ["SDL.h", [
         DefineToEnumSettings("SDL_INIT_", "InitFlags")
     ]],
+    ["SDL_blendmode.h", []],
     ["SDL_hints.h", [
         DefineToEnumSettings("SDL_HINT_", "Hint", "const char*", True, "\"\"")
     ]],

@@ -32,6 +32,7 @@
 #include "detail/generated/generated_sdl_video.h"
 #include "detail/typewrapper.h"
 
+#include "blendmode.h"
 #include "pixels.h"
 #include "rect.h"
 
