@@ -27,8 +27,10 @@
 #ifndef sdl2wrap_window_h
 #define sdl2wrap_window_h
 
-// always first!
+// always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 #include "detail/generated/generated_sdl_video.h"
 #include "detail/typewrapper.h"
 

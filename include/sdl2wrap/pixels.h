@@ -23,7 +23,9 @@
 #define sdl2wrap_pixels_h
 
 // always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 #include "detail/generated/generated_sdl_pixels.h"
 #include "detail/typewrapper.h"
 

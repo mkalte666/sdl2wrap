@@ -27,8 +27,10 @@
 #ifndef sdl2wrap_rect_h
 #define sdl2wrap_rect_h
 
-// always first!
+// always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 
 namespace sdl2wrap {
 

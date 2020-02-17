@@ -23,7 +23,9 @@
 #define sdl2wrap_version_h
 
 // always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 
 namespace sdl2wrap {
 

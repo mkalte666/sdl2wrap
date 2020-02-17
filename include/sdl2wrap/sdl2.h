@@ -29,8 +29,10 @@
 #ifndef sdl2wrap_sdl2_h
 #define sdl2wrap_sdl2_h
 
-// always first!
+// always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 #include "detail/generated/generated_sdl.h"
 #include "detail/result.h"
 

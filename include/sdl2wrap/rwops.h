@@ -28,7 +28,9 @@
 #define sdl2wrap_rwops_h
 
 // always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 #include "detail/generated/generated_sdl_rwops.h"
 #include "detail/typewrapper.h"
 

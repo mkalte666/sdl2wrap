@@ -23,10 +23,20 @@
 #define sdl2wrap_surface_h
 
 // always first
-#include "blendmode.h"
+// clang-format off
 #include "detail/base.h"
+// clang-format on
+#include "blendmode.h"
 #include "pixels.h"
 #include "rect.h"
 #include "rwops.h"
+
+namespace sdl2wrap {
+
+namespace Video {
+
+}; // namespace Video
+
+}; // namespace sdl2wrap
 
 #endif //sdl2wrap_surface_h

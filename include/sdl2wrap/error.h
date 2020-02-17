@@ -27,7 +27,9 @@
 #define sdl2wrap_error_h
 
 // always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 
 namespace sdl2wrap {
 

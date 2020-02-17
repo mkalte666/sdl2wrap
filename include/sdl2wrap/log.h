@@ -22,8 +22,10 @@
 #ifndef sdl2wrap_log_h
 #define sdl2wrap_log_h
 
-// always first!
+// always first
+// clang-format off
 #include "detail/base.h"
+// clang-format on
 #include "detail/generated/generated_sdl_log.h"
 
 namespace sdl2wrap {
