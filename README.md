@@ -1,4 +1,7 @@
 # SDL2 C++ Wrapper
+![Build](https://github.com/mkalte666/sdl2wrap/workflows/Build/badge.svg)
+
+
 sdl2wrap is a c++17 wrapper around SDL2 (https://www.libsdl.org/)
 
 ### Design Goals
