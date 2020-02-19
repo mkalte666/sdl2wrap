@@ -1,3 +1,6 @@
+
+#include <sdl2wrap/surface.h>
+
 /*
   SDL2 C++ Wrapper
   Copyright (C) 2020 Malte Kießling <mkalte@mkalte.me>
@@ -20,38 +23,30 @@
 */
 
 namespace Video {
-SDL2WRAP_INLINE Surface::Result Surface::checkPtrAndMakeResult(SDL_Surface* ptr) noexcept
-{
-    if (ptr == nullptr) {
-        return Result::error(0);
-    }
-
-    return Result::success(Surface(ptr));
-}
 
 SDL2WRAP_INLINE Surface::Result Surface::createRGB(int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
 {
-    return checkPtrAndMakeResult(SDL_CreateRGBSurface(0, width, height, depth, Rmask, Gmask, Bmask, Amask));
+    return checkPtr(SDL_CreateRGBSurface(0, width, height, depth, Rmask, Gmask, Bmask, Amask));
 }
 
 SDL2WRAP_INLINE Surface::Result Surface::createRGBWithFormat(int width, int height, int depth, PixelFormatEnum format) noexcept
 {
-    return checkPtrAndMakeResult(SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, static_cast<Uint32>(format)));
+    return checkPtr(SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, static_cast<Uint32>(format)));
 }
 
 SDL2WRAP_INLINE Surface::Result Surface::createRGBfrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
 {
-    return checkPtrAndMakeResult(SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask));
+    return checkPtr(SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask));
 }
 
 SDL2WRAP_INLINE Surface::Result Surface::createRGBWithFormatFrom(void* pixels, int width, int height, int depth, int pitch, PixelFormatEnum format) noexcept
 {
-    return checkPtrAndMakeResult(SDL_CreateRGBSurfaceWithFormatFrom(pixels, width, height, depth, pitch, static_cast<Uint32>(format)));
+    return checkPtr(SDL_CreateRGBSurfaceWithFormatFrom(pixels, width, height, depth, pitch, static_cast<Uint32>(format)));
 }
 
 SDL2WRAP_INLINE Surface::Result Surface::loadBMP(File::RWops& rwops) noexcept
 {
-    return checkPtrAndMakeResult(SDL_LoadBMP_RW(rwops.get(), 0));
+    return checkPtr(SDL_LoadBMP_RW(rwops.get(), 0));
 }
 
 SDL2WRAP_INLINE Surface::Result Surface::loadBMP(const char* filename) noexcept
@@ -67,11 +62,7 @@ SDL2WRAP_INLINE Surface::Result Surface::loadBMP(const char* filename) noexcept
 SDL2WRAP_INLINE EmptyResult Surface::saveBMP(File::RWops& rwops) const noexcept
 {
     auto rc = SDL_SaveBMP_RW(get(), rwops.get(), 0);
-    if (rc != 0) {
-        return EmptyResult::error(rc);
-    }
-
-    return EmptyResult::success(true);
+    return checkEmptyResultRc(rc);
 }
 
 SDL2WRAP_INLINE EmptyResult Surface::saveBMP(const char* filename) const noexcept
@@ -82,6 +73,197 @@ SDL2WRAP_INLINE EmptyResult Surface::saveBMP(const char* filename) const noexcep
     }
 
     return saveBMP(rwopsRes.getValue());
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setPalette(const Palette& palette) noexcept
+{
+    auto rc = SDL_SetSurfacePalette(get(), palette.get());
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::lock() noexcept
+{
+    auto rc = SDL_LockSurface(get());
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE void Surface::unlock() noexcept
+{
+    SDL_UnlockSurface(get());
+}
+
+SDL2WRAP_INLINE bool Surface::mustLock() const noexcept
+{
+    auto* p = get();
+    return SDL_MUSTLOCK(p); //NOLINT the sdl marco has issues
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setRLE(bool enable) noexcept
+{
+    auto rc = SDL_SetSurfaceRLE(get(), enable ? 1 : 0);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setColorKey(bool enable, Uint32 key) noexcept
+{
+    auto rc = SDL_SetColorKey(get(), enable ? 1 : 0, key);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE bool Surface::hasColorKey() const noexcept
+{
+    return SDL_HasColorKey(get()) == SDL_TRUE;
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setColorMod(Uint8 r, Uint8 g, Uint8 b) noexcept
+{
+    auto rc = SDL_SetSurfaceColorMod(get(), r, g, b);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::getColorMod(Uint8& r, Uint8& g, Uint8& b) const noexcept
+{
+    auto rc = SDL_GetSurfaceColorMod(get(), &r, &g, &b);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setAlphaMod(Uint8 alpha) noexcept
+{
+    auto rc = SDL_SetSurfaceAlphaMod(get(), alpha);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::getAlphaMod(Uint8& alpha) const noexcept
+{
+    auto rc = SDL_GetSurfaceAlphaMod(get(), &alpha);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::setBlendMode(BlendMode mode) noexcept
+{
+    auto rc = SDL_SetSurfaceBlendMode(get(), static_cast<SDL_BlendMode>(mode));
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::getBlendMode(BlendMode& mode) const noexcept
+{
+    SDL_BlendMode sdlmode;
+    auto rc = SDL_GetSurfaceBlendMode(get(), &sdlmode);
+    mode = static_cast<BlendMode>(sdlmode);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE bool Surface::setClipRect(const Rect& rect) noexcept
+{
+    auto sdlrect = rect.toSDLRect();
+    return SDL_SetClipRect(get(), &sdlrect) == SDL_TRUE;
+}
+
+SDL2WRAP_INLINE bool Surface::resetClipRect() const noexcept
+{
+    return SDL_SetClipRect(get(), nullptr) == SDL_TRUE;
+    ;
+}
+
+SDL2WRAP_INLINE Surface::Result Surface::duplicate() const noexcept
+{
+    auto newPtr = SDL_DuplicateSurface(get());
+    return checkPtr(newPtr);
+}
+
+SDL2WRAP_INLINE Surface::Result Surface::convert(const PixelFormat& format) const noexcept
+{
+    auto newPtr = SDL_ConvertSurface(get(), format.get(), 0);
+    return checkPtr(newPtr);
+}
+
+SDL2WRAP_INLINE Surface::Result Surface::convertFormat(PixelFormatEnum format) const noexcept
+{
+    auto newPtr = SDL_ConvertSurfaceFormat(get(), static_cast<SDL_PixelFormatEnum>(format), 0);
+    return checkPtr(newPtr);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::convertPixels(int width, int height, PixelFormatEnum srcFormat, const void* format, int srcPitch, PixelFormatEnum dstFormat, void* dst, int dstPitch) noexcept
+{
+    auto rc = SDL_ConvertPixels(width, height, static_cast<SDL_PixelFormatEnum>(srcFormat), format, srcPitch, static_cast<SDL_PixelFormatEnum>(dstFormat), dst, dstPitch);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::fill(const Rect& rect, Uint32 color) noexcept
+{
+    auto sdlrect = rect.toSDLRect();
+    auto rc = SDL_FillRect(get(), &sdlrect, color);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::fill(Uint32 color) noexcept
+{
+    auto rc = SDL_FillRect(get(), nullptr, color);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blit(Surface& dst) const noexcept
+{
+    auto rc = SDL_BlitSurface(get(), nullptr, dst.get(), nullptr);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blit(Surface& dst, const Rect& dstRect) const noexcept
+{
+    auto dstRectSdl = dstRect.toSDLRect();
+    auto rc = SDL_BlitSurface(get(), nullptr, dst.get(), &dstRectSdl);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blit(const Rect& srcRect, Surface& dst) const noexcept
+{
+    auto srcRectSdl = srcRect.toSDLRect();
+    auto rc = SDL_BlitSurface(get(), &srcRectSdl, dst.get(), nullptr);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blit(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+{
+    auto srcRectSdl = srcRect.toSDLRect();
+    auto dstRectSdl = dstRect.toSDLRect();
+    auto rc = SDL_BlitSurface(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Surface& dst) const noexcept
+{
+    auto rc = SDL_BlitScaled(get(), nullptr, dst.get(), nullptr);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Surface& dst, const Rect& dstRect) const noexcept
+{
+    auto dstRectSdl = dstRect.toSDLRect();
+    auto rc = SDL_BlitScaled(get(), nullptr, dst.get(), &dstRectSdl);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(const Rect& srcRect, Surface& dst) const noexcept
+{
+    auto srcRectSdl = srcRect.toSDLRect();
+    auto rc = SDL_BlitScaled(get(), &srcRectSdl, dst.get(), nullptr);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+{
+    auto srcRectSdl = srcRect.toSDLRect();
+    auto dstRectSdl = dstRect.toSDLRect();
+    auto rc = SDL_BlitScaled(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Surface::softStretch(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+{
+    auto srcRectSdl = srcRect.toSDLRect();
+    auto dstRectSdl = dstRect.toSDLRect();
+    auto rc = SDL_SoftStretch(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    return checkEmptyResultRc(rc);
 }
 
 }; // namespace Video

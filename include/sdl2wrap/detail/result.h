@@ -230,6 +230,23 @@ private:
 /// Result type for the case where only success of failure is relevant
 using EmptyResult = Result<bool>;
 
-} // namespace sdl2wrap
+/**
+ * \brief Helper function for commen empty result creation with a return code
+ * \tparam RCType
+ * \param rc
+ * \param expceted
+ * \return
+ */
+template <class RCType>
+inline EmptyResult checkEmptyResultRc(RCType rc, RCType expceted = 0)
+{
+    if (rc == expceted) {
+        return EmptyResult::success(true);
+    }
+
+    return EmptyResult::error(static_cast<int>(rc));
+}
+
+}; // namespace sdl2wrap
 
 #endif // sdl2wrap_result_h

@@ -79,7 +79,8 @@ namespace Video {
 
         static EmptyResult convertPixels(int width, int height, PixelFormatEnum srcFormat, const void* format, int srcPitch, PixelFormatEnum dstFormat, void* dst, int dstPitch) noexcept;
 
-        EmptyResult fillRect(const Rect& rect, Uint32 color) noexcept;
+        EmptyResult fill(const Rect& rect, Uint32 color) noexcept;
+        EmptyResult fill(Uint32 color) noexcept;
         // fillRects()
 
         EmptyResult blit(Surface& dst) const noexcept;
@@ -93,9 +94,6 @@ namespace Video {
         EmptyResult blitScaled(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
 
         EmptyResult softStretch(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
-
-    private:
-        static Result checkPtrAndMakeResult(SDL_Surface* ptr) noexcept;
     };
 
     void setYUVConversionMode(YUV_CONVERSION_MODE mode) noexcept;

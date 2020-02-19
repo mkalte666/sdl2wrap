@@ -72,6 +72,15 @@ public:
         return ptr;
     }
 
+    static Result checkPtr(SDLPtrType ptr) noexcept
+    {
+        if (ptr == nullptr) {
+            return Result::error(0);
+        }
+
+        return Result::success(Child(ptr));
+    }
+
 protected:
     /// danger danger, use with care. this breaks the guarantee that ptr is freed before!
     void forceReset(SDLPtrType newPtr) noexcept
