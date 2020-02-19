@@ -75,20 +75,3 @@ SDL2WRAP_INLINE InitFlags SDL2::wasInit() const noexcept
 {
     return static_cast<InitFlags>(SDL_WasInit(0));
 }
-
-SDL2WRAP_INLINE Window::Result SDL2::createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
-{
-    SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
-    if (window == nullptr) {
-        return Window::Result::error(0);
-    }
-
-    return Window::Result::success(Window(window));
-}
-
-SDL2WRAP_INLINE Window::Result SDL2::createCenteredWindow(const char* title, int w, int h, WindowFlags flags) noexcept
-{
-    // sign conversion for SDL_WINDOWPOS_CENTERED
-    // NOLINTNEXTLINE
-    return createWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
-}

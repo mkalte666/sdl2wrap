@@ -139,8 +139,6 @@ public:
 
     bool getClosestDisplayMode(int displayIndex, const DisplayMode& mode, DisplayMode& closest) const noexcept;
 */
-    Window::Result createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
-    Window::Result createCenteredWindow(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
 
 private:
     /// default ctor

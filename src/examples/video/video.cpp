@@ -37,7 +37,7 @@ int main(int, char**)
     auto sdl2 = initResult.extractValue();
 
     // magic numbers? i bet your pardon linter, this is a normal number!
-    auto windowResult = sdl2.createCenteredWindow("test window", 1024, 768); // NOLINT
+    auto windowResult = s2::Video::Window::createCentered("test window", 1024, 768); // NOLINT
     if (!windowResult) {
         std::cerr << "Could not create window: " << windowResult.getErrorMessage();
         return -1;

@@ -18,3 +18,25 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+
+namespace Video {
+
+SDL2WRAP_INLINE Window::Result Window::create(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
+{
+    SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
+    return checkPtr(window);
+}
+
+SDL2WRAP_INLINE Window::Result Window::createCentered(const char* title, int w, int h, WindowFlags flags) noexcept
+{
+    // sign conversion for SDL_WINDOWPOS_CENTERED
+    // NOLINTNEXTLINE
+    return create(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
+}
+
+SDL2WRAP_INLINE Window::Result Window::createFrom(void* nativeWindow) noexcept
+{
+    return checkPtr(SDL_CreateWindowFrom(nativeWindow));
+}
+
+};

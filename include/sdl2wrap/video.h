@@ -40,14 +40,28 @@
 
 namespace sdl2wrap {
 
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
+namespace Video {
 
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
+    /**
+     * \brief Wraps SDL_DisplayMode
+     * \sa SDL_DisplayMode
+     */
+    using DisplayMode = SDL_DisplayMode;
 
-}; // sdl2wrap
+    /**
+     * \brief Wraps SDL_Window
+     * \sa SDL_Window
+     */
+    class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
+    public:
+        using TypeWrapper::TypeWrapper;
+
+        static Result create(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
+        static Result createCentered(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
+        static Result createFrom(void* nativeWindow) noexcept;
+    };
+
+}; // namespace Video
+}; // namespace sdl2wrap
 
 #endif //sdl2wrap_window_h
