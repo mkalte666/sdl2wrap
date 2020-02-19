@@ -21,36 +21,40 @@
 
 #include "SDL_revision.h"
 
-SDL2WRAP_INLINE SDL_version Version::getCompiledVersion() noexcept
+namespace Version {
+
+SDL2WRAP_INLINE SDL_version getCompiledVersion() noexcept
 {
     SDL_version v;
     SDL_VERSION(&v);
     return v;
 }
 
-SDL2WRAP_INLINE SDL_version Version::getLinkedVersion() noexcept
+SDL2WRAP_INLINE SDL_version getLinkedVersion() noexcept
 {
     SDL_version v;
     SDL_GetVersion(&v);
     return v;
 }
 
-SDL2WRAP_INLINE const char* Version::getCompiledRevision() noexcept
+SDL2WRAP_INLINE const char* getCompiledRevision() noexcept
 {
     return SDL_REVISION;
 }
 
-SDL2WRAP_INLINE const char* Version::getLinkedRevision() noexcept
+SDL2WRAP_INLINE const char* getLinkedRevision() noexcept
 {
     return SDL_GetRevision();
 }
 
-SDL2WRAP_INLINE int Version::getCompiledRevisionNumber() noexcept
+SDL2WRAP_INLINE int getCompiledRevisionNumber() noexcept
 {
     return SDL_REVISION_NUMBER;
 }
 
-SDL2WRAP_INLINE int Version::getLinkedRevisionNumber() noexcept
+SDL2WRAP_INLINE int getLinkedRevisionNumber() noexcept
 {
     return SDL_GetRevisionNumber();
 }
+
+}; // namespace Version
