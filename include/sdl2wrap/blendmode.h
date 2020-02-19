@@ -49,28 +49,7 @@ namespace Video {
         BlendFactor dstAlphaFactor,
         BlendOperation alphaOperation) noexcept;
 
-#ifdef SDL2WRAP_DEFINITIONS
-    SDL2WRAP_INLINE BlendMode composeBlendMode(BlendFactor srcColorFactor,
-        BlendFactor dstColorFactor,
-        BlendOperation colorOperation,
-        BlendFactor srcAlphaFactor,
-        BlendFactor dstAlphaFactor,
-        BlendOperation alphaOperation) noexcept
-    {
-        auto res = SDL_ComposeCustomBlendMode(
-            static_cast<SDL_BlendFactor>(srcColorFactor),
-            static_cast<SDL_BlendFactor>(dstColorFactor),
-            static_cast<SDL_BlendOperation>(colorOperation),
-            static_cast<SDL_BlendFactor>(srcAlphaFactor),
-            static_cast<SDL_BlendFactor>(dstAlphaFactor),
-            static_cast<SDL_BlendOperation>(alphaOperation));
-
-        return static_cast<BlendMode>(res);
-    }
-#endif
-
-};
-
+}; // namespace Video
 }; // namespace sdl2wrap
 
 #endif //sdl2wrap_blendmode_h

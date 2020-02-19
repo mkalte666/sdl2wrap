@@ -118,7 +118,8 @@ public:
     static Result error(const Result<otherT>& other) noexcept
     {
         SDL2WRAP_ASSERT(other.hasError());
-        return Result(other.info.rc, other.info.msg);
+        auto otherErr = other.getError();
+        return Result(otherErr.rc, otherErr.msg); //NOLINT: see above
     }
 
     /**
@@ -146,7 +147,7 @@ public:
      * \brief Retirms the error of this result. Asserts if there is a value
      * \return
      */
-    ErrorInfo& getError() noexcept
+    const ErrorInfo& getError() const noexcept
     {
         SDL2WRAP_ASSERT(hasError());
         return *info;

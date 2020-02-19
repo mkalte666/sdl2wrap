@@ -53,6 +53,7 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_log.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_pixels.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_video.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/impl.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/blendmode.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/error.h

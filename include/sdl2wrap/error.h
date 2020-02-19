@@ -74,39 +74,6 @@ namespace Error {
 #endif
 
 }; //namespace Error
-
-#ifdef SDL2WRAP_DEFINITIONS
-
-SDL2WRAP_INLINE void Error::set(const char* err) noexcept
-{
-    (void)SDL_SetError("%s", err); //NOLINT
-}
-
-SDL2WRAP_INLINE const char* Error::get() noexcept
-{
-    return SDL_GetError();
-}
-
-SDL2WRAP_INLINE void Error::clear() noexcept
-{
-    return SDL_ClearError();
-}
-
-#ifdef SDL2WRAP_USE_STL
-
-SDL2WRAP_INLINE void Error::set(const std::string& err) noexcept
-{
-    (void)SDL_SetError("%s", err.c_str()); //NOLINT
-}
-
-SDL2WRAP_INLINE std::string Error::getStr() noexcept
-{
-    return std::string(Error::get());
-}
-
-#endif // SDL2WRAP_USE_STL
-#endif // SDL2WRAP_DEFINITIONS
-
 }; // namespace sdl2wrap
 
 #endif //sdl2wrap_error_h

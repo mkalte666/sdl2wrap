@@ -19,35 +19,35 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file video.h
- * Wraps SDL_video.h
- */
+namespace Error {
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
+SDL2WRAP_INLINE void set(const char* err) noexcept
+{
+    (void)SDL_SetError("%s", err); //NOLINT
+}
 
-// always first
-// clang-format off
-#include "detail/base.h"
-// clang-format on
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
+SDL2WRAP_INLINE const char* get() noexcept
+{
+    return SDL_GetError();
+}
 
-#include "pixels.h"
-#include "rect.h"
-#include "surface.h"
+SDL2WRAP_INLINE void clear() noexcept
+{
+    return SDL_ClearError();
+}
 
-namespace sdl2wrap {
+#ifdef SDL2WRAP_USE_STL
 
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
+SDL2WRAP_INLINE void set(const std::string& err) noexcept
+{
+    (void)SDL_SetError("%s", err.c_str()); //NOLINT
+}
 
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
+SDL2WRAP_INLINE std::string getStr() noexcept
+{
+    return std::string(Error::get());
+}
 
-}; // sdl2wrap
+#endif // SDL2WRAP_USE_STL
 
-#endif //sdl2wrap_window_h
+}; // namespace Error

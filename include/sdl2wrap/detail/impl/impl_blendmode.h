@@ -19,35 +19,24 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file video.h
- * Wraps SDL_video.h
- */
+namespace Video {
 
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
+SDL2WRAP_INLINE BlendMode composeBlendMode(BlendFactor srcColorFactor,
+    BlendFactor dstColorFactor,
+    BlendOperation colorOperation,
+    BlendFactor srcAlphaFactor,
+    BlendFactor dstAlphaFactor,
+    BlendOperation alphaOperation) noexcept
+{
+    auto res = SDL_ComposeCustomBlendMode(
+        static_cast<SDL_BlendFactor>(srcColorFactor),
+        static_cast<SDL_BlendFactor>(dstColorFactor),
+        static_cast<SDL_BlendOperation>(colorOperation),
+        static_cast<SDL_BlendFactor>(srcAlphaFactor),
+        static_cast<SDL_BlendFactor>(dstAlphaFactor),
+        static_cast<SDL_BlendOperation>(alphaOperation));
 
-// always first
-// clang-format off
-#include "detail/base.h"
-// clang-format on
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
+    return static_cast<BlendMode>(res);
+}
 
-#include "pixels.h"
-#include "rect.h"
-#include "surface.h"
-
-namespace sdl2wrap {
-
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
-
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h
+}; // namespace Video

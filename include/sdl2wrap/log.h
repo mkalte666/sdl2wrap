@@ -90,42 +90,8 @@ namespace Log {
      * \sa SDL_LogMessage
      */
     void message(int category, LogPriority priority, const char* str) noexcept;
+
 }; // namespace Log
-
-#ifdef SDL2WRAP_DEFINITIONS
-
-SDL2WRAP_INLINE void Log::setAllPriority(sdl2wrap::LogPriority priority) noexcept
-{
-    SDL_LogSetAllPriority(static_cast<SDL_LogPriority>(priority));
-}
-
-SDL2WRAP_INLINE void Log::setPriority(int category, sdl2wrap::LogPriority priority) noexcept
-{
-    SDL_LogSetPriority(static_cast<int>(category), static_cast<SDL_LogPriority>(priority));
-}
-
-SDL2WRAP_INLINE LogPriority Log::getPriority(int category) noexcept
-{
-    return static_cast<LogPriority>(SDL_LogGetPriority(category));
-}
-
-SDL2WRAP_INLINE void Log::getOutputFunction(OutputFunction& function, OutputFunctionDataT& data) noexcept
-{
-    SDL_LogGetOutputFunction(&function, &data);
-}
-
-SDL2WRAP_INLINE void Log::setOutputFunction(sdl2wrap::Log::OutputFunction function, sdl2wrap::Log::OutputFunctionDataT data) noexcept
-{
-    SDL_LogSetOutputFunction(function, data);
-}
-
-SDL2WRAP_INLINE void Log::message(int category, LogPriority priority, const char* str) noexcept
-{
-    SDL_LogMessage(category, static_cast<SDL_LogPriority>(priority), "%s", str); //NOLINT
-}
-
-#endif // SDL2WRAP_DEFINITIONS
-
 }; // namespace sdl2wrap
 
 #endif //sdl2wrap_log_h

@@ -70,46 +70,6 @@ namespace Version {
      */
     int getLinkedRevisionNumber() noexcept;
 }; // namespace Version
-
-#ifdef SDL2WRAP_DEFINITIONS
-#include "SDL_revision.h"
-
-SDL2WRAP_INLINE SDL_version Version::getCompiledVersion() noexcept
-{
-    SDL_version v;
-    SDL_VERSION(&v);
-    return v;
-}
-
-SDL2WRAP_INLINE SDL_version Version::getLinkedVersion() noexcept
-{
-    SDL_version v;
-    SDL_GetVersion(&v);
-    return v;
-}
-
-SDL2WRAP_INLINE const char* Version::getCompiledRevision() noexcept
-{
-    return SDL_REVISION;
-}
-
-SDL2WRAP_INLINE const char* Version::getLinkedRevision() noexcept
-{
-    return SDL_GetRevision();
-}
-
-SDL2WRAP_INLINE int Version::getCompiledRevisionNumber() noexcept
-{
-    return SDL_REVISION_NUMBER;
-}
-
-SDL2WRAP_INLINE int Version::getLinkedRevisionNumber() noexcept
-{
-    return SDL_GetRevisionNumber();
-}
-
-#endif // SDL2WRAP_DEFINITIONS
-
 }; // namespace sdl2wrap
 
 #endif //sdl2wrap_version_h

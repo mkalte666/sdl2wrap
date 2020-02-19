@@ -18,36 +18,3 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
-/**
- * \file video.h
- * Wraps SDL_video.h
- */
-
-#ifndef sdl2wrap_window_h
-#define sdl2wrap_window_h
-
-// always first
-// clang-format off
-#include "detail/base.h"
-// clang-format on
-#include "detail/generated/generated_sdl_video.h"
-#include "detail/typewrapper.h"
-
-#include "pixels.h"
-#include "rect.h"
-#include "surface.h"
-
-namespace sdl2wrap {
-
-/// Wraps SDL_DisplayMode
-using DisplayMode = SDL_DisplayMode;
-
-class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
-public:
-    using TypeWrapper::TypeWrapper;
-};
-
-}; // sdl2wrap
-
-#endif //sdl2wrap_window_h

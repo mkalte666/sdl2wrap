@@ -82,6 +82,5 @@ def findEnums(file):
     enums = []
     index = clang.cindex.Index.create()
     tu = index.parse(file)
-    print("this print prevents a segfault in libclang and i cant even")
     findRecursion(enums,file, tu.cursor)
     return enums
