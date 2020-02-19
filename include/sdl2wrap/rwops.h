@@ -124,7 +124,7 @@ namespace File {
          * \return
          * \sa SDL_RWseek
          */
-        Sint64 seek(Sint64 offset, RWSeek whence) const noexcept;
+        Sint64 seek(Sint64 offset, RWSeek whence) noexcept;
 
         /**
          * \brief
@@ -134,7 +134,7 @@ namespace File {
          * \return
          * \sa SDL_RWread
          */
-        size_t read(void* ptr, size_t size, size_t maxnum) const noexcept;
+        size_t read(void* ptr, size_t size, size_t maxnum) noexcept;
 
         /**
          * \brief
@@ -144,7 +144,7 @@ namespace File {
          * \return
          * \sa SDL_RWwrite
          */
-        size_t write(const void* ptr, size_t size, size_t num) const noexcept;
+        size_t write(const void* ptr, size_t size, size_t num) noexcept;
 
         /**
          * \brief
@@ -154,7 +154,7 @@ namespace File {
          * Call close() directly or let it go out of scope!
          * \sa SDL_LoadFile_RW
          */
-        sdl2wrap::Result<void*> loadFile(size_t& bytesRead) const noexcept;
+        sdl2wrap::Result<void*> loadFile(size_t& bytesRead) noexcept;
 
         /**
          * \brief
@@ -171,13 +171,13 @@ namespace File {
          * \sa SDL_Read*
          */
         /// \{
-        Uint8 readU8() const noexcept;
-        Uint16 readLE16() const noexcept;
-        Uint16 readBE16() const noexcept;
-        Uint32 readLE32() const noexcept;
-        Uint32 readBE32() const noexcept;
-        Uint64 readLE64() const noexcept;
-        Uint64 readBE64() const noexcept;
+        Uint8 readU8() noexcept;
+        Uint16 readLE16() noexcept;
+        Uint16 readBE16() noexcept;
+        Uint32 readLE32() noexcept;
+        Uint32 readBE32() noexcept;
+        Uint64 readLE64() noexcept;
+        Uint64 readBE64() noexcept;
         /// \}
 
         /**
@@ -187,13 +187,13 @@ namespace File {
          * \sa SDL_Write*
          */
         /// \{
-        EmptyResult writeU8(Uint8 value) const noexcept;
-        EmptyResult writeLE16(Uint16 value) const noexcept;
-        EmptyResult writeBE16(Uint16 value) const noexcept;
-        EmptyResult writeLE32(Uint32 value) const noexcept;
-        EmptyResult writeBE32(Uint32 value) const noexcept;
-        EmptyResult writeLE64(Uint64 value) const noexcept;
-        EmptyResult writeBE64(Uint64 value) const noexcept;
+        EmptyResult writeU8(Uint8 value) noexcept;
+        EmptyResult writeLE16(Uint16 value) noexcept;
+        EmptyResult writeBE16(Uint16 value) noexcept;
+        EmptyResult writeLE32(Uint32 value) noexcept;
+        EmptyResult writeBE32(Uint32 value) noexcept;
+        EmptyResult writeLE64(Uint64 value) noexcept;
+        EmptyResult writeBE64(Uint64 value) noexcept;
         /// \}
     };
 
@@ -266,25 +266,25 @@ SDL2WRAP_INLINE Sint64 File::RWops::tell() const noexcept
     return SDL_RWtell(get());
 }
 
-SDL2WRAP_INLINE Sint64 File::RWops::seek(Sint64 offset, RWSeek whence) const noexcept
+SDL2WRAP_INLINE Sint64 File::RWops::seek(Sint64 offset, RWSeek whence) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_RWseek(get(), offset, static_cast<int>(whence));
 }
 
-SDL2WRAP_INLINE size_t File::RWops::read(void* ptr, size_t size, size_t maxnum) const noexcept
+SDL2WRAP_INLINE size_t File::RWops::read(void* ptr, size_t size, size_t maxnum) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_RWread(get(), ptr, size, maxnum);
 }
 
-SDL2WRAP_INLINE size_t File::RWops::write(const void* ptr, size_t size, size_t num) const noexcept
+SDL2WRAP_INLINE size_t File::RWops::write(const void* ptr, size_t size, size_t num) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_RWwrite(get(), ptr, size, num);
 }
 
-SDL2WRAP_INLINE sdl2wrap::Result<void*> File::RWops::loadFile(size_t& bytesRead) const noexcept
+SDL2WRAP_INLINE sdl2wrap::Result<void*> File::RWops::loadFile(size_t& bytesRead) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     void* data = SDL_LoadFile_RW(get(), &bytesRead, 0);
@@ -305,43 +305,43 @@ SDL2WRAP_INLINE sdl2wrap::Result<void*> File::RWops::loadFile(const char* file, 
     return sdl2wrap::Result<void*>::success(move(data));
 }
 
-SDL2WRAP_INLINE Uint8 File::RWops::readU8() const noexcept
+SDL2WRAP_INLINE Uint8 File::RWops::readU8() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadU8(get());
 }
 
-SDL2WRAP_INLINE Uint16 File::RWops::readLE16() const noexcept
+SDL2WRAP_INLINE Uint16 File::RWops::readLE16() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadLE16(get());
 }
 
-SDL2WRAP_INLINE Uint16 File::RWops::readBE16() const noexcept
+SDL2WRAP_INLINE Uint16 File::RWops::readBE16() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadBE16(get());
 }
 
-SDL2WRAP_INLINE Uint32 File::RWops::readLE32() const noexcept
+SDL2WRAP_INLINE Uint32 File::RWops::readLE32() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadLE32(get());
 }
 
-SDL2WRAP_INLINE Uint32 File::RWops::readBE32() const noexcept
+SDL2WRAP_INLINE Uint32 File::RWops::readBE32() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadBE32(get());
 }
 
-SDL2WRAP_INLINE Uint64 File::RWops::readLE64() const noexcept
+SDL2WRAP_INLINE Uint64 File::RWops::readLE64() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadLE64(get());
 }
 
-SDL2WRAP_INLINE Uint64 File::RWops::readBE64() const noexcept
+SDL2WRAP_INLINE Uint64 File::RWops::readBE64() noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return SDL_ReadBE64(get());
@@ -356,43 +356,43 @@ SDL2WRAP_INLINE EmptyResult checkRwopsWriteRc(size_t rc) noexcept
     return EmptyResult::error(0);
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeU8(Uint8 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeU8(Uint8 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteU8(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeLE16(Uint16 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeLE16(Uint16 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteLE16(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeBE16(Uint16 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeBE16(Uint16 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteBE16(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeLE32(Uint32 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeLE32(Uint32 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteLE32(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeBE32(Uint32 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeBE32(Uint32 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteBE32(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeLE64(Uint64 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeLE64(Uint64 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteLE64(get(), value));
 }
 
-SDL2WRAP_INLINE EmptyResult File::RWops::writeBE64(Uint64 value) const noexcept
+SDL2WRAP_INLINE EmptyResult File::RWops::writeBE64(Uint64 value) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
     return checkRwopsWriteRc(SDL_WriteBE64(get(), value));

@@ -52,25 +52,25 @@ namespace Video {
         EmptyResult saveBMP(File::RWops& rwops) const noexcept;
         EmptyResult saveBMP(const char* filename) const noexcept;
 
-        EmptyResult setPalette(const Palette& palette) const noexcept;
+        EmptyResult setPalette(const Palette& palette) noexcept;
 
-        EmptyResult lock() const noexcept;
-        void unlock() const noexcept;
+        EmptyResult lock() noexcept;
+        void unlock() noexcept;
         bool mustLock() const noexcept;
 
-        EmptyResult setRLE(bool enable) const noexcept;
-        EmptyResult setColorKey(bool enable, Uint32 key) const noexcept;
+        EmptyResult setRLE(bool enable) noexcept;
+        EmptyResult setColorKey(bool enable, Uint32 key) noexcept;
         bool hasColorKey() const noexcept;
 
-        EmptyResult setColorMod(Uint8 r, Uint8 g, Uint8 b) const noexcept;
+        EmptyResult setColorMod(Uint8 r, Uint8 g, Uint8 b) noexcept;
         EmptyResult getColorMod(Uint8& r, Uint8& g, Uint8& b) const noexcept;
-        EmptyResult setAlphaMod(Uint8 alpha) const noexcept;
+        EmptyResult setAlphaMod(Uint8 alpha) noexcept;
         EmptyResult getAlphaMod(Uint8& alpha) const noexcept;
 
-        EmptyResult setBlendMode(BlendMode mode) const noexcept;
+        EmptyResult setBlendMode(BlendMode mode) noexcept;
         EmptyResult getBlendMode(BlendMode& mode) const noexcept;
 
-        bool setClipRect(const Rect& rect) const noexcept;
+        bool setClipRect(const Rect& rect) noexcept;
         bool resetClipRect() const noexcept;
 
         Result duplicate() const noexcept;
@@ -79,20 +79,20 @@ namespace Video {
 
         static EmptyResult convertPixels(int width, int height, PixelFormatEnum srcFormat, const void* format, int srcPitch, PixelFormatEnum dstFormat, void* dst, int dstPitch) noexcept;
 
-        EmptyResult fillRect(const Rect& rect, Uint32 color);
+        EmptyResult fillRect(const Rect& rect, Uint32 color) noexcept;
         // fillRects()
 
-        EmptyResult blit(const Surface& dst) const noexcept;
-        EmptyResult blit(const Surface& dst, const Rect& dstRect) const noexcept;
-        EmptyResult blit(const Rect& srcRect, const Surface& dst) const noexcept;
-        EmptyResult blit(const Rect& srcRect, const Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blit(Surface& dst) const noexcept;
+        EmptyResult blit(Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blit(const Rect& srcRect, Surface& dst) const noexcept;
+        EmptyResult blit(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
 
-        EmptyResult blitScaled(const Surface& dst) const noexcept;
-        EmptyResult blitScaled(const Surface& dst, const Rect& dstRect) const noexcept;
-        EmptyResult blitScaled(const Rect& srcRect, const Surface& dst) const noexcept;
-        EmptyResult blitScaled(const Rect& srcRect, const Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blitScaled(Surface& dst) const noexcept;
+        EmptyResult blitScaled(Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blitScaled(const Rect& srcRect, Surface& dst) const noexcept;
+        EmptyResult blitScaled(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
 
-        EmptyResult softStretch(const Rect& srcRect, const Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult softStretch(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
 
     private:
         static Result checkPtrAndMakeResult(SDL_Surface* ptr) noexcept;

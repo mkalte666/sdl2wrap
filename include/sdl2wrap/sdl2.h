@@ -94,14 +94,14 @@ public:
      * \return EmptyResult. Hods the sdl error if something went wrong
      * \sa SDL_InitSubSystem
      */
-    EmptyResult initSubSystem(InitFlags subsystem) const noexcept;
+    EmptyResult initSubSystem(InitFlags subsystem) noexcept;
 
     /**
      * \brief Clean up a specific subsystem
      * \param subsystem  subsytem to clean up
      * \sa SDL_QuitSubSystem
      */
-    void quitSubSystem(InitFlags subsystem) const noexcept;
+    void quitSubSystem(InitFlags subsystem) noexcept;
 
     /**
      * \brief Check if a SDL feature was initialized
@@ -139,8 +139,8 @@ public:
 
     bool getClosestDisplayMode(int displayIndex, const DisplayMode& mode, DisplayMode& closest) const noexcept;
 */
-    Window::Result createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) const noexcept;
-    Window::Result createCenteredWindow(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) const noexcept;
+    Window::Result createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
+    Window::Result createCenteredWindow(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
 
 private:
     /// default ctor
@@ -176,7 +176,7 @@ SDL2WRAP_INLINE SDL2& SDL2::operator=(SDL2&& rhs) noexcept
     return *this;
 };
 
-SDL2WRAP_INLINE EmptyResult SDL2::initSubSystem(InitFlags subsystem) const noexcept
+SDL2WRAP_INLINE EmptyResult SDL2::initSubSystem(InitFlags subsystem) noexcept
 {
     auto rc = SDL_InitSubSystem(static_cast<Uint32>(subsystem));
     if (rc != 0) {
@@ -185,7 +185,7 @@ SDL2WRAP_INLINE EmptyResult SDL2::initSubSystem(InitFlags subsystem) const noexc
     return EmptyResult::success(true);
 }
 
-SDL2WRAP_INLINE void SDL2::quitSubSystem(InitFlags subsystem) const noexcept
+SDL2WRAP_INLINE void SDL2::quitSubSystem(InitFlags subsystem) noexcept
 {
     SDL_QuitSubSystem(static_cast<Uint32>(subsystem));
 }
@@ -214,7 +214,7 @@ SDL2WRAP_INLINE InitFlags SDL2::wasInit() const noexcept
     return static_cast<InitFlags>(SDL_WasInit(0));
 }
 
-SDL2WRAP_INLINE Window::Result SDL2::createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags) const noexcept
+SDL2WRAP_INLINE Window::Result SDL2::createWindow(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
 {
     SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
     if (window == nullptr) {
@@ -224,7 +224,7 @@ SDL2WRAP_INLINE Window::Result SDL2::createWindow(const char* title, int x, int 
     return Window::Result::success(Window(window));
 }
 
-SDL2WRAP_INLINE Window::Result SDL2::createCenteredWindow(const char* title, int w, int h, WindowFlags flags) const noexcept
+SDL2WRAP_INLINE Window::Result SDL2::createCenteredWindow(const char* title, int w, int h, WindowFlags flags) noexcept
 {
     // sign conversion for SDL_WINDOWPOS_CENTERED
     // NOLINTNEXTLINE
