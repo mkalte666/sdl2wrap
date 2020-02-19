@@ -67,7 +67,7 @@ public:
         }
     }
 
-    SDLPtrType get() noexcept
+    SDLPtrType get() const noexcept
     {
         return ptr;
     }
