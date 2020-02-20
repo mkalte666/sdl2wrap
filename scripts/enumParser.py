@@ -27,12 +27,13 @@ class EnumConstDecl:
     def __init__(self):
         self.name = ""
 
-    def rewrite(self):
+    def rewrite(self, parentName):
         niceName = stripPrefixCount(self.name, 2)
         niceName = niceName.lower()
         niceName = niceName.capitalize()
         niceName = re.sub(r"_([a-z0-9A-Z]{1})", lambda pat: pat.group(1).upper(), niceName)
-        return niceName + " = " + self.name + ","
+        return niceName + " = " + self.name + ", " \
+               + makeImplComment(self.name, parentName + "::" + niceName.strip())
 
 class Enum:
     def __init__(self):
@@ -52,7 +53,7 @@ class Enum:
 """ % {"origName": self.name, "filename": os.path.basename(self.sourceFile.name), "line": self.sourceLine}
         txt += "enum class " + stripPrefix(self.name, "SDL_") + " : Uint32 {\n"
         for decl in self.constantDecls:
-            txt += "    " + decl.rewrite() + "\n"
+            txt += "    " + decl.rewrite(stripPrefix(self.name, "SDL_")) + "\n"
         txt += "};\n"
         txt += makeEnumOperators(self.name, stripPrefix(self.name, "SDL_"))
         return txt

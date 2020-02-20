@@ -1,5 +1,6 @@
 import re
 import os
+from strops import *
 
 class DefineToEnumSettings:
     def __init__(self, prefix, newName, basetype="Uint32", createConverter=False, caseDefault=""):
@@ -82,9 +83,9 @@ def defineToEnum(infile, settings):
         name = name.capitalize()
         name = re.sub(r"_([a-z0-1A-Z]{1})", lambda pat : pat.group(1).upper(), name)
         if settings.createConverter:
-            result.enumBody += "    " + name + ", ///< " + define + "\n"
+            result.enumBody += "    " + name + ", " + makeImplComment(define, settings.newName + "::" + name) + "\n"
             result.convertBody += "        case "+settings.newName+"::" + name + ": return " + define + ";\n"
         else:
-            result.enumBody += "    " + name + " = " + define + ",\n"
+            result.enumBody += "    " + name + " = " + define + ", " + makeImplComment(define, settings.newName + "::" + name) + "\n"
 
     return result
