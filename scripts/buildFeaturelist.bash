@@ -9,7 +9,7 @@ includeDir=$1
 outfile=$2
 
 grep -Roh "\\wrapImpl.*" include/ | sed s/wrapImpl\\s*//g > .wrapImpl.txt
-grep -Roh "\\wrapWontfix.*" include/ | sed s/wrapImpl\\s*//g > .wrapWontfix.txt
+grep -Roh "\\wrapWontfix.*" include/ | sed s/wrapWontfix\\s*//g > .wrapWontfix.txt
 grep -Roh "SDL[_A-Za-z0-9]*" "$includeDir" > .sdlList.txt
 
 python3 ./scripts/featuresFromIntermediates.py .wrapImpl.txt .wrapWontfix.txt .sdlList.txt "$outfile"

@@ -43,6 +43,7 @@ namespace Video {
 
     /**
      * \brief Equivalent of SDL_Rect. Also wraps all prominent SDL_Rect functions
+     * \wrapImpl SDL_Rect Video::Rect
      */
     struct Rect {
         /// default ctor
@@ -59,7 +60,7 @@ namespace Video {
         /**
          * \brief Convert this to a
          * \return
-         * \sa SDL_Rect
+         * \wrapImpl SDL_Rect Video::Rect::toSDLRect
          */
         SDL_Rect toSDLRect() const noexcept;
 
@@ -67,14 +68,14 @@ namespace Video {
          * \brief Check if point is in this rect.
          * \param point
          * \return
-         * \sa SDL_PointInRect
+         * \wrapImpl SDL_PointInRect Video::Rect::pointInRect
          */
         bool pointInRect(const Point& point) const noexcept;
 
         /**
          * \brief Check if this rect is empty.
          * \return
-         * \sa SDL_RectEmpty
+         * \wrapImpl SDL_RectEmpty Video::Rect::empty
          */
         bool empty() const noexcept;
 
@@ -82,14 +83,14 @@ namespace Video {
          * \brief Check equality of two rects.
          * \param other
          * \return
-         * \sa SDL_RectEquals
+         * \wrapImpl SDL_RectEquals Video::Rect::equals
          */
         bool equals(const Rect& other) const noexcept;
         /**
          * \brief same as calling equals()
          * \param other
          * \return
-         * \sa SDL_HasIntersection
+         * \sa Video::Rect::equals()
          */
         bool operator==(const Rect& other) const noexcept;
 
@@ -97,7 +98,7 @@ namespace Video {
          * \brief Checks if this rect intersects with another.
          * \param other
          * \return
-         * \sa SDL_HasIntersection
+         * \wrapImpl SDL_HasIntersection Video::Rect::hasIntersection
          */
         bool hasIntersection(const Rect& other) const noexcept;
 
@@ -106,7 +107,7 @@ namespace Video {
          * \param other Rect to intersect with
          * \param result result of SDL_IntersectRect goes here
          * \return
-         * \sa SDL_IntersectRect
+         * \wrapImpl SDL_IntersectRect Video::Rect::intersectRect
          */
         bool intersectRect(const Rect& other, Rect& result) const noexcept;
 
@@ -114,7 +115,7 @@ namespace Video {
          * \brief Calculate the union of two rectangles.
          * \param other Rect to calculate union with
          * \param result result of SDL_UnionRect goes here
-         * \sa SDL_UnionRect
+         * \wrapImpl SDL_UnionRect Video::Rect::unionRect
          */
         void unionRect(const Rect& other, Rect& result) const noexcept;
 
@@ -125,7 +126,7 @@ namespace Video {
          * \param x2
          * \param y2
          * \return
-         * \sa SDL_IntersectRectAndLine
+         * \wrapImpl SDL_IntersectRectAndLine Video::Rect::intersectRectAndLine
          */
         bool intersectRectAndLine(int& x1, int& y1, int& x2, int& y2) const noexcept;
 
@@ -136,7 +137,7 @@ namespace Video {
          * \param clip
          * \param result
          * \return
-         * \sa SDL_EnclosePoints
+         * \wrapImpl SDL_EnclosePoints Video::Rect::enclosePoints
          */
         static bool enclosePoints(Point points[], int count, const Rect& clip, Rect& result); // NOLINT
 
@@ -146,6 +147,7 @@ namespace Video {
 
     /**
      * \brief Equivalent of SDL_FRect
+     * \wrapImpl SDL_FRect Video::FRect
      */
     struct FRect {
         /// default ctor

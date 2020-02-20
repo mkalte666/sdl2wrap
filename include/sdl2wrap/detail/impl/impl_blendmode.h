@@ -21,7 +21,7 @@
 
 namespace Video {
 
-SDL2WRAP_INLINE BlendMode composeBlendMode(BlendFactor srcColorFactor,
+SDL2WRAP_INLINE BlendMode composeCustomBlendMode(BlendFactor srcColorFactor,
     BlendFactor dstColorFactor,
     BlendOperation colorOperation,
     BlendFactor srcAlphaFactor,

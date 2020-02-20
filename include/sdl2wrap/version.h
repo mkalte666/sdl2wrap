@@ -33,40 +33,40 @@ namespace Version {
     /**
      * \brief Get the version sdl2 was compiled as.
      * \return
-     * \sa SDL_VERSION
+     * \wrapImpl SDL_VERSION getCompiledVersion
      */
     SDL_version getCompiledVersion() noexcept;
 
     /**
      * \brief Get the version sdl2 is linked against.
      * \return
-     * \sa SDL_GetVersion
+     * \wrapImpl SDL_GetVersion getLinkedVersion
      */
     SDL_version getLinkedVersion() noexcept;
 
     /**
      * \brief Get the revision sdl2 is compiled against.
      * \return
-     * \sa SDL_REVISION
+     * \wrapImpl SDL_REVISION getCompiledRevision
      */
     const char* getCompiledRevision() noexcept;
 
     /**
      * \brief Get the revision sdl2 is linked against.
-     * \sa SDL_GetRevision
+     * \wrapImpl SDL_GetRevision getLinkedRevision
      */
     const char* getLinkedRevision() noexcept;
 
     /**
      * \brief Get the revision number sdl2 is compiled against.
-     * \sa SDL_REVISION_NUMBER
+     * \wrapImpl SDL_REVISION_NUMBER getCompiledRevisionNumber
      */
     int getCompiledRevisionNumber() noexcept;
 
     /**
      * \brief Get the revision number sdl2 is linked against.
      * \return
-     * \sa SDL_GetRevisionNumber
+     * \wrapImpl SDL_GetRevisionNumber getLinkedRevisionNumber
      */
     int getLinkedRevisionNumber() noexcept;
 }; // namespace Version

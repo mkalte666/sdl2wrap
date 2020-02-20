@@ -40,20 +40,20 @@ namespace Error {
     /**
      * \brief Set error.
      * \param err
-     * \sa SDL_SetError
+     * \wrapImpl SDL_SetError Error::set
      */
     void set(const char* err) noexcept;
 
     /**
      * \brief Get error.
      * \return
-     * \sa SDL_GetError
+     * \wrapImpl SDL_GetError Error::get
      */
     const char* get() noexcept;
 
     /**
      * \brief Clear error.
-     * \sa SDL_ClearError
+     * \wrapImpl SDL_ClearError Error::clear
      */
     void clear() noexcept;
 
@@ -61,14 +61,14 @@ namespace Error {
     /**
      * \brief Set error with std::string.
      * \param str
-     * \sa SDL_SetError
+     * \sa set
      */
     void set(const std::string& err) noexcept;
 
     /**
      * \brief Get error as std::string.
      * \return
-     * \sa SDL_GetError
+     * \sa get
      */
     std::string getStr() noexcept;
 #endif

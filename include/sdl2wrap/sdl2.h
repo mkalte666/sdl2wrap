@@ -54,6 +54,7 @@ namespace sdl2wrap {
  * \brief SDL2 Class
  * Manages the Lifetime of SDL2.
  * As soon as this object is destroyed, SDL_Quit() is called as well.
+ * \wrapImpl SDL2 SDL2
  */
 class SDL2 {
 public:
@@ -84,7 +85,7 @@ public:
      * \brief Initialize SDL2
      * \param flags The init flags from InitFlags, xored togehter
      * \return Result holding a valid SDL2 on success, or an error.
-     * \sa SDL_Init
+     * \wrapImpl SDL_Init SDL2::init
      */
     static Result<SDL2> init(InitFlags flags = InitFlags::Everything);
 
@@ -92,14 +93,14 @@ public:
      * \brief Initalize a sub system
      * \param subsystem
      * \return EmptyResult. Hods the sdl error if something went wrong
-     * \sa SDL_InitSubSystem
+     * \wrapImpl SDL_InitSubSystem SDL2::initSubSystem
      */
     EmptyResult initSubSystem(InitFlags subsystem) noexcept;
 
     /**
      * \brief Clean up a specific subsystem
      * \param subsystem  subsytem to clean up
-     * \sa SDL_QuitSubSystem
+     * \wrapImpl SDL_QuitSubSystem SDL2::quitSubSystem
      */
     void quitSubSystem(InitFlags subsystem) noexcept;
 
@@ -107,14 +108,13 @@ public:
      * \brief Check if a SDL feature was initialized
      * \param flags the feature(s), ored to gether
      * \return if the selected features are already init
-     * \sa SDL_WasInit
      */
     bool wasInit(InitFlags flags) const noexcept;
 
     /**
      * \brief Get all features that are initialized
      * \return ored-together flags of present features
-     * \sa SDL_WasInit
+     * \wrapImpl SDL_WasInit SDL2::wasInit
      */
     InitFlags wasInit() const noexcept;
 
@@ -124,10 +124,10 @@ private:
     noexcept = default;
 
     /**
-         * \brief Validity of the sdl2 instance
-         * To allow movement of the object, validity is tracked.
-         * only a sucessfull call to init makes this valid;
-         */
+     * \brief Validity of the sdl2 instance
+     * To allow movement of the object, validity is tracked.
+     * only a sucessfull call to init makes this valid;
+     */
     bool valid = false;
 };
 

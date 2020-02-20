@@ -41,8 +41,9 @@ namespace Video {
      * \param dstAlphaFactor
      * \param alphaOperation
      * \return
+     * \wrapImpl SDL_ComposeCustomBlendMode Video::composeCustomBlendMode
      */
-    BlendMode composeBlendMode(BlendFactor srcColorFactor,
+    BlendMode composeCustomBlendMode(BlendFactor srcColorFactor,
         BlendFactor dstColorFactor,
         BlendOperation colorOperation,
         BlendFactor srcAlphaFactor,

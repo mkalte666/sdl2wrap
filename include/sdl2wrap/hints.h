@@ -40,7 +40,7 @@ namespace sdl2wrap {
  * Hints are static cause they work before sdl2 init!
  */
 namespace Hints {
-    /// callback used by addCallback
+    /// \wrapImpl SDL_HintCallback HintCallback
     using HintCallback = SDL_HintCallback;
     /// userdata (just a void*) used by
     using HintCallbackDataT = void*;
@@ -50,7 +50,7 @@ namespace Hints {
      * \param hint
      * \param value
      * \return
-     * \sa SDL_SetHint
+     * \wrapImpl SDL_SetHint Hints::set
      */
     bool set(const char* hint, const char* value) noexcept;
     /**
@@ -58,7 +58,7 @@ namespace Hints {
      * \param hint
      * \param value
      * \return
-     * \sa SDL_SetHint
+     * \sa set
      */
     bool set(Hint hint, const char* value) noexcept;
     /**
@@ -67,7 +67,7 @@ namespace Hints {
      * \param value
      * \param priority
      * \return
-     * \sa SDL_SetHintWithPriority
+     * \wrapImpl SDL_SetHintWithPriority Hints::setWithPriority
      */
     bool setWithPriority(const char* hint, const char* value, HintPriority priority) noexcept;
     /**
@@ -76,7 +76,7 @@ namespace Hints {
      * \param value
      * \param priority
      * \return
-     * \sa SDL_SetHintWithPriority
+     * \sa setWithPriority
      */
     bool setWithPriority(Hint hint, const char* value, HintPriority priority) noexcept;
 
@@ -84,14 +84,14 @@ namespace Hints {
      * \brief
      * \param hint
      * \return
-     * \sa SDL_GetHint
+     * \wrapImpl SDL_GetHint Hints::get
      */
     const char* get(const char* hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
-     * \sa SDL_GetHint
+     * \sa get
      */
     const char* get(Hint hint) noexcept;
     /**
@@ -99,7 +99,7 @@ namespace Hints {
      * \param hint
      * \param defaultValue
      * \return
-     * \sa SDL_GetHintBoolean
+     * \wrapImpl SDL_GetHintBoolean Hints::getBoolean
      */
     bool getBoolean(const char* hint, bool defaultValue) noexcept;
     /**
@@ -107,7 +107,7 @@ namespace Hints {
      * \param hint
      * \param defaultValue
      * \return
-     * \sa SDL_GetHintBoolean
+     * \sa getBoolean
      */
     bool getBoolean(Hint hint, bool defaultValue) noexcept;
 
@@ -116,7 +116,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
-     * \sa SDL_AddHintCallback
+     * \sa addCallback
      */
     void addCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -124,7 +124,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
-     * \sa SDL_AddHintCallback
+     * \wrapImpl SDL_AddHintCallback Hints::addCallback
      */
     void addCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -132,7 +132,7 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
-     * \sa SDL_DelHintCallback
+     * \wrapImpl SDL_DelHintCallback Hints::delCallback
      */
     void delCallback(const char* hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
     /**
@@ -140,13 +140,13 @@ namespace Hints {
      * \param hint
      * \param callback
      * \param userdata
-     * \sa SDL_DelHintCallback
+     * \wrapImpl SDL_DelHintCallback Hints::delCallback
      */
     void delCallback(Hint hint, HintCallback callback, HintCallbackDataT userdata) noexcept;
 
     /**
      * \brief
-     * \sa SDL_ClearHints
+     * \wrapImpl SDL_ClearHints Hints::clear
      */
     void clear() noexcept;
 
@@ -155,14 +155,12 @@ namespace Hints {
      * \brief
      * \param hint
      * \return
-     * \sa SDL_GetHint
      */
     std::string getStr(const std::string& hint) noexcept;
     /**
      * \brief
      * \param hint
      * \return
-     * \sa SDL_GetHint
      */
     std::string getStr(Hint hint) noexcept;
 #endif // SDL2WRAP_USE_STL

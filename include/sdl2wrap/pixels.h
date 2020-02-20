@@ -39,7 +39,7 @@ namespace Video {
 
     /**
      * \brief Wraps SDL_Palette
-     * \sa SDL_Palette
+     * \wrapImpl SDL_Palette Video::Palette
      */
     class Palette : public TypeWrapperWithPtrOp<Palette, SDL_Palette*, SDL_FreePalette> {
     public:
@@ -49,7 +49,7 @@ namespace Video {
          * \brief alloc a palette.
          * \param ncolors
          * \return
-         * \sa SDL_AllocPalette
+         * \wrapImpl SDL_AllocPalette Video::Palette::alloc
          */
         static Result alloc(int ncolors) noexcept;
 
@@ -58,7 +58,7 @@ namespace Video {
 
     /**
      * \brief Wraps SDL_PixelFormat
-     * \sa SDL_AllocFormat
+     * \wrapImpl SDL_PixelFormat Video::PixelFormat
      */
     class PixelFormat : public TypeWrapperWithPtrOp<PixelFormat, SDL_PixelFormat*, SDL_FreeFormat> {
     public:
@@ -69,21 +69,21 @@ namespace Video {
          * \brief Create a PixelFormat from a PixelFormatEnum.
          * \param format
          * \return
-         * \sa SDL_AllocFormat
+         * \wrapImpl SDL_AllocFormat Video::PixelFormat::allocalloc
          */
         static Result alloc(PixelFormatEnum format) noexcept;
 
         /**
          * \brief Return the printable name of this format.
          * \return
-         * \sa SDL_GetPixelFormatName
+         * \wrapImpl SDL_GetPixelFormatName Video::PixelFormat::getName
          */
         const char* getName() const noexcept;
 
         /**
          * \brief Sets the palette of this Format
          * \return
-         * \sa SDL_SetPixelFormatPalette
+         * \wrapImpl SDL_SetPixelFormatPalette Video::PixelFormat::setPalette
          */
         EmptyResult setPalette(Palette& palette) noexcept;
 
@@ -93,7 +93,7 @@ namespace Video {
          * \param g
          * \param b
          * \return
-         * \sa SDL_MapRGB
+         * \wrapImpl SDL_MapRGB Video::PixelFormat::mapRGB
          */
         Uint32 mapRGB(Uint8 r, Uint8 g, Uint8 b) const noexcept;
 
@@ -101,7 +101,7 @@ namespace Video {
          * \brief Maps an RGB triple to an opaque pixel value for a given pixel format.
          * \param color
          * \return
-         * \sa SDL_MapRGB
+         * \wrapImpl SDL_MapRGB Video::PixelFormat::mapRGB
          */
         Uint32 mapRGB(const Color& color) const noexcept;
 
@@ -112,7 +112,7 @@ namespace Video {
          * \param b
          * \param a
          * \return
-         * \sa SDL_MapRGB
+         * \wrapImpl SDL_MapRGB Video::PixelFormat::mapRGBA
          */
         Uint32 mapRGBA(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept;
 
@@ -120,7 +120,7 @@ namespace Video {
          * \brief Maps an RGBA quadruple to a pixel value for a given pixel format.
          * \param collr
          * \return
-         * \sa SDL_MapRGB
+         * \wrapImpl SDL_MapRGB Video::PixelFormat::mapRGBA
          */
         Uint32 mapRGBA(const Color& collr) const noexcept;
 
@@ -130,7 +130,7 @@ namespace Video {
          * \param r
          * \param g
          * \param b
-         * \sa SDL_GetRGB
+         * \wrapImpl SDL_GetRGB Video::PixelFormat::getRGB
          */
         void getRGB(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b) const noexcept;
 
@@ -138,7 +138,7 @@ namespace Video {
          * \brief Get the RGB components from a pixel of the specified format.
          * \param pixel
          * \return
-         * \sa SDL_GetRGB
+         * \wrapImpl SDL_GetRGB Video::PixelFormat::getRGB
          */
         Color getRGB(Uint32 pixel) const noexcept;
 
@@ -149,7 +149,7 @@ namespace Video {
          * \param g
          * \param b
          * \param a
-         * \sa SDL_GetRGBA
+         * \wrapImpl SDL_GetRGBA Video::PixelFormat::getRGBA
          */
         void getRGBA(Uint32 pixel, Uint8& r, Uint8& g, Uint8& b, Uint8& a) const noexcept;
 
@@ -157,7 +157,7 @@ namespace Video {
          * \brief Get the RGBA components from a pixel of the specified format.
          * \param pixel
          * \return
-         * \sa SDL_GetRGBA
+         * \wrapImpl SDL_GetRGBA Video::PixelFormat::getRGBA
          */
         Color getRGBA(Uint32 pixel) const noexcept;
 
@@ -165,7 +165,7 @@ namespace Video {
          * \brief Return the printable name for a enum format.
          * \param format
          * \return
-         * \sa SDL_GetPixelFormatName
+         * \wrapImpl SDL_GetPixelFormatName Video::PixelFormat::getName
          */
         static const char* getName(PixelFormatEnum format) noexcept;
 
@@ -178,7 +178,7 @@ namespace Video {
          * \param Bmask
          * \param Amask
          * \return true, or false if conversion is not possible
-         * \sa SDL_GetPixelFormatName
+         * \wrapImpl SDL_GetPixelFormatName Video::PixelFormat::enumToMask
          */
         static bool enumToMask(PixelFormatEnum format, int& bpp, Uint32& Rmask, Uint32& Gmask, Uint32& Bmask, Uint32& Amask) noexcept;
 
@@ -190,7 +190,7 @@ namespace Video {
          * \param Bmask
          * \param Amask
          * \return
-         * \sa SDL_AllocFormat
+         * \wrapImpl SDL_AllocFormat Video::PixelFormat::maskToEnum
          */
         static PixelFormatEnum maskToEnum(int bpp, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
     };
@@ -199,7 +199,7 @@ namespace Video {
      * \brief Calculate a 256 entry gamma ramp for a gamma value.
      * \param gamma
      * \param ramp
-     * \sa SDL_CalculateGammaRamp
+     * \wrapImpl SDL_CalculateGammaRamp Video::calculateGammaRamp
      */
     void calculateGammaRamp(float gamma, Uint16* ramp) noexcept;
 

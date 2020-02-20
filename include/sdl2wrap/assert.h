@@ -28,4 +28,13 @@
 #ifndef sdl2wrap_assert_h
 #define sdl2wrap_assert_h
 
+/**
+ * \wrapImpl SDL_assert SDL2WRAP_ASSERT
+ * \wrapWontfix SDL_assert_always see SDL2WRAP_ASSERT
+ * \wrapWontfix SDL_assert_data see SDL2WRAP_ASSERT
+ * \wrapWontfix SDL_assert_paranoid see SDL2WRAP_ASSERT
+ * \wrapWontfix SDL_assert_release see SDL2WRAP_ASSERT
+ * \wrapWontfix SDL_assert_state see SDL2WRAP_ASSERT
+ */
+
 #endif //sdl2wrap_assert_h

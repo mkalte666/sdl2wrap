@@ -46,7 +46,7 @@ namespace File {
      * This wraps around it for destructor use. Use RWops::close() if you need the result!
      * \note there is no wrapper around for SDL_AllocRW for now. Please use custom RWops directly for now.
      * \param context
-     * \sa SDL_RWclose
+     * \wrapImpl SDL_RWclose File::rwopsDiscardCloseResult
      */
     inline void rwopsDiscardCloseResult(SDL_RWops* context) noexcept
     {
@@ -62,7 +62,7 @@ namespace File {
          * \param file
          * \param mode
          * \return
-         * \sa SDL_RWFromFile
+         * \wrapImpl SDL_RWFromFile File::RWops::fromFile
          */
         static Result fromFile(const char* file, const char* mode) noexcept;
 
@@ -72,7 +72,7 @@ namespace File {
          * \param fp
          * \param autoclose
          * \return
-         * \sa SDL_RWFromFP
+         * \wrapImpl SDL_RWFromFP File::RWops::fromFP
          */
         static Result fromFP(FILE* fp, bool autoclose) noexcept;
 #endif
@@ -82,7 +82,7 @@ namespace File {
          * \param mem
          * \param size
          * \return
-         * \sa SDL_RWFromMem
+         * \wrapImpl SDL_RWFromMem File::RWops::fromMem
          */
         static Result fromMem(void* mem, int size) noexcept;
 
@@ -91,7 +91,7 @@ namespace File {
          * \param mem
          * \param size
          * \return
-         * \sa SDL_RWFromConstMem
+         * \wrapImpl SDL_RWFromConstMem File::RWops::fromConstMem
          */
         static Result fromConstMem(const void* mem, int size) noexcept;
 
@@ -106,14 +106,14 @@ namespace File {
         /**
          * \brief Return the size of this RWops
          * \return
-         * \sa SDL_RWsize
+         * \wrapImpl SDL_RWsize File::RWops::size
          */
         Sint64 size() const noexcept;
 
         /**
          * \brief Return the current offset in the data stream
          * \return
-         * \sa SDL_RWsize
+         * \wrapImpl SDL_RWsize File::RWops::tell
          */
         Sint64 tell() const noexcept;
 
@@ -122,7 +122,7 @@ namespace File {
          * \param offset
          * \param whence
          * \return
-         * \sa SDL_RWseek
+         * \wrapImpl SDL_RWseek File::RWops::seek
          */
         Sint64 seek(Sint64 offset, RWSeek whence) noexcept;
 
@@ -132,7 +132,7 @@ namespace File {
          * \param size
          * \param maxnum
          * \return
-         * \sa SDL_RWread
+         * \wrapImpl SDL_RWread File::RWops::read
          */
         size_t read(void* ptr, size_t size, size_t maxnum) noexcept;
 
@@ -142,7 +142,7 @@ namespace File {
          * \param size
          * \param num
          * \return
-         * \sa SDL_RWwrite
+         * \wrapImpl SDL_RWwrite File::RWops::write
          */
         size_t write(const void* ptr, size_t size, size_t num) noexcept;
 
@@ -152,7 +152,7 @@ namespace File {
          * \return
          * \note As oppesed to \c SDL_LoadFile_RW, this one does not have a setting to automatically close the rwops. This is intented.
          * Call close() directly or let it go out of scope!
-         * \sa SDL_LoadFile_RW
+         * \wrapImpl SDL_LoadFile_RW File::RWops::loadFile
          */
         sdl2wrap::Result<void*> loadFile(size_t& bytesRead) noexcept;
 
@@ -161,14 +161,14 @@ namespace File {
          * \param file
          * \param datasize
          * \return
-         * \sa SDL_LoadFile
+         * \wrapImpl SDL_LoadFile File::RWops::loadFile
          */
         static sdl2wrap::Result<void*> loadFile(const char* file, size_t& datasize) noexcept;
 
         /**
          * \brief Read endian functions, analog to the ones from SDL
          * \return the value in native format
-         * \sa SDL_Read*
+         * \wrapImpl SDL_Read* File::RWops::read*
          */
         /// \{
         Uint8 readU8() noexcept;
@@ -184,7 +184,7 @@ namespace File {
          * \brief Write endian functions, analog to the ones from SDL
          * \param value the value to write, in native format
          * \return a good result if the write succeeded, an error result otherwise
-         * \sa SDL_Write*
+         * \wrapImpl SDL_Write* File::RWops::write*
          */
         /// \{
         EmptyResult writeU8(Uint8 value) noexcept;
