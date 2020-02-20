@@ -48,10 +48,28 @@ namespace Video {
      */
     using DisplayMode = SDL_DisplayMode;
 
+    int getNumVideoDrivers() noexcept;
+    const char* getVideoDriver(int index) noexcept;
+    EmptyResult init(const char* driverName) noexcept;
+    void quit() noexcept;
+    const char* getCurrentDriver() noexcept;
+    int getNumDisplays() noexcept;
+    const char* getDisplayName(int displayIndex) noexcept;
+    Result<Rect> getDisplayBounds(int displayIndex) noexcept;
+    Result<Rect> getDisplayUsableBounds(int displayIndex) noexcept;
+    EmptyResult getDisplayDPI(int displayIndex, float& ddpi, float& hdpi, float& vdpi) noexcept;
+    DisplayOrientation getDisplayOrientation(int displayIndex) noexcept;
+    int getNumDisplayModes(int displayIndex) noexcept;
+    Result<DisplayMode> getDisplayMode(int displayIndex, int modeIndex) noexcept;
+    Result<DisplayMode> getDesktopDisplayMode(int displayIndex) noexcept;
+    Result<DisplayMode> getCurrentDisplayMode(int displayIndex) noexcept;
+
+    bool getClosestDisplayMode(int displayIndex, const DisplayMode& mode, DisplayMode& closest) noexcept;
+
     /**
-     * \brief Wraps SDL_Window
-     * \sa SDL_Window
-     */
+ * \brief Wraps SDL_Window
+ * \sa SDL_Window
+ */
     class Window : public TypeWrapper<Window, SDL_Window*, SDL_DestroyWindow> {
     public:
         using TypeWrapper::TypeWrapper;

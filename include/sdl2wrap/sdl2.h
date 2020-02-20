@@ -118,28 +118,6 @@ public:
      */
     InitFlags wasInit() const noexcept;
 
-    // video functions
-
-    /** up next in our lineup:
-    int getNumVideoDrivers() const noexcept;
-    const char* getVideoDriver(int index) const noexcept;
-    EmptyResult videoInit(const char* driverName) const noexcept;
-    void videoQuit() const noexcept;
-    const char* getCurrentVideoDriver() const noexcept;
-    int getNumVideoDisplays() const noexcept;
-    const char* getDisplayName(int displayIndex) const noexcept;
-    Result<Rect> getDisplayBounds(int displayIndex) const noexcept;
-    Result<Rect> getDisplayUseableBounds(int displayIndex) const noexcept;
-    EmptyResult getDisplayDPI(int diplayIndex, float& ddpi, float& hdpi, float& vdpi) const noexcept;
-    DisplayOrientation getDisplayOrientation(int displayIndex) const noexcept;
-    int getNumDisplayModes(int displayIndex) const noexcept;
-    Result<DisplayMode> getDisplayMode(int displayIndex, int modeIndex) const noexcept;
-    Result<DisplayMode> getDesktopDisplayMode(int displayIndex) const noexcept;
-    Result<DisplayMode> getCurrentDisplayMode(int displayIndex) const noexcept;
-
-    bool getClosestDisplayMode(int displayIndex, const DisplayMode& mode, DisplayMode& closest) const noexcept;
-*/
-
 private:
     /// default ctor
     SDL2()
