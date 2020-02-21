@@ -132,6 +132,95 @@ SDL2WRAP_INLINE bool getClosestDisplayMode(int displayIndex, const DisplayMode& 
     return rcPtr != nullptr;
 }
 
+SDL2WRAP_INLINE bool isScreenSaverEnabled() noexcept
+{
+    return SDL_IsScreenSaverEnabled() == SDL_TRUE;
+}
+
+SDL2WRAP_INLINE void enableScreenSaver() noexcept
+{
+    SDL_EnableScreenSaver();
+}
+
+SDL2WRAP_INLINE void disableScreenSaver() noexcept
+{
+    SDL_DisableScreenSaver();
+}
+
+namespace GL {
+
+    SDL2WRAP_INLINE Context::Result Context::create(Window& window) noexcept
+    {
+        auto ptr = SDL_GL_CreateContext(window.get());
+        return checkPtr(ptr);
+    }
+
+    SDL2WRAP_INLINE EmptyResult loadLibrary(const char* path) noexcept
+    {
+        auto rc = SDL_GL_LoadLibrary(path);
+        return checkEmptyResultRc(rc);
+    }
+
+    SDL2WRAP_INLINE void unloadLibrary() noexcept
+    {
+        SDL_GL_UnloadLibrary();
+    }
+
+    SDL2WRAP_INLINE void* getProcAddress(const char* proc) noexcept
+    {
+        return SDL_GL_GetProcAddress(proc);
+    }
+
+    SDL2WRAP_INLINE bool getExtensionSupported(const char* extension) noexcept
+    {
+        return SDL_GL_ExtensionSupported(extension) == SDL_TRUE;
+    }
+
+    SDL2WRAP_INLINE void resetAttributes() noexcept
+    {
+        SDL_GL_ResetAttributes();
+    }
+
+    SDL2WRAP_INLINE EmptyResult setAttribute(GLattr attr, int value) noexcept
+    {
+        auto rc = SDL_GL_SetAttribute(static_cast<SDL_GLattr>(attr), value);
+        return checkEmptyResultRc(rc);
+    }
+
+    SDL2WRAP_INLINE EmptyResult getAttribute(GLattr attr, int& value) noexcept
+    {
+        auto rc = SDL_GL_GetAttribute(static_cast<SDL_GLattr>(attr), &value);
+        return checkEmptyResultRc(rc);
+    }
+
+    SDL2WRAP_INLINE EmptyResult setSwapInterval(int interval) noexcept
+    {
+        auto rc = SDL_GL_SetSwapInterval(interval);
+        return checkEmptyResultRc(rc);
+    }
+
+    SDL2WRAP_INLINE int getSwapInterval() noexcept
+    {
+        return SDL_GL_GetSwapInterval();
+    }
+
+    SDL2WRAP_INLINE void swap(Window& window) noexcept
+    {
+        return SDL_GL_SwapWindow(window.get());
+    }
+
+    SDL2WRAP_INLINE void getDrawableSize(Window& window, int& w, int& h) noexcept
+    {
+        SDL_GL_GetDrawableSize(window.get(), &w, &h);
+    }
+
+    SDL2WRAP_INLINE void makeCurrent(Window& window, Context& context) noexcept
+    {
+        SDL_GL_MakeCurrent(window.get(), context.get());
+    }
+
+}; // namespace GL
+
 SDL2WRAP_INLINE Window::Result Window::create(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
 {
     SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
