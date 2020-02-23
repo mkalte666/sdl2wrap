@@ -1,6 +1,3 @@
-
-#include <sdl2wrap/surface.h>
-
 /*
   SDL2 C++ Wrapper
   Copyright (C) 2020 Malte Kießling <mkalte@mkalte.me>
@@ -133,10 +130,15 @@ SDL2WRAP_INLINE EmptyResult Surface::setAlphaMod(Uint8 alpha) noexcept
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::getAlphaMod(Uint8& alpha) const noexcept
+SDL2WRAP_INLINE sdl2wrap::Result<Uint8> Surface::getAlphaMod() const noexcept
 {
+    Uint8 alpha = 0;
     auto rc = SDL_GetSurfaceAlphaMod(get(), &alpha);
-    return checkEmptyResultRc(rc);
+    if (rc == 0) {
+        return sdl2wrap::Result<Uint8>::success(move(alpha));
+    }
+
+    return sdl2wrap::Result<Uint8>::error(rc);
 }
 
 SDL2WRAP_INLINE EmptyResult Surface::setBlendMode(BlendMode mode) noexcept
@@ -145,12 +147,17 @@ SDL2WRAP_INLINE EmptyResult Surface::setBlendMode(BlendMode mode) noexcept
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::getBlendMode(BlendMode& mode) const noexcept
+SDL2WRAP_INLINE sdl2wrap::Result<BlendMode> Surface::getBlendMode() const noexcept
 {
+    BlendMode mode;
     SDL_BlendMode sdlmode;
     auto rc = SDL_GetSurfaceBlendMode(get(), &sdlmode);
     mode = static_cast<BlendMode>(sdlmode);
-    return checkEmptyResultRc(rc);
+    if (rc == 0) {
+        return sdl2wrap::Result<BlendMode>::success(move(mode));
+    }
+
+    return sdl2wrap::Result<BlendMode>::error(rc);
 }
 
 SDL2WRAP_INLINE bool Surface::setClipRect(const Rect& rect) noexcept

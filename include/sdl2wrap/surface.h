@@ -65,10 +65,10 @@ namespace Video {
         EmptyResult setColorMod(Uint8 r, Uint8 g, Uint8 b) noexcept;
         EmptyResult getColorMod(Uint8& r, Uint8& g, Uint8& b) const noexcept;
         EmptyResult setAlphaMod(Uint8 alpha) noexcept;
-        EmptyResult getAlphaMod(Uint8& alpha) const noexcept;
+        sdl2wrap::Result<Uint8> getAlphaMod() const noexcept;
 
         EmptyResult setBlendMode(BlendMode mode) noexcept;
-        EmptyResult getBlendMode(BlendMode& mode) const noexcept;
+        sdl2wrap::Result<BlendMode> getBlendMode() const noexcept;
 
         bool setClipRect(const Rect& rect) noexcept;
         bool resetClipRect() const noexcept;

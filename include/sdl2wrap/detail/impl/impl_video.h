@@ -166,9 +166,14 @@ namespace GL {
         SDL_GL_UnloadLibrary();
     }
 
-    SDL2WRAP_INLINE void* getProcAddress(const char* proc) noexcept
+    SDL2WRAP_INLINE sdl2wrap::Result<void*> getProcAddress(const char* proc) noexcept
     {
-        return SDL_GL_GetProcAddress(proc);
+        auto ptr = SDL_GL_GetProcAddress(proc);
+        if (ptr != nullptr) {
+            return sdl2wrap::Result<void*>::success(move(ptr));
+        }
+
+        return sdl2wrap::Result<void*>::error(0);
     }
 
     SDL2WRAP_INLINE bool getExtensionSupported(const char* extension) noexcept
@@ -187,10 +192,15 @@ namespace GL {
         return checkEmptyResultRc(rc);
     }
 
-    SDL2WRAP_INLINE EmptyResult getAttribute(GLattr attr, int& value) noexcept
+    SDL2WRAP_INLINE sdl2wrap::Result<int> getAttribute(GLattr attr) noexcept
     {
+        int value = 0;
         auto rc = SDL_GL_GetAttribute(static_cast<SDL_GLattr>(attr), &value);
-        return checkEmptyResultRc(rc);
+        if (rc == 0) {
+            return sdl2wrap::Result<int>::success(move(value));
+        }
+
+        return sdl2wrap::Result<int>::error(rc);
     }
 
     SDL2WRAP_INLINE EmptyResult setSwapInterval(int interval) noexcept
@@ -237,6 +247,222 @@ SDL2WRAP_INLINE Window::Result Window::createCentered(const char* title, int w, 
 SDL2WRAP_INLINE Window::Result Window::createFrom(void* nativeWindow) noexcept
 {
     return checkPtr(SDL_CreateWindowFrom(nativeWindow));
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setDisplayMode(const DisplayMode& mode) noexcept
+{
+    auto rc = SDL_SetWindowDisplayMode(get(), &mode);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE sdl2wrap::Result<DisplayMode> Window::getDisplayMode() const noexcept
+{
+    SDL_DisplayMode mode;
+    auto rc = SDL_GetWindowDisplayMode(get(), &mode);
+    if (rc == 0) {
+        return sdl2wrap::Result<DisplayMode>::success(static_cast<DisplayMode>(mode));
+    }
+
+    return sdl2wrap::Result<DisplayMode>::error(rc);
+}
+
+SDL2WRAP_INLINE PixelFormatEnum Window::getPixelFormat() const noexcept
+{
+    return static_cast<PixelFormatEnum>(SDL_GetWindowPixelFormat(get()));
+}
+
+SDL2WRAP_INLINE Uint32 Window::getID() const noexcept
+{
+    return SDL_GetWindowID(get());
+}
+
+SDL2WRAP_INLINE WindowFlags Window::getFlags() const noexcept
+{
+    return static_cast<WindowFlags>(SDL_GetWindowFlags(get()));
+}
+
+SDL2WRAP_INLINE void Window::setTitle(const char* title) noexcept
+{
+    SDL_SetWindowTitle(get(), title);
+}
+
+SDL2WRAP_INLINE const char* Window::getTitle() const noexcept
+{
+    return SDL_GetWindowTitle(get());
+}
+
+SDL2WRAP_INLINE void Window::setIcon(const Surface& icon) noexcept
+{
+    SDL_SetWindowIcon(get(), icon.get());
+}
+
+SDL2WRAP_INLINE void Window::setData(const char* name, void* ptr) noexcept
+{
+    SDL_SetWindowData(get(), name, ptr);
+}
+
+SDL2WRAP_INLINE void* Window::getData(const char* name) const noexcept
+{
+    return SDL_GetWindowData(get(), name);
+}
+
+SDL2WRAP_INLINE void Window::setPosition(int x, int y) noexcept
+{
+    SDL_SetWindowPosition(get(), x, y);
+}
+
+SDL2WRAP_INLINE void Window::getPosition(int& x, int& y) const noexcept
+{
+    SDL_GetWindowPosition(get(), &x, &y);
+}
+
+SDL2WRAP_INLINE void Window::setSize(int w, int h) noexcept
+{
+    SDL_SetWindowSize(get(), w, h);
+}
+
+SDL2WRAP_INLINE void Window::getSize(int& w, int& h) const noexcept
+{
+    SDL_GetWindowSize(get(), &w, &h);
+}
+
+SDL2WRAP_INLINE void Window::setMinimumSize(int minW, int minH) noexcept
+{
+    SDL_SetWindowMinimumSize(get(), minW, minH);
+}
+
+SDL2WRAP_INLINE void Window::getMinimumSize(int& minW, int& minH) const noexcept
+{
+    SDL_GetWindowMinimumSize(get(), &minW, &minH);
+}
+
+SDL2WRAP_INLINE void Window::setMaximumSize(int minW, int minH) noexcept
+{
+    SDL_SetWindowMaximumSize(get(), minW, minH);
+}
+
+SDL2WRAP_INLINE void Window::getMaximumSize(int& minW, int& minH) const noexcept
+{
+    SDL_GetWindowMaximumSize(get(), &minW, &minH);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::getBordersSize(int& top, int& left, int& bottom, int& right) const noexcept
+{
+    auto rc = SDL_GetWindowBordersSize(get(), &top, &left, &bottom, &right);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE void Window::setBordered(bool bordered) noexcept
+{
+    SDL_SetWindowBordered(get(), bordered ? SDL_TRUE : SDL_FALSE);
+}
+
+SDL2WRAP_INLINE void Window::setResizable(bool resizable) noexcept
+{
+    SDL_SetWindowResizable(get(), resizable ? SDL_TRUE : SDL_FALSE);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setFullscreen(WindowFlags flags) noexcept
+{
+    auto rc = SDL_SetWindowFullscreen(get(), static_cast<SDL_WindowFlags>(flags));
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE void Window::setInputFocus() noexcept
+{
+    SDL_SetWindowInputFocus(get());
+}
+
+SDL2WRAP_INLINE void Window::setGrab(bool grab) noexcept
+{
+    SDL_SetWindowGrab(get(), grab ? SDL_TRUE : SDL_FALSE);
+}
+
+SDL2WRAP_INLINE bool Window::getGrab() const noexcept
+{
+    return SDL_GetWindowGrab(get()) == SDL_TRUE;
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setBrightness(float brightness) noexcept
+{
+    auto rc = SDL_SetWindowBrightness(get(), brightness);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE float Window::getBrightness() const noexcept
+{
+    return SDL_GetWindowBrightness(get());
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setOpacity(float opacity) noexcept
+{
+    auto rc = SDL_SetWindowOpacity(get(), opacity);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE sdl2wrap::Result<float> Window::getOpacity() const noexcept
+{
+    float opacity;
+    auto rc = SDL_GetWindowOpacity(get(), &opacity);
+    if (rc == 0) {
+        return sdl2wrap::Result<float>::success(move(opacity));
+    }
+
+    return sdl2wrap::Result<float>::error(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setModalFor(Window& parent) noexcept
+{
+    auto rc = SDL_SetWindowModalFor(get(), parent.get());
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setGammaRamp(const Uint16* red, const Uint16* green, const Uint16* blue) noexcept
+{
+    auto rc = SDL_SetWindowGammaRamp(get(), red, green, blue);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::getGammaRamp(Uint16* red, Uint16* green, Uint16* blue) const noexcept
+{
+    auto rc = SDL_GetWindowGammaRamp(get(), red, green, blue);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE EmptyResult Window::setHitTestCallback(HitTestCallback callback, void* callbackData) noexcept
+{
+    auto rc = SDL_SetWindowHitTest(get(), callback, callbackData);
+    return checkEmptyResultRc(rc);
+}
+
+SDL2WRAP_INLINE void Window::show() noexcept
+{
+    SDL_ShowWindow(get());
+}
+
+SDL2WRAP_INLINE void Window::hide() noexcept
+{
+    SDL_HideWindow(get());
+}
+
+SDL2WRAP_INLINE void Window::raise() noexcept
+{
+    SDL_RaiseWindow(get());
+}
+
+SDL2WRAP_INLINE void Window::maximize() noexcept
+{
+    SDL_MaximizeWindow(get());
+}
+
+SDL2WRAP_INLINE void Window::minimize() noexcept
+{
+    SDL_MinimizeWindow(get());
+}
+
+SDL2WRAP_INLINE void Window::restore() noexcept
+{
+    SDL_RestoreWindow(get());
 }
 
 };
