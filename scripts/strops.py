@@ -6,7 +6,7 @@ def stripPrefixCount(str, count):
         count -= 1
         p = workStr.find("_")
         if p == -1:
-            return str
+            break
 
         newWorkStr = workStr[p+1:]
         if newWorkStr.isnumeric():

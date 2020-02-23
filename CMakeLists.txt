@@ -47,16 +47,11 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/base.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/result.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/typewrapper.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_blendmode.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_hints.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_log.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_pixels.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/generated_sdl_video.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/impl.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/blendmode.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/error.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/events.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/hints.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/log.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/pixels.h

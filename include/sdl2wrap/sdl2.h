@@ -37,6 +37,7 @@
 #include "detail/result.h"
 
 #include "error.h"
+#include "events.h"
 #include "hints.h"
 #include "log.h"
 #include "rwops.h"

@@ -29,6 +29,10 @@ class EnumConstDecl:
 
     def rewrite(self, parentName):
         niceName = stripPrefixCount(self.name, 2)
+        # fixme: this works but whyyyy
+        # working around the EventType enum here, that just prefixes with SDL_
+        if parentName == "EventType":
+            niceName = stripPrefixCount(self.name, 1)
         niceName = niceName.lower()
         niceName = niceName.capitalize()
         niceName = re.sub(r"_([a-z0-9A-Z]{1})", lambda pat: pat.group(1).upper(), niceName)
