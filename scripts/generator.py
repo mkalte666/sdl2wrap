@@ -18,12 +18,14 @@ headers = [
     ["SDL_hints.h", [
         DefineToEnumSettings("SDL_HINT_", "Hint", "const char*", True, "\"\"")
     ]],
+    ["SDL_keycode.h", []],
     ["SDL_log.h", []],
     ["SDL_pixels.h", []],
     ["SDL_rwops.h", [
         DefineToEnumSettings("SDL_RWOPS_", "RWType"),
         DefineToEnumSettings("RW_SEEK_", "RWSeek")
     ]],
+    ["SDL_scancode.h", []],
     ["SDL_surface.h", []],
     ["SDL_video.h", []]
 ]
@@ -36,6 +38,7 @@ for header in headers:
 
     print("Parsing " + inName)
     enums = findEnums(inName)
+    print("Done") # prevents segfaults. i did not write libclang AND thought this fixed. why is it here
     defines = []
     for defineSettings in headerDefines:
         defines.append(defineToEnum(inName,defineSettings))

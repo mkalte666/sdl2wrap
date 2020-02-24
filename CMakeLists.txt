@@ -53,6 +53,7 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/error.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/events.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/hints.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/keyboard.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/log.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/pixels.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/rect.h

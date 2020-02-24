@@ -30,8 +30,8 @@ class EnumConstDecl:
     def rewrite(self, parentName):
         niceName = stripPrefixCount(self.name, 2)
         # fixme: this works but whyyyy
-        # working around the EventType enum here, that just prefixes with SDL_
-        if parentName == "EventType":
+        # working around the EventType/SDLK enum here, that just prefixes with SDL_
+        if parentName == "EventType" or parentName == "KeyCode":
             niceName = stripPrefixCount(self.name, 1)
         niceName = niceName.lower()
         niceName = niceName.capitalize()
@@ -65,8 +65,8 @@ class Enum:
 
 def findRecursion(enumList, file, node):
     try:
-        if node.kind == clang.cindex.CursorKind.TYPEDEF_DECL:
-            if node.location.file is not None and Path(node.location.file.name) == Path(file):
+        if node.location.file is not None and os.path.basename(node.location.file.name) == os.path.basename(file):
+            if node.kind == clang.cindex.CursorKind.TYPEDEF_DECL:
                 enum = Enum()
                 enum.name = node.spelling
                 enum.sourceFile = node.location.file

@@ -22,9 +22,9 @@
 #ifndef sdl2wrap_impl_events_h
 #define sdl2wrap_impl_events_h
 
-namespace Events {
+namespace Input {
 
-SDL2WRAP_INLINE Result<int> peep(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept
+SDL2WRAP_INLINE Result<int> peepEvents(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept
 {
     auto rc = SDL_PeepEvents(events, numEvents, static_cast<SDL_eventaction>(action), static_cast<Uint32>(minType), static_cast<Uint32>(maxType));
     if (rc != -1) {
@@ -44,26 +44,26 @@ SDL2WRAP_INLINE bool hasEvents(EventType minType, EventType maxType) noexcept
     return SDL_HasEvents(static_cast<Uint32>(minType), static_cast<Uint32>(maxType)) == SDL_TRUE;
 }
 
-SDL2WRAP_INLINE void flush(EventType type) noexcept
+SDL2WRAP_INLINE void flushEvent(EventType type) noexcept
 {
     SDL_FlushEvent(static_cast<Uint32>(type));
 }
-SDL2WRAP_INLINE void flush(EventType minType, EventType maxType) noexcept
+SDL2WRAP_INLINE void flushEvents(EventType minType, EventType maxType) noexcept
 {
     SDL_FlushEvents(static_cast<Uint32>(minType), static_cast<Uint32>(maxType));
 }
 
-SDL2WRAP_INLINE bool poll(Event& event) noexcept
+SDL2WRAP_INLINE bool pollEvent(Event& event) noexcept
 {
     return SDL_PollEvent(&event) == 1;
 }
 
-SDL2WRAP_INLINE bool poll() noexcept
+SDL2WRAP_INLINE bool pollEvent() noexcept
 {
     return SDL_PollEvent(nullptr) == 1;
 }
 
-SDL2WRAP_INLINE Result<Event> wait() noexcept
+SDL2WRAP_INLINE Result<Event> waitEvent() noexcept
 {
     Event e;
     auto rc = SDL_WaitEvent(&e);
@@ -74,7 +74,7 @@ SDL2WRAP_INLINE Result<Event> wait() noexcept
     return Result<Event>::error(rc);
 }
 
-SDL2WRAP_INLINE Result<Event> wait(int timeout) noexcept
+SDL2WRAP_INLINE Result<Event> waitEvent(int timeout) noexcept
 {
     Event e;
     auto rc = SDL_WaitEventTimeout(&e, timeout);
@@ -85,34 +85,34 @@ SDL2WRAP_INLINE Result<Event> wait(int timeout) noexcept
     return Result<Event>::error(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult push(Event& event) noexcept
+SDL2WRAP_INLINE EmptyResult pushEvent(Event& event) noexcept
 {
     auto rc = SDL_PushEvent(&event);
     return checkEmptyResultRc(rc, 1);
 }
 
-SDL2WRAP_INLINE void setFilter(FilterCallback filter, void* userdata) noexcept
+SDL2WRAP_INLINE void setEventFilter(FilterCallback filter, void* userdata) noexcept
 {
     SDL_SetEventFilter(filter, userdata);
 }
-SDL2WRAP_INLINE bool getFilter(FilterCallback& filter, void*& userdata) noexcept
+SDL2WRAP_INLINE bool getEventFilter(FilterCallback& filter, void*& userdata) noexcept
 {
     return SDL_GetEventFilter(&filter, &userdata) == SDL_TRUE;
 }
-SDL2WRAP_INLINE void addWatch(FilterCallback filter, void* userdata) noexcept
+SDL2WRAP_INLINE void addEventWatch(FilterCallback filter, void* userdata) noexcept
 {
     SDL_AddEventWatch(filter, userdata);
 }
-SDL2WRAP_INLINE void delWatch(FilterCallback filter, void* userdata) noexcept
+SDL2WRAP_INLINE void delEventWatch(FilterCallback filter, void* userdata) noexcept
 {
     SDL_DelEventWatch(filter, userdata);
 }
 
-SDL2WRAP_INLINE EventState getState(EventType type) noexcept
+SDL2WRAP_INLINE EventState getEventState(EventType type) noexcept
 {
-    return setState(type, EventState::Query);
+    return setEventState(type, EventState::Query);
 }
-SDL2WRAP_INLINE EventState setState(EventType type, EventState state) noexcept
+SDL2WRAP_INLINE EventState setEventState(EventType type, EventState state) noexcept
 {
     return static_cast<EventState>(SDL_EventState(static_cast<Uint32>(type), static_cast<int>(state)));
 }

@@ -28,6 +28,7 @@
 // clang-format on
 
 #include "detail/generated/generated_sdl_events.h"
+#include "keyboard.h"
 
 namespace sdl2wrap {
 
@@ -44,31 +45,31 @@ enum class EventState : int {
 /// \wrapImpl SDL_Event sdl2wrap::Event only a alias in the main namespace. we aint gonna touch the union!
 using Event = SDL_Event;
 
-namespace Events {
+namespace Input {
     using FilterCallback = SDL_EventFilter;
 
-    Result<int> peep(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept;
+    Result<int> peepEvents(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept;
     bool hasEvent(EventType type) noexcept;
     bool hasEvents(EventType minType, EventType maxType) noexcept;
 
-    void flush(EventType type) noexcept;
-    void flush(EventType minType, EventType maxType) noexcept;
+    void flushEvent(EventType type) noexcept;
+    void flushEvents(EventType minType, EventType maxType) noexcept;
 
-    bool poll(Event& event) noexcept;
-    bool poll() noexcept;
+    bool pollEvent(Event& event) noexcept;
+    bool pollEvent() noexcept;
 
-    Result<Event> wait() noexcept;
-    Result<Event> wait(int timeout) noexcept;
+    Result<Event> waitEvent() noexcept;
+    Result<Event> waitEvent(int timeout) noexcept;
 
-    EmptyResult push(Event& event) noexcept;
+    EmptyResult pushEvent(Event& event) noexcept;
 
-    void setFilter(FilterCallback filter, void* userdata) noexcept;
-    bool getFilter(FilterCallback& filter, void*& userdata) noexcept;
-    void addWatch(FilterCallback filter, void* userdata) noexcept;
-    void delWatch(FilterCallback filter, void* userdata) noexcept;
+    void setEventFilter(FilterCallback filter, void* userdata) noexcept;
+    bool getEventFilter(FilterCallback& filter, void*& userdata) noexcept;
+    void addEventWatch(FilterCallback filter, void* userdata) noexcept;
+    void delEventWatch(FilterCallback filter, void* userdata) noexcept;
 
-    EventState getState(EventType type) noexcept;
-    EventState setState(EventType type, EventState state) noexcept;
+    EventState getEventState(EventType type) noexcept;
+    EventState setEventState(EventType type, EventState state) noexcept;
 
     Result<EventType> registerEvents(int numEvents) noexcept;
 }; // namespace Events
