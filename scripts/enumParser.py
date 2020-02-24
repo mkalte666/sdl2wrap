@@ -64,22 +64,27 @@ class Enum:
 
 
 def findRecursion(enumList, file, node):
-    if node.kind == clang.cindex.CursorKind.TYPEDEF_DECL:
-        if node.location.file is not None and Path(node.location.file.name) == Path(file):
-            enum = Enum()
-            enum.name = node.spelling
-            enum.sourceFile = node.location.file
-            enum.sourceLine = node.location.line
-            for enumDecl in node.get_children():
-                if enumDecl.kind != clang.cindex.CursorKind.ENUM_DECL:
+    try:
+        if node.kind == clang.cindex.CursorKind.TYPEDEF_DECL:
+            if node.location.file is not None and Path(node.location.file.name) == Path(file):
+                enum = Enum()
+                enum.name = node.spelling
+                enum.sourceFile = node.location.file
+                enum.sourceLine = node.location.line
+                for enumDecl in node.get_children():
+                    if enumDecl.kind != clang.cindex.CursorKind.ENUM_DECL:
+                        return
+                    for c in enumDecl.get_children():
+                        decl = EnumConstDecl()
+                        decl.name = c.spelling
+                        enum.constantDecls.append(decl)
+                    enumList.append(enum)
                     return
-                for c in enumDecl.get_children():
-                    decl = EnumConstDecl()
-                    decl.name = c.spelling
-                    enum.constantDecls.append(decl)
-                enumList.append(enum)
-                return
-
+    except ValueError:
+        pass
+        #print("Warning: got a value error, probs in node.kind. This is meh, but recoverable")
+        #print("Position was " + str(node.location))
+        #print(sys.exc_info()[0])
     for c in node.get_children():
         findRecursion(enumList, file, c)
 

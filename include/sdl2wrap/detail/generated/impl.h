@@ -28,6 +28,7 @@ misrepresented as being the original software.
 #include "../impl/impl_assert.h"
 #include "../impl/impl_blendmode.h"
 #include "../impl/impl_error.h"
+#include "../impl/impl_events.h"
 #include "../impl/impl_hints.h"
 #include "../impl/impl_log.h"
 #include "../impl/impl_pixels.h"

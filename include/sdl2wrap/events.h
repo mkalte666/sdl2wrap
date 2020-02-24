@@ -31,11 +31,47 @@
 
 namespace sdl2wrap {
 
+/**
+     * \brief Implements the EventState Defines from SDL_events.h
+     */
+enum class EventState : int {
+    Query = SDL_QUERY, ///< \wrapImpl SDL_QUERY EventState::Query
+    Ignore = SDL_IGNORE, ///< \wrapImpl SDL_IGNORE EventState::Ignore
+    Disable = SDL_DISABLE, ///< \wrapImpl SDL_DISABLE EventState::Disable
+    Enable = SDL_ENABLE ///< \wrapImpl SDL_ENABLE EventState::Enable
+};
+
+/// \wrapImpl SDL_Event sdl2wrap::Event only a alias in the main namespace. we aint gonna touch the union!
+using Event = SDL_Event;
+
 namespace Events {
+    using FilterCallback = SDL_EventFilter;
 
+    Result<int> peep(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept;
+    bool hasEvent(EventType type) noexcept;
+    bool hasEvents(EventType minType, EventType maxType) noexcept;
 
+    void flush(EventType type) noexcept;
+    void flush(EventType minType, EventType maxType) noexcept;
 
-}; // events
+    bool poll(Event& event) noexcept;
+    bool poll() noexcept;
+
+    Result<Event> wait() noexcept;
+    Result<Event> wait(int timeout) noexcept;
+
+    EmptyResult push(Event& event) noexcept;
+
+    void setFilter(FilterCallback filter, void* userdata) noexcept;
+    bool getFilter(FilterCallback& filter, void*& userdata) noexcept;
+    void addWatch(FilterCallback filter, void* userdata) noexcept;
+    void delWatch(FilterCallback filter, void* userdata) noexcept;
+
+    EventState getState(EventType type) noexcept;
+    EventState setState(EventType type, EventState state) noexcept;
+
+    Result<EventType> registerEvents(int numEvents) noexcept;
+}; // namespace Events
 
 }; // namespace sdl2wrap
 
