@@ -1,5 +1,5 @@
 This list is generated and might not be reflect the truth to 100%
-Estimated coverage: 40.90 % (1041/2545)
+Estimated coverage: 41.43 % (1057/2551)
 
 | SDL Symbol | Implemented? | New Name | Comment |
 | ---------- | ------------ | -------- | ------- |
@@ -363,7 +363,7 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_AUDIO_PLAYING | NO |  |  |
 | SDL_AUDIO_RESAMPLING_MODE | NO |  |  |
 | SDL_AUDIO_STOPPED | NO |  |  |
-| SDL_AddEventWatch | NO |  |  |
+| SDL_AddEventWatch | YES | Input::addEventWatch |  |
 | SDL_AddHintCallback | YES | Hints::addCallback |  |
 | SDL_AddTimer | NO |  |  |
 | SDL_AllocFormat | YES | Video::PixelFormat::maskToEnum |  |
@@ -577,7 +577,7 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_DUMMY_ENUM | NO |  |  |
 | SDL_DXGIGetOutputInfo | NO |  |  |
 | SDL_DYNAMIC_API | NO |  |  |
-| SDL_DelEventWatch | NO |  |  |
+| SDL_DelEventWatch | YES | Input::delEventWatch |  |
 | SDL_DelHintCallback | YES | Hints::delCallback |  |
 | SDL_Delay | NO |  |  |
 | SDL_DequeueAudio | NO |  |  |
@@ -612,7 +612,7 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_Error | NO |  |  |
 | SDL_Event | YES | sdl2wrap::Event | only a alias in the main namespace. we aint gonna touch the union! |
 | SDL_EventFilter | NO |  |  |
-| SDL_EventState | NO |  |  |
+| SDL_EventState | YES |  |  |
 | SDL_EventType | NO |  |  |
 | SDL_FALSE | NO |  |  |
 | SDL_FILE | NO |  |  |
@@ -644,8 +644,8 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_FilterEvents | NO |  |  |
 | SDL_Finger | NO |  |  |
 | SDL_FingerID | NO |  |  |
-| SDL_FlushEvent | NO |  |  |
-| SDL_FlushEvents | NO |  |  |
+| SDL_FlushEvent | YES | Input::flushEvent |  |
+| SDL_FlushEvents | YES | Input::flushEvents |  |
 | SDL_FreeAudioStream | NO |  |  |
 | SDL_FreeCursor | NO |  |  |
 | SDL_FreeFormat | NO |  |  |
@@ -794,8 +794,8 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_GetDisplayOrientation | YES | Video::getDisplayOrientation |  |
 | SDL_GetDisplayUsableBounds | YES | Video::getDisplayUsableBounds |  |
 | SDL_GetError | YES | Error::get |  |
-| SDL_GetEventFilter | NO |  |  |
-| SDL_GetEventState | NO |  |  |
+| SDL_GetEventFilter | YES | Input::getEventFilter |  |
+| SDL_GetEventState | YES | Input::getEventState |  |
 | SDL_GetGlobalMouseState | NO |  |  |
 | SDL_GetGrabbedWindow | NO |  |  |
 | SDL_GetHint | YES | Hints::get |  |
@@ -1066,8 +1066,8 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_HasAltiVec | NO |  |  |
 | SDL_HasClipboardText | NO |  |  |
 | SDL_HasColorKey | NO |  |  |
-| SDL_HasEvent | NO |  |  |
-| SDL_HasEvents | NO |  |  |
+| SDL_HasEvent | YES | Imput::hasEvent |  |
+| SDL_HasEvents | YES | Input::hasEvents |  |
 | SDL_HasExactlyOneBitSet32 | NO |  |  |
 | SDL_HasIntersection | YES | Video::Rect::hasIntersection |  |
 | SDL_HasMMX | NO |  |  |
@@ -1541,17 +1541,17 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_Palette | YES | Video::Palette |  |
 | SDL_PauseAudio | NO |  |  |
 | SDL_PauseAudioDevice | NO |  |  |
-| SDL_PeepEvents | NO |  |  |
+| SDL_PeepEvents | YES | Input::peepEvents |  |
 | SDL_PixelFormat | YES | Video::PixelFormat |  |
 | SDL_PixelFormatEnum | NO |  |  |
 | SDL_PixelFormatEnumToMasks | NO |  |  |
 | SDL_PixelType | NO |  |  |
 | SDL_Point | NO |  |  |
 | SDL_PointInRect | YES | Video::Rect::pointInRect |  |
-| SDL_PollEvent | NO |  |  |
+| SDL_PollEvent | YES | Input::pollEvent |  |
 | SDL_PowerState | NO |  |  |
 | SDL_PumpEvents | NO |  |  |
-| SDL_PushEvent | NO |  |  |
+| SDL_PushEvent | YES | Input::pushEvent |  |
 | SDL_QTWAYLAND_CONTENT_ORIENTATION | NO |  |  |
 | SDL_QTWAYLAND_WINDOW_FLAGS | NO |  |  |
 | SDL_QUERY | YES | EventState::Query |  |
@@ -1607,7 +1607,7 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_RectEmpty | YES | Video::Rect::empty |  |
 | SDL_RectEquals | YES | Video::Rect::equals |  |
 | SDL_RegisterApp | NO |  |  |
-| SDL_RegisterEvents | NO |  |  |
+| SDL_RegisterEvents | YES | Input::registerEvents |  |
 | SDL_RemoveTimer | NO |  |  |
 | SDL_RenderClear | NO |  |  |
 | SDL_RenderCopy | NO |  |  |
@@ -1987,7 +1987,7 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_SetColorKey | NO |  |  |
 | SDL_SetCursor | NO |  |  |
 | SDL_SetError | YES | Error::set |  |
-| SDL_SetEventFilter | NO |  |  |
+| SDL_SetEventFilter | YES | Input::setEventFilter |  |
 | SDL_SetHint | YES | Hints::set |  |
 | SDL_SetHintWithPriority | YES | Hints::setWithPriority |  |
 | SDL_SetMainReady | NO |  |  |
@@ -2307,8 +2307,8 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_WINRT_PATH_TEMP_FOLDER | NO |  |  |
 | SDL_WINRT_PRIVACY_POLICY_LABEL | NO |  |  |
 | SDL_WINRT_PRIVACY_POLICY_URL | NO |  |  |
-| SDL_WaitEvent | NO |  |  |
-| SDL_WaitEventTimeout | NO |  |  |
+| SDL_WaitEvent | YES | Input::waitEvent |  |
+| SDL_WaitEventTimeout | YES | Input::waitEventTimeout |  |
 | SDL_WaitThread | NO |  |  |
 | SDL_WarpMouseGlobal | NO |  |  |
 | SDL_WarpMouseInWindow | NO |  |  |
@@ -2371,7 +2371,13 @@ Estimated coverage: 40.90 % (1041/2545)
 | SDL_cond | NO |  |  |
 | SDL_config | NO |  |  |
 | SDL_config_android | NO |  |  |
+| SDL_config_iphoneos | NO |  |  |
+| SDL_config_macosx | NO |  |  |
 | SDL_config_minimal | NO |  |  |
+| SDL_config_os2 | NO |  |  |
+| SDL_config_psp | NO |  |  |
+| SDL_config_windows | NO |  |  |
+| SDL_config_winrt | NO |  |  |
 | SDL_const_cast | NO |  |  |
 | SDL_copysign | NO |  |  |
 | SDL_copysignf | NO |  |  |

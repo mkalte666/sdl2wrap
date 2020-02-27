@@ -48,29 +48,147 @@ using Event = SDL_Event;
 namespace Input {
     using FilterCallback = SDL_EventFilter;
 
+    /**
+     * \brief
+     * \param events
+     * \param numEvents
+     * \param action
+     * \param minType
+     * \param maxType
+     * \return
+     * \wrapImpl SDL_PeepEvents Input::peepEvents
+     */
     Result<int> peepEvents(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept;
+
+    /**
+     * \brief
+     * \param type
+     * \return
+     * \wrapImpl SDL_HasEvent Imput::hasEvent
+     */
     bool hasEvent(EventType type) noexcept;
+
+    /**
+     * \brief
+     * \param minType
+     * \param maxType
+     * \return
+     * \wrapImpl SDL_HasEvents Input::hasEvents
+     */
     bool hasEvents(EventType minType, EventType maxType) noexcept;
 
+    /**
+     * \brief
+     * \param type
+     * \wrapImpl SDL_FlushEvent Input::flushEvent
+     */
     void flushEvent(EventType type) noexcept;
+
+    /**
+     * \brief
+     * \param minType
+     * \param maxType
+     * \wrapImpl SDL_FlushEvents Input::flushEvents
+     */
     void flushEvents(EventType minType, EventType maxType) noexcept;
 
+    /**
+     * \brief
+     * \param event
+     * \return
+     * \wrapImpl SDL_PollEvent Input::pollEvent
+     */
     bool pollEvent(Event& event) noexcept;
+
+    /**
+     * \brief
+     * \return
+     * \sa pollEvent(Event& event)
+     */
     bool pollEvent() noexcept;
 
+    /**
+     * \brief
+     * \return
+     * \wrapImpl SDL_WaitEvent Input::waitEvent
+     */
     Result<Event> waitEvent() noexcept;
-    Result<Event> waitEvent(int timeout) noexcept;
 
+    /**
+     * \brief
+     * \param timeout
+     * \return
+     * \wrapImpl SDL_WaitEventTimeout Input::waitEventTimeout
+     */
+    Result<Event> waitEventTimeout(int timeout) noexcept;
+
+    /**
+     * \brief
+     * \param event
+     * \return
+     * \wrapImpl SDL_PushEvent Input::pushEvent
+     */
     EmptyResult pushEvent(Event& event) noexcept;
 
+    /**
+     * \brief
+     * \param filter
+     * \param userdata
+     * \wrapImpl SDL_SetEventFilter Input::setEventFilter
+     */
     void setEventFilter(FilterCallback filter, void* userdata) noexcept;
+
+    /**
+     * \brief
+     * \param filter
+     * \param userdata
+     * \return
+     * \wrapImpl SDL_GetEventFilter Input::getEventFilter
+     */
     bool getEventFilter(FilterCallback& filter, void*& userdata) noexcept;
+
+    /**
+     * \brief
+     * \param filter
+     * \param userdata
+     * \wrapImpl SDL_AddEventWatch Input::addEventWatch
+     */
     void addEventWatch(FilterCallback filter, void* userdata) noexcept;
+
+    /**
+     * \brief
+     * \param filter
+     * \param userdata
+     * \wrapImpl SDL_DelEventWatch Input::delEventWatch
+     */
     void delEventWatch(FilterCallback filter, void* userdata) noexcept;
 
+    /**
+     * The functions \c Input::getEventState and \c Input::setEvent state wrap around sdls SDL_EventState
+     * It does the same as the macro - call EventState but with SDL_QUERY as parameter
+     * \brief
+     * \param type
+     * \return
+     * \wrapImpl SDL_GetEventState Input::getEventState
+     */
     EventState getEventState(EventType type) noexcept;
+
+    /**
+     * \brief
+     * \param type
+     * \param state
+     * \return
+     * \wrapImpl SDL_EventState
+     * \sa Input::getEventState
+     */
     EventState setEventState(EventType type, EventState state) noexcept;
 
+    /**
+     * \brief
+     * \param numEvents
+     * \return
+     * \wrapImpl SDL_RegisterEvents Input::registerEvents
+     */
     Result<EventType> registerEvents(int numEvents) noexcept;
 }; // namespace Events
 

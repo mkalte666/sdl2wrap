@@ -74,7 +74,7 @@ SDL2WRAP_INLINE Result<Event> waitEvent() noexcept
     return Result<Event>::error(rc);
 }
 
-SDL2WRAP_INLINE Result<Event> waitEvent(int timeout) noexcept
+SDL2WRAP_INLINE Result<Event> waitEventTimeout(int timeout) noexcept
 {
     Event e;
     auto rc = SDL_WaitEventTimeout(&e, timeout);
