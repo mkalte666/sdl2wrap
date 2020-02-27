@@ -54,7 +54,7 @@ class Enum:
  * Generated From %(filename)s:%(line)d
  * \\sa %(origName)s
  */
-""" % {"origName": self.name, "filename": os.path.basename(self.sourceFile.name), "line": self.sourceLine}
+""" % {"origName": self.name, "filename": os.path.basename(self.sourceFile), "line": self.sourceLine}
         txt += "enum class " + stripPrefix(self.name, "SDL_") + " : Uint32 {\n"
         for decl in self.constantDecls:
             txt += "    " + decl.rewrite(stripPrefix(self.name, "SDL_")) + "\n"
@@ -69,7 +69,7 @@ def findRecursion(enumList, file, node):
             if node.kind == clang.cindex.CursorKind.TYPEDEF_DECL:
                 enum = Enum()
                 enum.name = node.spelling
-                enum.sourceFile = node.location.file
+                enum.sourceFile = node.location.file.name
                 enum.sourceLine = node.location.line
                 for enumDecl in node.get_children():
                     if enumDecl.kind != clang.cindex.CursorKind.ENUM_DECL:

@@ -38,7 +38,6 @@ for header in headers:
 
     print("Parsing " + inName)
     enums = findEnums(inName)
-    print("Done") # prevents segfaults. i did not write libclang AND thought this fixed. why is it here
     defines = []
     for defineSettings in headerDefines:
         defines.append(defineToEnum(inName,defineSettings))
