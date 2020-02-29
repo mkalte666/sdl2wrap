@@ -33,6 +33,7 @@ misrepresented as being the original software.
 #include "../impl/impl_log.h"
 #include "../impl/impl_pixels.h"
 #include "../impl/impl_rect.h"
+#include "../impl/impl_render.h"
 #include "../impl/impl_rwops.h"
 #include "../impl/impl_sdl2.h"
 #include "../impl/impl_sdl2stl.h"
