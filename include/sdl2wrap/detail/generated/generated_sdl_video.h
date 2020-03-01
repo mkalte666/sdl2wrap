@@ -65,6 +65,10 @@ inline bool operator==(WindowFlags a, SDL_WindowFlags b) noexcept
 {
     return a == static_cast<WindowFlags>(b);
 }
+inline WindowFlags operator|(WindowFlags a, WindowFlags b) noexcept
+{
+    return static_cast<WindowFlags>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_WindowEventID
@@ -99,6 +103,10 @@ inline bool operator==(WindowEventID a, SDL_WindowEventID b) noexcept
 {
     return a == static_cast<WindowEventID>(b);
 }
+inline WindowEventID operator|(WindowEventID a, WindowEventID b) noexcept
+{
+    return static_cast<WindowEventID>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_DisplayEventID
@@ -117,6 +125,10 @@ inline bool operator==(SDL_DisplayEventID a, DisplayEventID b) noexcept
 inline bool operator==(DisplayEventID a, SDL_DisplayEventID b) noexcept
 {
     return a == static_cast<DisplayEventID>(b);
+}
+inline DisplayEventID operator|(DisplayEventID a, DisplayEventID b) noexcept
+{
+    return static_cast<DisplayEventID>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -139,6 +151,10 @@ inline bool operator==(SDL_DisplayOrientation a, DisplayOrientation b) noexcept
 inline bool operator==(DisplayOrientation a, SDL_DisplayOrientation b) noexcept
 {
     return a == static_cast<DisplayOrientation>(b);
+}
+inline DisplayOrientation operator|(DisplayOrientation a, DisplayOrientation b) noexcept
+{
+    return static_cast<DisplayOrientation>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -184,6 +200,10 @@ inline bool operator==(GLattr a, SDL_GLattr b) noexcept
 {
     return a == static_cast<GLattr>(b);
 }
+inline GLattr operator|(GLattr a, GLattr b) noexcept
+{
+    return static_cast<GLattr>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_GLprofile
@@ -203,6 +223,10 @@ inline bool operator==(SDL_GLprofile a, GLprofile b) noexcept
 inline bool operator==(GLprofile a, SDL_GLprofile b) noexcept
 {
     return a == static_cast<GLprofile>(b);
+}
+inline GLprofile operator|(GLprofile a, GLprofile b) noexcept
+{
+    return static_cast<GLprofile>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -225,6 +249,10 @@ inline bool operator==(GLcontextFlag a, SDL_GLcontextFlag b) noexcept
 {
     return a == static_cast<GLcontextFlag>(b);
 }
+inline GLcontextFlag operator|(GLcontextFlag a, GLcontextFlag b) noexcept
+{
+    return static_cast<GLcontextFlag>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_GLcontextReleaseFlag
@@ -244,6 +272,10 @@ inline bool operator==(GLcontextReleaseFlag a, SDL_GLcontextReleaseFlag b) noexc
 {
     return a == static_cast<GLcontextReleaseFlag>(b);
 }
+inline GLcontextReleaseFlag operator|(GLcontextReleaseFlag a, GLcontextReleaseFlag b) noexcept
+{
+    return static_cast<GLcontextReleaseFlag>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_GLContextResetNotification
@@ -262,6 +294,10 @@ inline bool operator==(SDL_GLContextResetNotification a, GLContextResetNotificat
 inline bool operator==(GLContextResetNotification a, SDL_GLContextResetNotification b) noexcept
 {
     return a == static_cast<GLContextResetNotification>(b);
+}
+inline GLContextResetNotification operator|(GLContextResetNotification a, GLContextResetNotification b) noexcept
+{
+    return static_cast<GLContextResetNotification>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -289,6 +325,10 @@ inline bool operator==(SDL_HitTestResult a, HitTestResult b) noexcept
 inline bool operator==(HitTestResult a, SDL_HitTestResult b) noexcept
 {
     return a == static_cast<HitTestResult>(b);
+}
+inline HitTestResult operator|(HitTestResult a, HitTestResult b) noexcept
+{
+    return static_cast<HitTestResult>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

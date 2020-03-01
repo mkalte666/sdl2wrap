@@ -47,6 +47,10 @@ inline bool operator==(HintPriority a, SDL_HintPriority b) noexcept
 {
     return a == static_cast<HintPriority>(b);
 }
+inline HintPriority operator|(HintPriority a, HintPriority b) noexcept
+{
+    return static_cast<HintPriority>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief scoped enum for SDL_HINT_* defines

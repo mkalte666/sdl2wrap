@@ -48,6 +48,10 @@ inline bool operator==(YUV_CONVERSION_MODE a, SDL_YUV_CONVERSION_MODE b) noexcep
 {
     return a == static_cast<YUV_CONVERSION_MODE>(b);
 }
+inline YUV_CONVERSION_MODE operator|(YUV_CONVERSION_MODE a, YUV_CONVERSION_MODE b) noexcept
+{
+    return static_cast<YUV_CONVERSION_MODE>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 }; // namespace sdl2wrap
 

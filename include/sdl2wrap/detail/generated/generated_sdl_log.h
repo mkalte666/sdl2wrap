@@ -64,6 +64,10 @@ inline bool operator==(LogCategory a, SDL_LogCategory b) noexcept
 {
     return a == static_cast<LogCategory>(b);
 }
+inline LogCategory operator|(LogCategory a, LogCategory b) noexcept
+{
+    return static_cast<LogCategory>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_LogPriority
@@ -87,6 +91,10 @@ inline bool operator==(SDL_LogPriority a, LogPriority b) noexcept
 inline bool operator==(LogPriority a, SDL_LogPriority b) noexcept
 {
     return a == static_cast<LogPriority>(b);
+}
+inline LogPriority operator|(LogPriority a, LogPriority b) noexcept
+{
+    return static_cast<LogPriority>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

@@ -34,6 +34,13 @@ class DefineToEnumResult:
             txt += "enum class " + self.settings.newName + " : " + self.settings.basetype + " {\n"
         txt += self.enumBody
         txt += "};\n"
+        if self.settings.basetype == "Uint32":
+            txt += """\
+    inline %(newType)s operator|(%(newType)s a, %(newType)s b) noexcept 
+    {
+        return static_cast<%(newType)s>(static_cast<Uint32>(a)|static_cast<Uint32>(b));
+    }
+        """ % {"newType": self.settings.newName}
         if self.settings.createConverter:
             funcname = self.settings.newName
             funcname = funcname[:1].lower() + funcname[1:]

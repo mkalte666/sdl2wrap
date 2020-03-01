@@ -284,6 +284,10 @@ inline bool operator==(KeyCode a, SDL_KeyCode b) noexcept
 {
     return a == static_cast<KeyCode>(b);
 }
+inline KeyCode operator|(KeyCode a, KeyCode b) noexcept
+{
+    return static_cast<KeyCode>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_Keymod
@@ -313,6 +317,10 @@ inline bool operator==(SDL_Keymod a, Keymod b) noexcept
 inline bool operator==(Keymod a, SDL_Keymod b) noexcept
 {
     return a == static_cast<Keymod>(b);
+}
+inline Keymod operator|(Keymod a, Keymod b) noexcept
+{
+    return static_cast<Keymod>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

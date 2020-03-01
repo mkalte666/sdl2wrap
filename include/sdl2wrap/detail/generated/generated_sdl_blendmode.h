@@ -50,6 +50,10 @@ inline bool operator==(BlendMode a, SDL_BlendMode b) noexcept
 {
     return a == static_cast<BlendMode>(b);
 }
+inline BlendMode operator|(BlendMode a, BlendMode b) noexcept
+{
+    return static_cast<BlendMode>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_BlendOperation
@@ -71,6 +75,10 @@ inline bool operator==(SDL_BlendOperation a, BlendOperation b) noexcept
 inline bool operator==(BlendOperation a, SDL_BlendOperation b) noexcept
 {
     return a == static_cast<BlendOperation>(b);
+}
+inline BlendOperation operator|(BlendOperation a, BlendOperation b) noexcept
+{
+    return static_cast<BlendOperation>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -98,6 +106,10 @@ inline bool operator==(SDL_BlendFactor a, BlendFactor b) noexcept
 inline bool operator==(BlendFactor a, SDL_BlendFactor b) noexcept
 {
     return a == static_cast<BlendFactor>(b);
+}
+inline BlendFactor operator|(BlendFactor a, BlendFactor b) noexcept
+{
+    return static_cast<BlendFactor>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

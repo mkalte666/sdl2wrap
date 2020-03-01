@@ -288,6 +288,10 @@ inline bool operator==(Scancode a, SDL_Scancode b) noexcept
 {
     return a == static_cast<Scancode>(b);
 }
+inline Scancode operator|(Scancode a, Scancode b) noexcept
+{
+    return static_cast<Scancode>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 }; // namespace sdl2wrap
 

@@ -56,6 +56,10 @@ inline bool operator==(PixelType a, SDL_PixelType b) noexcept
 {
     return a == static_cast<PixelType>(b);
 }
+inline PixelType operator|(PixelType a, PixelType b) noexcept
+{
+    return static_cast<PixelType>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_BitmapOrder
@@ -75,6 +79,10 @@ inline bool operator==(SDL_BitmapOrder a, BitmapOrder b) noexcept
 inline bool operator==(BitmapOrder a, SDL_BitmapOrder b) noexcept
 {
     return a == static_cast<BitmapOrder>(b);
+}
+inline BitmapOrder operator|(BitmapOrder a, BitmapOrder b) noexcept
+{
+    return static_cast<BitmapOrder>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -102,6 +110,10 @@ inline bool operator==(PackedOrder a, SDL_PackedOrder b) noexcept
 {
     return a == static_cast<PackedOrder>(b);
 }
+inline PackedOrder operator|(PackedOrder a, PackedOrder b) noexcept
+{
+    return static_cast<PackedOrder>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_ArrayOrder
@@ -125,6 +137,10 @@ inline bool operator==(SDL_ArrayOrder a, ArrayOrder b) noexcept
 inline bool operator==(ArrayOrder a, SDL_ArrayOrder b) noexcept
 {
     return a == static_cast<ArrayOrder>(b);
+}
+inline ArrayOrder operator|(ArrayOrder a, ArrayOrder b) noexcept
+{
+    return static_cast<ArrayOrder>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -151,6 +167,10 @@ inline bool operator==(SDL_PackedLayout a, PackedLayout b) noexcept
 inline bool operator==(PackedLayout a, SDL_PackedLayout b) noexcept
 {
     return a == static_cast<PackedLayout>(b);
+}
+inline PackedLayout operator|(PackedLayout a, PackedLayout b) noexcept
+{
+    return static_cast<PackedLayout>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -212,6 +232,10 @@ inline bool operator==(SDL_PixelFormatEnum a, PixelFormatEnum b) noexcept
 inline bool operator==(PixelFormatEnum a, SDL_PixelFormatEnum b) noexcept
 {
     return a == static_cast<PixelFormatEnum>(b);
+}
+inline PixelFormatEnum operator|(PixelFormatEnum a, PixelFormatEnum b) noexcept
+{
+    return static_cast<PixelFormatEnum>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

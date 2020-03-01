@@ -48,6 +48,10 @@ inline bool operator==(RendererFlags a, SDL_RendererFlags b) noexcept
 {
     return a == static_cast<RendererFlags>(b);
 }
+inline RendererFlags operator|(RendererFlags a, RendererFlags b) noexcept
+{
+    return static_cast<RendererFlags>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_ScaleMode
@@ -67,6 +71,10 @@ inline bool operator==(SDL_ScaleMode a, ScaleMode b) noexcept
 inline bool operator==(ScaleMode a, SDL_ScaleMode b) noexcept
 {
     return a == static_cast<ScaleMode>(b);
+}
+inline ScaleMode operator|(ScaleMode a, ScaleMode b) noexcept
+{
+    return static_cast<ScaleMode>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 /**
@@ -88,6 +96,10 @@ inline bool operator==(TextureAccess a, SDL_TextureAccess b) noexcept
 {
     return a == static_cast<TextureAccess>(b);
 }
+inline TextureAccess operator|(TextureAccess a, TextureAccess b) noexcept
+{
+    return static_cast<TextureAccess>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_TextureModulate
@@ -108,6 +120,10 @@ inline bool operator==(TextureModulate a, SDL_TextureModulate b) noexcept
 {
     return a == static_cast<TextureModulate>(b);
 }
+inline TextureModulate operator|(TextureModulate a, TextureModulate b) noexcept
+{
+    return static_cast<TextureModulate>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_RendererFlip
@@ -127,6 +143,10 @@ inline bool operator==(SDL_RendererFlip a, RendererFlip b) noexcept
 inline bool operator==(RendererFlip a, SDL_RendererFlip b) noexcept
 {
     return a == static_cast<RendererFlip>(b);
+}
+inline RendererFlip operator|(RendererFlip a, RendererFlip b) noexcept
+{
+    return static_cast<RendererFlip>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap

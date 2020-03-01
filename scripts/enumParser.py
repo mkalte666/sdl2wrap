@@ -21,6 +21,12 @@ def makeEnumOperators(origType, newType):
     # result += operatorLine(newType, "|", newType, origType)
     # result += operatorLine(origType, "&", origType, newType)
     # result += operatorLine(newType, "&", newType, origType)
+    result += """\
+inline %(newType)s operator|(%(newType)s a, %(newType)s b) noexcept 
+{
+    return static_cast<%(newType)s>(static_cast<Uint32>(a)|static_cast<Uint32>(b));
+}
+    """ % {"newType": newType}
     return result
 
 class EnumConstDecl:

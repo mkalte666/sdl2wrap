@@ -95,6 +95,10 @@ inline bool operator==(EventType a, SDL_EventType b) noexcept
 {
     return a == static_cast<EventType>(b);
 }
+inline EventType operator|(EventType a, EventType b) noexcept
+{
+    return static_cast<EventType>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
+}
 
 /**
  * \brief Scoped version of SDL_eventaction
@@ -114,6 +118,10 @@ inline bool operator==(SDL_eventaction a, eventaction b) noexcept
 inline bool operator==(eventaction a, SDL_eventaction b) noexcept
 {
     return a == static_cast<eventaction>(b);
+}
+inline eventaction operator|(eventaction a, eventaction b) noexcept
+{
+    return static_cast<eventaction>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
 }; // namespace sdl2wrap
