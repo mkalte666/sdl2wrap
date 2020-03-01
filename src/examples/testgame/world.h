@@ -19,22 +19,26 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file sharedheader.h
- * An example header (that could be your pre compiled header) for static usage of sdl2wrap
- */
+#ifndef sdl2wrap_world_h
+#define sdl2wrap_world_h
 
-#ifndef sdl2wrap_sharedheader_h
-#define sdl2wrap_sharedheader_h
+#include "objects.h"
+#include "shared.h"
 
-#include <iostream>
+class World {
+public:
+    World() noexcept;
+    World(const World&) = delete;
+    World(World&&) noexcept = default;
+    World& operator=(const World&) = delete;
+    World& operator=(World&&) noexcept = default;
+    ~World() noexcept = default;
 
-// define SDL2WRAP_STATIC each time BEFORE you include anything related to sdl2wrap
-// like shown here, a shared header is the best place to do so
-#define SDL2WRAP_STATIC
-#include <sdl2wrap/sdl2stl.h>
+    bool update(float dt) noexcept;
+    void render(sdl2wrap::Video::Renderer& renderer, float dt) noexcept;
 
-constexpr sdl2wrap::Video::Color white = { 255, 255, 255, 255 };
-constexpr sdl2wrap::Video::Color black = { 0, 0, 0, 255 };
+private:
+    Player player = {};
+};
 
-#endif //sdl2wrap_sharedheader_h
+#endif //sdl2wrap_world_h

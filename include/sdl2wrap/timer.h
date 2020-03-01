@@ -19,22 +19,32 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file sharedheader.h
- * An example header (that could be your pre compiled header) for static usage of sdl2wrap
- */
+#ifndef sdl2wrap_timer_h
+#define sdl2wrap_timer_h
 
-#ifndef sdl2wrap_sharedheader_h
-#define sdl2wrap_sharedheader_h
+// always first
+// clang-format off
+#include "detail/base.h"
+// clang-format on
 
-#include <iostream>
+namespace sdl2wrap {
+namespace Timer {
+    using TimerCallback = SDL_TimerCallback;
+    using TimerID = SDL_TimerID;
 
-// define SDL2WRAP_STATIC each time BEFORE you include anything related to sdl2wrap
-// like shown here, a shared header is the best place to do so
-#define SDL2WRAP_STATIC
-#include <sdl2wrap/sdl2stl.h>
+    Uint32 getTicks() noexcept;
 
-constexpr sdl2wrap::Video::Color white = { 255, 255, 255, 255 };
-constexpr sdl2wrap::Video::Color black = { 0, 0, 0, 255 };
+    bool ticksPassed(Uint32 currTime, Uint32 timeout) noexcept;
+    bool ticksPassed(Uint32 timeout) noexcept;
 
-#endif //sdl2wrap_sharedheader_h
+    Uint64 getPerformanceCounter() noexcept;
+    Uint64 getPerformanceFrequency() noexcept;
+
+    void delay(Uint32 ms) noexcept;
+
+    TimerID addTimer(Uint32 interval, TimerCallback callback, void* param) noexcept;
+    bool removeTimer(TimerID id) noexcept;
+}; // namespace Timer
+}; // namespace sdl2wrap
+
+#endif //sdl2wrap_timer_h

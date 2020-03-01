@@ -42,6 +42,7 @@
 #include "log.h"
 #include "render.h"
 #include "rwops.h"
+#include "timer.h"
 #include "version.h"
 #include "video.h"
 

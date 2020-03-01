@@ -93,7 +93,9 @@ namespace Video {
         void getScale(float& scaleX, float scaleY) const noexcept;
 
         EmptyResult setDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) noexcept;
+        EmptyResult setDrawColor(const Color& color) noexcept;
         void getDrawColor(Uint8& r, Uint8& g, Uint8& b, Uint8& a) const noexcept;
+        Color getDrawColor() const noexcept;
 
         EmptyResult setDrawBlendMode(BlendMode blendMode) noexcept;
         sdl2wrap::Result<BlendMode> getDrawBlendMode() const noexcept;

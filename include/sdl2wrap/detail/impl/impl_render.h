@@ -271,9 +271,21 @@ SDL2WRAP_INLINE EmptyResult Renderer::setDrawColor(Uint8 r, Uint8 g, Uint8 b, Ui
     return checkEmptyResultRc(rc);
 }
 
+SDL2WRAP_INLINE EmptyResult Renderer::setDrawColor(const Color& color) noexcept
+{
+    return setDrawColor(color.r, color.g, color.b, color.a);
+}
+
 SDL2WRAP_INLINE void Renderer::getDrawColor(Uint8& r, Uint8& g, Uint8& b, Uint8& a) const noexcept
 {
     SDL_GetRenderDrawColor(get(), &r, &g, &b, &a);
+}
+
+SDL2WRAP_INLINE Color Renderer::getDrawColor() const noexcept
+{
+    Color col;
+    getDrawColor(col.r, col.g, col.b, col.a);
+    return col;
 }
 
 SDL2WRAP_INLINE EmptyResult Renderer::setDrawBlendMode(BlendMode blendMode) noexcept

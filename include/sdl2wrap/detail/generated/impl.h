@@ -38,6 +38,7 @@ misrepresented as being the original software.
 #include "../impl/impl_sdl2.h"
 #include "../impl/impl_sdl2stl.h"
 #include "../impl/impl_surface.h"
+#include "../impl/impl_timer.h"
 #include "../impl/impl_version.h"
 #include "../impl/impl_video.h"
 

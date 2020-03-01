@@ -40,3 +40,13 @@ createexample(video video/video.cpp)
 # static linking example
 createexample(staticlink static/sharedheader.h static/dosomethings.cpp
               static/dosomeotherthings.cpp static/static.cpp)
+
+# a mini test game to see if things work
+createexample(
+  testgame
+  testgame/objects.h
+  testgame/static.cpp
+  testgame/shared.h
+  testgame/testgame.cpp
+  testgame/world.cpp
+  testgame/world.h)

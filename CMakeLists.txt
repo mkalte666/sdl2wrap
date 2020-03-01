@@ -57,8 +57,10 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/log.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/pixels.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/rect.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/render.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/sdl2stl.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/timer.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/version.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/video.h)
 

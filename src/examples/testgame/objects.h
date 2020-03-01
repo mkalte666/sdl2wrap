@@ -19,22 +19,30 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-/**
- * \file sharedheader.h
- * An example header (that could be your pre compiled header) for static usage of sdl2wrap
- */
+#ifndef sdl2wrap_objects_h
+#define sdl2wrap_objects_h
 
-#ifndef sdl2wrap_sharedheader_h
-#define sdl2wrap_sharedheader_h
+#include "shared.h"
 
-#include <iostream>
+constexpr float BulletDefaultSize = 1.0F;
 
-// define SDL2WRAP_STATIC each time BEFORE you include anything related to sdl2wrap
-// like shown here, a shared header is the best place to do so
-#define SDL2WRAP_STATIC
-#include <sdl2wrap/sdl2stl.h>
+struct PhysState {
+    float x = 0;
+    float y = 0;
+    float vx = 0;
+    float vy = 0;
+    float ax = 0;
+    float ay = 0;
+};
 
-constexpr sdl2wrap::Video::Color white = { 255, 255, 255, 255 };
-constexpr sdl2wrap::Video::Color black = { 0, 0, 0, 255 };
+struct Player {
+    PhysState state = {};
+    sdl2wrap::Video::FRect size = {};
+};
 
-#endif //sdl2wrap_sharedheader_h
+struct Bullet {
+    PhysState state = {};
+    float size = BulletDefaultSize;
+};
+
+#endif //sdl2wrap_objects_h
