@@ -162,8 +162,7 @@ SDL2WRAP_INLINE sdl2wrap::Result<BlendMode> Surface::getBlendMode() const noexce
 
 SDL2WRAP_INLINE bool Surface::setClipRect(const Rect& rect) noexcept
 {
-    auto sdlrect = rect.toSDLRect();
-    return SDL_SetClipRect(get(), &sdlrect) == SDL_TRUE;
+    return SDL_SetClipRect(get(), &rect) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Surface::resetClipRect() const noexcept
@@ -198,8 +197,7 @@ SDL2WRAP_INLINE EmptyResult Surface::convertPixels(int width, int height, PixelF
 
 SDL2WRAP_INLINE EmptyResult Surface::fill(const Rect& rect, Uint32 color) noexcept
 {
-    auto sdlrect = rect.toSDLRect();
-    auto rc = SDL_FillRect(get(), &sdlrect, color);
+    auto rc = SDL_FillRect(get(), &rect, color);
     return checkEmptyResultRc(rc);
 }
 
@@ -215,25 +213,21 @@ SDL2WRAP_INLINE EmptyResult Surface::blit(Surface& dst) const noexcept
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blit(Surface& dst, const Rect& dstRect) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blit(Surface& dst, Rect& dstRect) const noexcept
 {
-    auto dstRectSdl = dstRect.toSDLRect();
-    auto rc = SDL_BlitSurface(get(), nullptr, dst.get(), &dstRectSdl);
+    auto rc = SDL_BlitSurface(get(), nullptr, dst.get(), &dstRect);
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blit(const Rect& srcRect, Surface& dst) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blit(Rect& srcRect, Surface& dst) const noexcept
 {
-    auto srcRectSdl = srcRect.toSDLRect();
-    auto rc = SDL_BlitSurface(get(), &srcRectSdl, dst.get(), nullptr);
+    auto rc = SDL_BlitSurface(get(), &srcRect, dst.get(), nullptr);
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blit(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blit(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept
 {
-    auto srcRectSdl = srcRect.toSDLRect();
-    auto dstRectSdl = dstRect.toSDLRect();
-    auto rc = SDL_BlitSurface(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    auto rc = SDL_BlitSurface(get(), &srcRect, dst.get(), &dstRect);
     return checkEmptyResultRc(rc);
 }
 
@@ -243,33 +237,27 @@ SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Surface& dst) const noexcept
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Surface& dst, const Rect& dstRect) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Surface& dst, Rect& dstRect) const noexcept
 {
-    auto dstRectSdl = dstRect.toSDLRect();
-    auto rc = SDL_BlitScaled(get(), nullptr, dst.get(), &dstRectSdl);
+    auto rc = SDL_BlitScaled(get(), nullptr, dst.get(), &dstRect);
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blitScaled(const Rect& srcRect, Surface& dst) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Rect& srcRect, Surface& dst) const noexcept
 {
-    auto srcRectSdl = srcRect.toSDLRect();
-    auto rc = SDL_BlitScaled(get(), &srcRectSdl, dst.get(), nullptr);
+    auto rc = SDL_BlitScaled(get(), &srcRect, dst.get(), nullptr);
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::blitScaled(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::blitScaled(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept
 {
-    auto srcRectSdl = srcRect.toSDLRect();
-    auto dstRectSdl = dstRect.toSDLRect();
-    auto rc = SDL_BlitScaled(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    auto rc = SDL_BlitScaled(get(), &srcRect, dst.get(), &dstRect);
     return checkEmptyResultRc(rc);
 }
 
-SDL2WRAP_INLINE EmptyResult Surface::softStretch(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept
+SDL2WRAP_INLINE EmptyResult Surface::softStretch(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept
 {
-    auto srcRectSdl = srcRect.toSDLRect();
-    auto dstRectSdl = dstRect.toSDLRect();
-    auto rc = SDL_SoftStretch(get(), &srcRectSdl, dst.get(), &dstRectSdl);
+    auto rc = SDL_SoftStretch(get(), &srcRect, dst.get(), &dstRect);
     return checkEmptyResultRc(rc);
 }
 

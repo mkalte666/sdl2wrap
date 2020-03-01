@@ -84,16 +84,16 @@ namespace Video {
         // fillRects()
 
         EmptyResult blit(Surface& dst) const noexcept;
-        EmptyResult blit(Surface& dst, const Rect& dstRect) const noexcept;
-        EmptyResult blit(const Rect& srcRect, Surface& dst) const noexcept;
-        EmptyResult blit(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blit(Surface& dst, Rect& dstRect) const noexcept;
+        EmptyResult blit(Rect& srcRect, Surface& dst) const noexcept;
+        EmptyResult blit(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept;
 
         EmptyResult blitScaled(Surface& dst) const noexcept;
-        EmptyResult blitScaled(Surface& dst, const Rect& dstRect) const noexcept;
-        EmptyResult blitScaled(const Rect& srcRect, Surface& dst) const noexcept;
-        EmptyResult blitScaled(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult blitScaled(Surface& dst, Rect& dstRect) const noexcept;
+        EmptyResult blitScaled(Rect& srcRect, Surface& dst) const noexcept;
+        EmptyResult blitScaled(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept;
 
-        EmptyResult softStretch(const Rect& srcRect, Surface& dst, const Rect& dstRect) const noexcept;
+        EmptyResult softStretch(Rect& srcRect, Surface& dst, Rect& dstRect) const noexcept;
     };
 
     void setYUVConversionMode(YUV_CONVERSION_MODE mode) noexcept;

@@ -45,24 +45,12 @@ namespace Video {
      * \brief Equivalent of SDL_Rect. Also wraps all prominent SDL_Rect functions
      * \wrapImpl SDL_Rect Video::Rect
      */
-    struct Rect {
-        /// default ctor
-        Rect() = default;
-        /// ctor for the case we acre created from an SDL_Rect
-        explicit Rect(const SDL_Rect& r) noexcept;
-
+    struct Rect : public SDL_Rect {
         /**
          * \brief Convert this to an FRect
          * \return
          */
         FRect toFRect() const noexcept;
-
-        /**
-         * \brief Convert this to a
-         * \return
-         * \wrapImpl SDL_Rect Video::Rect::toSDLRect
-         */
-        SDL_Rect toSDLRect() const noexcept;
 
         /**
          * \brief Check if point is in this rect.
@@ -140,38 +128,22 @@ namespace Video {
          * \wrapImpl SDL_EnclosePoints Video::Rect::enclosePoints
          */
         static bool enclosePoints(Point points[], int count, const Rect& clip, Rect& result); // NOLINT
-
-        /// rect members
-        int x, y, w, h;
     };
 
     /**
      * \brief Equivalent of SDL_FRect
      * \wrapImpl SDL_FRect Video::FRect
      */
-    struct FRect {
-        /// default ctor
-        FRect() = default;
-
-        /// ctor in case we want to convert from SDL_FRect
-        explicit FRect(const SDL_FRect& r) noexcept;
-
+    struct FRect : public SDL_FRect {
         /**
          * \brief Convert to Rect
          * \return
          */
         Rect toRect() const noexcept;
-
-        /**
-         * \brief Convert to SDL_FRect
-         * \return
-         */
-        SDL_FRect toSDLRect() const noexcept;
-
-        /// rect members
-        float x, y, w, h;
     };
 
+    static_assert(sizeof(Rect) == sizeof(SDL_Rect), "Check Rect size against SDL_Rect");
+    static_assert(sizeof(FRect) == sizeof(SDL_FRect), "Check FRect size against SDL_FRect");
 }; // namespace Video
 }; // sdl2wrap
 

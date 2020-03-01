@@ -58,10 +58,10 @@ SDL2WRAP_INLINE const char* getDisplayName(int displayIndex) noexcept
 
 SDL2WRAP_INLINE Result<Rect> getDisplayBounds(int displayIndex) noexcept
 {
-    SDL_Rect sdlrect = {};
-    auto rc = SDL_GetDisplayBounds(displayIndex, &sdlrect);
+    Rect rect = {};
+    auto rc = SDL_GetDisplayBounds(displayIndex, &rect);
     if (rc == 0) {
-        return Result<Rect>::success(Rect(sdlrect));
+        return Result<Rect>::success(move(rect));
     }
 
     return Result<Rect>::error(rc);
@@ -69,10 +69,10 @@ SDL2WRAP_INLINE Result<Rect> getDisplayBounds(int displayIndex) noexcept
 
 SDL2WRAP_INLINE Result<Rect> getDisplayUsableBounds(int displayIndex) noexcept
 {
-    SDL_Rect sdlrect = {};
-    auto rc = SDL_GetDisplayUsableBounds(displayIndex, &sdlrect);
+    Rect rect = {};
+    auto rc = SDL_GetDisplayUsableBounds(displayIndex, &rect);
     if (rc == 0) {
-        return Result<Rect>::success(Rect(sdlrect));
+        return Result<Rect>::success(move(rect));
     }
 
     return Result<Rect>::error(rc);

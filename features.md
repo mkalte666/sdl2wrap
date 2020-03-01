@@ -1603,7 +1603,7 @@ Estimated coverage: 42.06 % (1073/2551)
 | SDL_RaiseWindow | YES | Video::Window::raise |  |
 | SDL_Read* | YES | File::RWops::read* |  |
 | SDL_RecordGesture | NO |  |  |
-| SDL_Rect | YES | Video::Rect::toSDLRect |  |
+| SDL_Rect | YES | Video::Rect |  |
 | SDL_RectEmpty | YES | Video::Rect::empty |  |
 | SDL_RectEquals | YES | Video::Rect::equals |  |
 | SDL_RegisterApp | NO |  |  |

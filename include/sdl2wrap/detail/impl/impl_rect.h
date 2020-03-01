@@ -1,3 +1,6 @@
+
+#include <sdl2wrap/rect.h>
+
 /*
   SDL2 C++ Wrapper
   Copyright (C) 2020 Malte Kießling <mkalte@mkalte.me>
@@ -21,14 +24,6 @@
 
 namespace Video {
 
-SDL2WRAP_INLINE Rect::Rect(const SDL_Rect& r) noexcept
-    : x(r.x)
-    , y(r.y)
-    , w(r.w)
-    , h(r.h)
-{
-}
-
 SDL2WRAP_INLINE FRect Rect::toFRect() const noexcept
 {
     FRect result {};
@@ -39,28 +34,19 @@ SDL2WRAP_INLINE FRect Rect::toFRect() const noexcept
     return result;
 }
 
-SDL2WRAP_INLINE SDL_Rect Rect::toSDLRect() const noexcept
-{
-    return SDL_Rect { x, y, w, h };
-}
-
 SDL2WRAP_INLINE bool Rect::pointInRect(const Point& point) const noexcept
 {
-    auto sdlr = toSDLRect();
-    return SDL_PointInRect(&point, &sdlr) == SDL_TRUE;
+    return SDL_PointInRect(&point, this) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Rect::empty() const noexcept
 {
-    auto sdlr = toSDLRect();
-    return SDL_RectEmpty(&sdlr) == SDL_TRUE;
+    return SDL_RectEmpty(this) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Rect::equals(const Rect& other) const noexcept
 {
-    auto a = toSDLRect();
-    auto b = other.toSDLRect();
-    return SDL_RectEquals(&a, &b) == SDL_TRUE;
+    return SDL_RectEquals(this, &other) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Rect::operator==(const Rect& other) const noexcept
@@ -70,51 +56,27 @@ SDL2WRAP_INLINE bool Rect::operator==(const Rect& other) const noexcept
 
 SDL2WRAP_INLINE bool Rect::hasIntersection(const Rect& other) const noexcept
 {
-    auto a = toSDLRect();
-    auto b = other.toSDLRect();
-    return SDL_HasIntersection(&a, &b) == SDL_TRUE;
+    return SDL_HasIntersection(this, &other) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Rect::intersectRect(const Rect& other, Rect& result) const noexcept
 {
-    auto a = toSDLRect();
-    auto b = other.toSDLRect();
-    SDL_Rect sdlres {};
-    bool bResult = SDL_IntersectRect(&a, &b, &sdlres) == SDL_TRUE;
-    result = Rect(sdlres);
-    return bResult;
+    return SDL_IntersectRect(this, &other, &result) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE void Rect::unionRect(const Rect& other, Rect& result) const noexcept
 {
-    auto a = toSDLRect();
-    auto b = other.toSDLRect();
-    SDL_Rect sdlres {};
-    SDL_UnionRect(&a, &b, &sdlres);
-    result = Rect(sdlres);
+    SDL_UnionRect(this, &other, &result);
 }
 
 SDL2WRAP_INLINE bool Rect::intersectRectAndLine(int& x1, int& y1, int& x2, int& y2) const noexcept
 {
-    auto a = toSDLRect();
-    return SDL_IntersectRectAndLine(&a, &x1, &y1, &x2, &y2) == SDL_TRUE;
+    return SDL_IntersectRectAndLine(this, &x1, &y1, &x2, &y2) == SDL_TRUE;
 }
 
 SDL2WRAP_INLINE bool Rect::enclosePoints(Point points[], int count, const Rect& clip, Rect& result) // NOLINT
 {
-    auto sdlclip = clip.toSDLRect();
-    SDL_Rect sdlres {};
-    auto bResult = SDL_EnclosePoints(points, count, &sdlclip, &sdlres) == SDL_TRUE; // NOLINT
-    result = Rect(sdlres);
-    return bResult;
-}
-
-SDL2WRAP_INLINE FRect::FRect(const SDL_FRect& r) noexcept
-    : x(r.x)
-    , y(r.y)
-    , w(r.w)
-    , h(r.h)
-{
+    return SDL_EnclosePoints(points, count, &clip, &result) == SDL_TRUE; // NOLINT
 }
 
 SDL2WRAP_INLINE Rect FRect::toRect() const noexcept
@@ -125,11 +87,6 @@ SDL2WRAP_INLINE Rect FRect::toRect() const noexcept
     result.w = static_cast<int>(w);
     result.h = static_cast<int>(h);
     return result;
-}
-
-SDL2WRAP_INLINE SDL_FRect FRect::toSDLRect() const noexcept
-{
-    return SDL_FRect { x, y, w, h };
 }
 
 }; //namespace Video

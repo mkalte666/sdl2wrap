@@ -57,7 +57,7 @@ namespace Video {
             const Uint8* Vplane, int Vpitch) noexcept;
         EmptyResult lock(const Rect& rect, void*& pixels, int& pitch) noexcept;
         void unlock() noexcept;
-        Surface::Result SDL_LockTextureToSurface(const Rect& rect) noexcept;
+        //Surface::Result SDL_LockTextureToSurface(const Rect& rect) noexcept;
     };
 
     class Renderer : public TypeWrapper<Renderer, SDL_Renderer*, SDL_DestroyRenderer> {
@@ -65,7 +65,7 @@ namespace Video {
         using TypeWrapper::TypeWrapper;
         static Result create(Window& window, int index, RendererFlags flags) noexcept;
         static Result createSoftwareRenderer(Surface& surface) noexcept;
-        static Result getRenderer(Window& window) noexcept;
+        //static Result getRenderer(Window& window) noexcept;
 
         Texture::Result createTexture(PixelFormatEnum format, TextureAccess access, int w, int h) noexcept;
         Texture::Result createTextureFromSurface(Surface& surface) noexcept;
@@ -78,11 +78,11 @@ namespace Video {
         //Texture::Result getRenderTarget() const noexcept;
 
         EmptyResult setLogicalSize(int w, int h) noexcept;
-        EmptyResult getLogicalSize(int& w, int& h) const noexcept;
+        void getLogicalSize(int& w, int& h) const noexcept;
         EmptyResult setIntegerScale(bool enable) noexcept;
         bool getIntegerScale() const noexcept;
         EmptyResult setViewport(const Rect& rect) noexcept;
-        Rect getViewpoert() const noexcept;
+        Rect getViewport() const noexcept;
 
         EmptyResult setClipRect(const Rect& rect) noexcept;
         EmptyResult resetClipRect() noexcept;
@@ -112,35 +112,35 @@ namespace Video {
         EmptyResult fillRect(const Rect& rect) noexcept;
         EmptyResult fillRects(const Rect* rects, int count) noexcept;
 
-        EmptyResult copy(Texture& tex, const Rect* srcRect, const Rect* dstRect);
-        EmptyResult copy(Texture& tex);
-        EmptyResult copy(Texture& tex, const Rect& srcRect, const Rect& dstRect);
-        EmptyResult copyWithSrcRect(Texture& tex, const Rect& srcRect);
-        EmptyResult copyWithDstRect(Texture& tex, const Rect& dstRect);
+        EmptyResult copy(Texture& tex, const Rect* srcRect, const Rect* dstRect) noexcept;
+        EmptyResult copy(Texture& tex) noexcept;
+        EmptyResult copy(Texture& tex, const Rect& srcRect, const Rect& dstRect) noexcept;
+        EmptyResult copyWithSrcRect(Texture& tex, const Rect& srcRect) noexcept;
+        EmptyResult copyWithDstRect(Texture& tex, const Rect& dstRect) noexcept;
 
-        EmptyResult copyEx(Texture& tex, const Rect* srcrect, const Rect* dstrect, double angle, Point center, RendererFlip flip);
-        EmptyResult copyEx(Texture& tex, double angle, Point center, RendererFlip flip);
-        EmptyResult copyEx(Texture& tex, const Rect& srcrect, const Rect& dstrect, double angle, Point center, RendererFlip flip);
-        EmptyResult copyWithSrcRect(Texture& tex, const Rect& srcrect, double angle, Point center, RendererFlip flip);
-        EmptyResult copyWithDstRect(Texture& tex, const Rect& dstrect, double angle, Point center, RendererFlip flip);
+        EmptyResult copyEx(Texture& tex, const Rect* srcrect, const Rect* dstrect, double angle, Point center, RendererFlip flip) noexcept;
+        EmptyResult copyEx(Texture& tex, double angle, Point center, RendererFlip flip) noexcept;
+        EmptyResult copyEx(Texture& tex, const Rect& srcrect, const Rect& dstrect, double angle, Point center, RendererFlip flip) noexcept;
+        EmptyResult copyWithSrcRect(Texture& tex, const Rect& srcrect, double angle, Point center, RendererFlip flip) noexcept;
+        EmptyResult copyWithDstRect(Texture& tex, const Rect& dstrect, double angle, Point center, RendererFlip flip) noexcept;
 
-        EmptyResult drawPointF(float x, float y);
-        EmptyResult drawPointsF(const FPoint* points, int count);
+        EmptyResult drawPointF(float x, float y) noexcept;
+        EmptyResult drawPointsF(const FPoint* points, int count) noexcept;
 
-        EmptyResult drawLineF(float x1, float y1, float x2, float y2);
-        EmptyResult drawLinesF(const FPoint* points, int count);
+        EmptyResult drawLineF(float x1, float y1, float x2, float y2) noexcept;
+        EmptyResult drawLinesF(const FPoint* points, int count) noexcept;
 
-        EmptyResult drawRectF(const FRect& rect);
-        EmptyResult drawRectsF(const FRect* rects, int count);
+        EmptyResult drawRectF(const FRect& rect) noexcept;
+        EmptyResult drawRectsF(const FRect* rects, int count) noexcept;
 
         EmptyResult fillRectF(const FRect& rect) noexcept;
         EmptyResult fillRectsF(const FRect* rects, int count) noexcept;
 
-        EmptyResult copyF(Texture& tex, const Rect* srcRect, const Rect* dstRect) noexcept;
+        EmptyResult copyF(Texture& tex, const Rect* srcRect, const FRect* dstRect) noexcept;
         EmptyResult copyF(Texture& tex) noexcept;
-        EmptyResult copyF(Texture& tex, const Rect& srcRect, const Rect& dstRect) noexcept;
+        EmptyResult copyF(Texture& tex, const Rect& srcRect, const FRect& dstRect) noexcept;
         EmptyResult copyWithSrcRectF(Texture& tex, const Rect& srcRect) noexcept;
-        EmptyResult copyWithDstRectF(Texture& tex, const Rect& dstRect) noexcept;
+        EmptyResult copyWithDstRectF(Texture& tex, const FRect& dstRect) noexcept;
 
         EmptyResult copyExF(Texture& tex, const Rect* srcrect, const FRect* dstrect, double angle, FPoint center, RendererFlip flip) noexcept;
         EmptyResult copyExF(Texture& tex, double angle, FPoint center, RendererFlip flip) noexcept;
@@ -153,13 +153,13 @@ namespace Video {
     };
 
     namespace GL {
-        EmptyResult bindTexture(Texture& tex) noexcept;
+        EmptyResult bindTexture(Texture& tex, float& w, float& h) noexcept;
         EmptyResult unbindTexture(Texture& tex) noexcept;
     }
 
     namespace Metal {
-        void* renderGetMetalLayer(SDL_Renderer& renderer) noexcept;
-        void* renderGetMetalCommandEncoder(SDL_Renderer& renderer) noexcept;
+        void* renderGetMetalLayer(Renderer& renderer) noexcept;
+        void* renderGetMetalCommandEncoder(Renderer& renderer) noexcept;
     }
 
 }; // namespace Video
