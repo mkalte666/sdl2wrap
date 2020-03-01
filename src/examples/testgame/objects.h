@@ -24,7 +24,29 @@
 
 #include "shared.h"
 
-constexpr float BulletDefaultSize = 1.0F;
+constexpr int screenW = 1024;
+constexpr int screenH = 768;
+constexpr int numBullets = 1024;
+constexpr int numEvils = 1024;
+
+constexpr float DefaultBulletSize = 3.0F;
+constexpr float DefaultBulletOffset = DefaultBulletSize / 2.0F;
+constexpr float DefaultPlayerSize = 10.0F;
+constexpr float DefaultPlayerOffset = DefaultPlayerSize / 2.0F;
+constexpr float DefaultEvilSize = 20.0F;
+constexpr float DefaultEvilOffset = DefaultEvilSize / 2.0F;
+constexpr int DefaultEvilHealth = 1;
+constexpr int DefaulEvilHealthLevelDivider = 8;
+constexpr Uint32 BulletDelay = 400; // ms
+
+constexpr float PlayerStartX = 1024.0F / 2.0F;
+constexpr float PlayerStartY = 768.0F / 2.0F;
+constexpr float PlayerDefaultSpeed = 300.0F;
+
+constexpr float BulletSpeed = -500.0F;
+constexpr float BulletSpeedIncrease = 0.995F;
+static const sdl2wrap::Video::Rect screenRect = { 0, 0, screenW, screenH };
+constexpr Uint32 GameOverDelay = 2000; // ms
 
 struct PhysState {
     float x = 0;
@@ -35,14 +57,40 @@ struct PhysState {
     float ay = 0;
 };
 
+struct PlayerInput {
+    bool firing = false;
+    bool left = false;
+    bool right = false;
+    bool up = false;
+    bool down = false;
+};
+
 struct Player {
     PhysState state = {};
-    sdl2wrap::Video::FRect size = {};
+    float bulletDelay = static_cast<float>(BulletDelay);
+    sdl2wrap::Video::FRect rect() const noexcept
+    {
+        return { state.x - DefaultPlayerOffset, state.y - DefaultPlayerOffset, DefaultPlayerSize, DefaultPlayerSize };
+    }
 };
 
 struct Bullet {
+    bool active = false;
     PhysState state = {};
-    float size = BulletDefaultSize;
+    sdl2wrap::Video::FRect rect() const noexcept
+    {
+        return { state.x - DefaultBulletOffset, state.y - DefaultBulletOffset, DefaultBulletSize, DefaultBulletSize };
+    }
+};
+
+struct Evil {
+    bool active = false;
+    int health = DefaultEvilHealth;
+    PhysState state = {};
+    sdl2wrap::Video::FRect rect() const noexcept
+    {
+        return { state.x - DefaultEvilOffset, state.y - DefaultEvilOffset, DefaultEvilSize, DefaultEvilSize };
+    }
 };
 
 #endif //sdl2wrap_objects_h

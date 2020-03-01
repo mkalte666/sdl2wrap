@@ -30,7 +30,7 @@ int main(int, char**)
 {
     auto sdl2 = SDL2::init(InitFlags::Everything).extractValue();
     auto window = Video::Window::createCentered("Testgame", 1024, 769, WindowFlags::Resizable).extractValue(); //NOLINT
-    auto renderer = Video::Renderer::create(window, -1, RendererFlags::Accelerated | RendererFlags::Targettexture).extractValue();
+    auto renderer = Video::Renderer::create(window, -1, RendererFlags::Accelerated | RendererFlags::Targettexture | RendererFlags::Presentvsync).extractValue();
     renderer.setLogicalSize(1024, 768); // NOLINT
     World world;
 

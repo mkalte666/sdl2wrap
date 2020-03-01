@@ -38,7 +38,16 @@ public:
     void render(sdl2wrap::Video::Renderer& renderer, float dt) noexcept;
 
 private:
+    void maybeSpawnBullet();
+    void newLevel();
     Player player = {};
+    Bullet bullets[numBullets]; //NOLINT
+    Uint32 nextBullet = 0;
+    Evil evils[numEvils]; //NOLINT
+    int level = 0;
+    bool gameOver = false;
+    Uint32 gameOverOver = 0;
+    PlayerInput playerInput = {};
 };
 
 #endif //sdl2wrap_world_h

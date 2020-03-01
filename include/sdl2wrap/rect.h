@@ -46,6 +46,8 @@ namespace Video {
      * \wrapImpl SDL_Rect Video::Rect
      */
     struct Rect : public SDL_Rect {
+        Rect() noexcept = default;
+        Rect(int x, int y, int w, int h) noexcept;
         /**
          * \brief Convert this to an FRect
          * \return
@@ -135,6 +137,8 @@ namespace Video {
      * \wrapImpl SDL_FRect Video::FRect
      */
     struct FRect : public SDL_FRect {
+        FRect() noexcept = default;
+        FRect(float x, float y, float w, float h) noexcept;
         /**
          * \brief Convert to Rect
          * \return

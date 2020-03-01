@@ -50,3 +50,5 @@ createexample(
   testgame/testgame.cpp
   testgame/world.cpp
   testgame/world.h)
+
+target_compile_options(testgame PUBLIC -fno-rtti -fno-exceptions)

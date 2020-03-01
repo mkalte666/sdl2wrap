@@ -20,17 +20,20 @@
 */
 
 #include "world.h"
-
 using namespace sdl2wrap;
 
-constexpr float PlayerStartX = 1024.0F / 2.0F;
-constexpr float PlayerStartY = 768.0F / 2.0F;
-constexpr float PlayerDefaultSpeed = 300.0F;
+Uint32 notRandom()
+{
+    static Uint32 x = 12345; // NOLINT
+    x = (0x5DEECE66D * x + 13) % INT32_MAX; // NOLINT
+    return x;
+}
 
 World::World() noexcept
 {
     player.state.x = PlayerStartX;
     player.state.y = PlayerStartY;
+    newLevel();
 }
 
 PhysState integrate(PhysState in, float dt)
@@ -52,22 +55,23 @@ bool World::update(float dt) noexcept
             return false;
         case EventType::Keydown:
         case EventType::Keyup: {
-            if (e.key.repeat != 0) {
-                break;
-            }
-            float yeno = Input::getEventType(e) == EventType::Keydown ? 1.0F : 0.0F;
+            bool pressed = Input::getEventType(e) == EventType::Keydown;
+
             switch (static_cast<Scancode>(e.key.keysym.scancode)) {
             case Scancode::W:
-                player.state.vy = -1.0F * yeno * PlayerDefaultSpeed;
+                playerInput.up = pressed;
                 break;
             case Scancode::S:
-                player.state.vy = 1.0F * yeno * PlayerDefaultSpeed;
+                playerInput.down = pressed;
                 break;
             case Scancode::A:
-                player.state.vx = -1.0F * yeno * PlayerDefaultSpeed;
+                playerInput.left = pressed;
                 break;
             case Scancode::D:
-                player.state.vx = 1.0F * yeno * PlayerDefaultSpeed;
+                playerInput.right = pressed;
+                break;
+            case Scancode::Space:
+                playerInput.firing = pressed;
                 break;
             default:
                 break;
@@ -79,7 +83,90 @@ bool World::update(float dt) noexcept
         }
     }
 
-    player.state = integrate(player.state, dt);
+    // handle game over
+    if (gameOver) {
+        if (Timer::ticksPassed(gameOverOver)) {
+            gameOver = false;
+            level = 0;
+            player = Player();
+            player.state.x = PlayerStartX;
+            player.state.y = PlayerStartY;
+            for (auto& bullet : bullets) {
+                bullet.active = false;
+            }
+            newLevel();
+        }
+
+        return true;
+    }
+
+    if (playerInput.left && !playerInput.right) {
+        player.state.vx = -1.0F * PlayerDefaultSpeed;
+    } else if (!playerInput.left && playerInput.right) {
+        player.state.vx = 1.0F * PlayerDefaultSpeed;
+    } else {
+        player.state.vx = 0.0F;
+    }
+    if (playerInput.up && !playerInput.down) {
+        player.state.vy = -1.0F * PlayerDefaultSpeed;
+    } else if (!playerInput.up && playerInput.down) {
+        player.state.vy = 1.0F * PlayerDefaultSpeed;
+    } else {
+        player.state.vy = 0.0F;
+    }
+
+    auto oldState = player.state;
+    player.state = integrate(oldState, dt);
+    if (!player.rect().toRect().hasIntersection(screenRect)) {
+        player.state = oldState;
+    }
+
+    if (playerInput.firing) {
+        maybeSpawnBullet();
+    }
+
+    for (auto& bullet : bullets) {
+        if (bullet.active) {
+            auto oldBulletRect = bullet.rect().toRect();
+            bullet.state = integrate(bullet.state, dt);
+            if (!bullet.rect().toRect().hasIntersection(screenRect)) {
+                bullet.active = false;
+                continue;
+            }
+            auto newBulletRect = bullet.rect().toRect();
+            for (auto& evil : evils) {
+                if (evil.active) {
+                    int x2 = newBulletRect.x + newBulletRect.w;
+                    int y2 = newBulletRect.y + newBulletRect.h;
+                    if (evil.rect().toRect().intersectRectAndLine(oldBulletRect.x, oldBulletRect.y, x2, y2)) {
+                        --evil.health;
+                        bullet.active = false;
+                        player.bulletDelay *= BulletSpeedIncrease;
+                    }
+                }
+            }
+        }
+    }
+
+    bool anyEvil = false;
+    for (auto& evil : evils) {
+        if (evil.active) {
+            anyEvil = true;
+            evil.state = integrate(evil.state, dt);
+            if (evil.health <= 0 || evil.state.y > static_cast<float>(screenH)) {
+                evil.active = false;
+                continue;
+            }
+            if (evil.rect().toRect().hasIntersection(player.rect().toRect())) {
+                gameOver = true;
+                gameOverOver = Timer::getTicks() + GameOverDelay;
+            }
+        }
+    }
+
+    if (!anyEvil) {
+        newLevel();
+    }
     return true;
 }
 
@@ -89,15 +176,63 @@ void World::render(Video::Renderer& renderer, float dt) noexcept
     renderer.clear();
     renderer.setDrawColor(white);
 
+    if (gameOver) {
+        renderer.setDrawColor(notRed);
+        renderer.fillRect(screenRect);
+        renderer.present();
+        return;
+    }
+
     // draw player
-    auto playerState = integrate(player.state, dt);
-    renderer.drawPointF(playerState.x, playerState.y);
-    auto playerState2 = player.state;
-    playerState2.x += 40.0F; //NOLINT
+    renderer.fillRectF(player.rect());
 
-    renderer.drawPointF(playerState.x, playerState.y);
-    renderer.drawPointF(playerState2.x, playerState2.y);
+    // draw bullets.
+    for (auto& bullet : bullets) {
+        if (bullet.active) {
+            auto bulletCopy = bullet;
+            bulletCopy.state = integrate(bulletCopy.state, dt);
+            renderer.drawRectF(bulletCopy.rect());
+        }
+    }
 
-    (void)dt;
+    for (auto& evil : evils) {
+        if (evil.active) {
+            auto evilCopy = evil;
+            evilCopy.state = integrate(evilCopy.state, dt);
+            renderer.drawRectF(evilCopy.rect());
+        }
+    }
     renderer.present();
+}
+void World::maybeSpawnBullet()
+{
+    if (Timer::ticksPassed(nextBullet)) {
+        nextBullet = Timer::getTicks() + static_cast<Uint32>(player.bulletDelay);
+        for (auto& bullet : bullets) {
+            if (!bullet.active) {
+                bullet.active = true;
+                bullet.state.x = player.state.x;
+                bullet.state.y = player.state.y;
+                bullet.state.vy = BulletSpeed;
+                break;
+            }
+        }
+    }
+}
+void World::newLevel()
+{
+    for (auto& evil : evils) {
+        evil.active = false;
+    }
+
+    ++level;
+    int evilCount = level * level;
+    for (int i = 0; i < evilCount && i < numEvils; i++) {
+        auto& evil = evils[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+        evil.active = true;
+        evil.health = DefaultEvilHealth + level / DefaulEvilHealthLevelDivider;
+        evil.state.x = static_cast<float>(static_cast<int>(notRandom()) % screenW);
+        evil.state.y = static_cast<float>((static_cast<int>(notRandom()) % screenH) - screenH);
+        evil.state.vy = PlayerDefaultSpeed;
+    }
 }

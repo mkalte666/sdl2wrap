@@ -27,14 +27,13 @@
 #ifndef sdl2wrap_sharedheader_h
 #define sdl2wrap_sharedheader_h
 
-#include <iostream>
-
 // define SDL2WRAP_STATIC each time BEFORE you include anything related to sdl2wrap
 // like shown here, a shared header is the best place to do so
 #define SDL2WRAP_STATIC
-#include <sdl2wrap/sdl2stl.h>
+#include <sdl2wrap/sdl2.h>
 
 constexpr sdl2wrap::Video::Color white = { 255, 255, 255, 255 };
 constexpr sdl2wrap::Video::Color black = { 0, 0, 0, 255 };
+constexpr sdl2wrap::Video::Color notRed = { 120, 34, 44, 255 };
 
 #endif //sdl2wrap_sharedheader_h
