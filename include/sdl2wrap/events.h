@@ -49,6 +49,17 @@ namespace Input {
     using FilterCallback = SDL_EventFilter;
 
     /**
+     * \brief Returns casted type of a given event
+     *
+     * Event types are Uint32 and we are using scoped enums
+     * However, we cannot write a child with wrappers for SDL_Event, as its a union
+     * So we have this helper.
+     * \param event the event to get the type from
+     * \returns event.type, casted to the EventType enum
+     */
+    EventType getEventType(const Event& event) noexcept;
+
+    /**
      * \brief
      * \param events
      * \param numEvents

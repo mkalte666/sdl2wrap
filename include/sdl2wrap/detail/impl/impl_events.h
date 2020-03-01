@@ -1,3 +1,6 @@
+
+#include <sdl2wrap/events.h>
+
 /*
   SDL2 C++ Wrapper
   Copyright (C) 2020 Malte Kießling <mkalte@mkalte.me>
@@ -23,6 +26,11 @@
 #define sdl2wrap_impl_events_h
 
 namespace Input {
+
+SDL2WRAP_INLINE EventType getEventType(const Event& event) noexcept
+{
+    return static_cast<EventType>(event.type);
+}
 
 SDL2WRAP_INLINE Result<int> peepEvents(Event* events, int numEvents, eventaction action, EventType minType, EventType maxType) noexcept
 {
