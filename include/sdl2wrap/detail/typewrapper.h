@@ -31,6 +31,18 @@ namespace sdl2wrap {
 template <class T>
 using SDLDestructorFunc = void (*)(T);
 
+/**
+ * \brief Wraps an (SDL) Type by imitating an unique pointer
+ * \tparam Child Child class for a new type; used for friend classing, results and whatnot
+ * \tparam SDLPtrType The Original "Pointer type" from sdl. Such as: SDL_Window*, SDL_GLcontext, void*, ...
+ * \tparam destructorFunc the function to be called to destroy this type (SDL_DestroyWindow, ...)
+ *
+ * Usually a TypeWrapper has full ownership of the pointer and only gives it up when i goes out of scope.
+ * The type can only moved, not copied. get() retuns the raw pointer.
+ * In cases non-owned types are needed, (SDL_GetKeyboardFocus, SDL_LockTextureSurface, ...) the "Unowned" wrapper is used.
+ * It does not disable storing or helps with pointer verification, but makes it more explicit when something should not be freed
+ *
+ */
 template <class Child, class SDLPtrType, SDLDestructorFunc<SDLPtrType> destructorFunc>
 class TypeWrapper {
 public:
@@ -60,7 +72,8 @@ public:
         rhs.ptr = nullptr;
         return *this;
     }
-    ~TypeWrapper() noexcept
+
+    virtual ~TypeWrapper() noexcept
     {
         if (ptr != nullptr) {
             destructorFunc(ptr);
@@ -100,6 +113,43 @@ public:
     SDLPtrType operator->() noexcept
     {
         return TypeWrapper<Child, SDLPtrType, destructorFunc>::get();
+    }
+};
+
+/**
+ * \brief Subtype for unowned instances of type wrapper.
+ * \sa TypeWrapper
+ */
+template <class Child>
+class Unowned : public Child {
+public:
+    using Child::Child;
+    friend class Result<Child>;
+    using Result = Result<Child>;
+
+    explicit Unowned(typename Child::PtrType ptr) noexcept
+        : Child(ptr)
+    {
+    }
+
+    Unowned(const Unowned&) = delete;
+    Unowned(Unowned&& rhs) noexcept
+        : Child(move(rhs.ptr))
+    {
+    }
+
+    Unowned& operator=(const Unowned& rhs) noexcept = delete;
+    Unowned& operator=(Unowned&& rhs) noexcept
+    {
+        Child::forceReset(rhs.ptr);
+        rhs.forceReset(nullptr);
+        return *this;
+    }
+
+    /// dtor makes sure ptr is nullptr before ~TypeWrapper is called
+    ~Unowned() override
+    {
+        Child::forceReset(nullptr);
     }
 };
 

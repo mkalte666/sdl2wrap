@@ -1,3 +1,6 @@
+
+#include <sdl2wrap/render.h>
+
 /*
   SDL2 C++ Wrapper
   Copyright (C) 2020 Malte Kießling <mkalte@mkalte.me>
@@ -141,6 +144,17 @@ SDL2WRAP_INLINE EmptyResult Texture::lock(const Rect& rect, void*& pixels, int& 
 SDL2WRAP_INLINE void Texture::unlock() noexcept
 {
     SDL_UnlockTexture(get());
+}
+Unowned<Surface>::Result Texture::lockToSurface(const Rect& rect) noexcept
+{
+    SDL_Surface* ptr = nullptr;
+    auto rc = SDL_LockTextureToSurface(get(), &rect, &ptr);
+    if (rc != 0 || ptr == nullptr) {
+        Unowned<Surface> surf(ptr);
+        return Unowned<Surface>::Result::success(move(surf));
+    }
+
+    return Unowned<Surface>::Result::error(0);
 }
 
 SDL2WRAP_INLINE Renderer::Result Renderer::create(Window& window, int index, RendererFlags flags) noexcept

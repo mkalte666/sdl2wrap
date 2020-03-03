@@ -57,7 +57,7 @@ namespace Video {
             const Uint8* Vplane, int Vpitch) noexcept;
         EmptyResult lock(const Rect& rect, void*& pixels, int& pitch) noexcept;
         void unlock() noexcept;
-        //Surface::Result SDL_LockTextureToSurface(const Rect& rect) noexcept;
+        Unowned<Surface>::Result lockToSurface(const Rect& rect) noexcept;
     };
 
     class Renderer : public TypeWrapper<Renderer, SDL_Renderer*, SDL_DestroyRenderer> {
