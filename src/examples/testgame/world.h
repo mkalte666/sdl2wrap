@@ -35,7 +35,7 @@ public:
     ~World() noexcept = default;
 
     bool update(float dt) noexcept;
-    void render(sdl2wrap::Video::Renderer& renderer, float dt) noexcept;
+    void render(sdl2wrap::Video::Renderer& renderer, float dt, float alpha) noexcept;
 
 private:
     void maybeSpawnBullet();

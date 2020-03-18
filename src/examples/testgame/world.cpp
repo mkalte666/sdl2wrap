@@ -46,6 +46,15 @@ PhysState integrate(PhysState in, float dt)
     return out;
 }
 
+PhysState interpolate(PhysState in, float dt, float alpha)
+{
+    PhysState futureState = integrate(in, dt);
+    PhysState out = in;
+    out.x = SDL_floorf(in.x*(1.0F-alpha) + futureState.x*alpha);
+    out.y = SDL_floorf(in.y*(1.0F-alpha) + futureState.y*alpha);
+    return out;
+}
+
 bool World::update(float dt) noexcept
 {
     Event e;
@@ -170,7 +179,7 @@ bool World::update(float dt) noexcept
     return true;
 }
 
-void World::render(Video::Renderer& renderer, float dt) noexcept
+void World::render(Video::Renderer& renderer, float dt, float alpha) noexcept
 {
     renderer.setDrawColor(black);
     renderer.clear();
@@ -190,16 +199,18 @@ void World::render(Video::Renderer& renderer, float dt) noexcept
     for (auto& bullet : bullets) {
         if (bullet.active) {
             auto bulletCopy = bullet;
-            bulletCopy.state = integrate(bulletCopy.state, dt);
-            renderer.drawRectF(bulletCopy.rect());
+            bulletCopy.state = interpolate(bulletCopy.state, dt, alpha);
+            renderer.fillRectF(bulletCopy.rect());
         }
     }
 
+
+    renderer.setDrawColor(notRed);
     for (auto& evil : evils) {
         if (evil.active) {
             auto evilCopy = evil;
-            evilCopy.state = integrate(evilCopy.state, dt);
-            renderer.drawRectF(evilCopy.rect());
+            evilCopy.state = interpolate(evilCopy.state, dt, alpha);
+            renderer.fillRectF(evilCopy.rect());
         }
     }
     renderer.present();

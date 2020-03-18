@@ -28,8 +28,10 @@ constexpr Uint64 ticksPerSecond = 30;
 
 int main(int, char**)
 {
+    Hints::set(Hint::RenderDriver, "opengles2");
+    Hints::set(Hint::RenderBatching, "1");
     auto sdl2 = SDL2::init(InitFlags::Everything).extractValue();
-    auto window = Video::Window::createCentered("Testgame", 1024, 769, WindowFlags::Resizable).extractValue(); //NOLINT
+    auto window = Video::Window::createCentered("Testgame", 1024, 768, WindowFlags::Resizable).extractValue(); //NOLINT
     auto renderer = Video::Renderer::create(window, -1, RendererFlags::Accelerated | RendererFlags::Targettexture | RendererFlags::Presentvsync).extractValue();
     renderer.setLogicalSize(1024, 768); // NOLINT
     World world;
@@ -54,8 +56,8 @@ int main(int, char**)
         }
 
         // render
-        float fTimePool = static_cast<float>(timePool) / static_cast<float>(Timer::getPerformanceCounter());
-        world.render(renderer, fTimePool);
+        float alpha = static_cast<float>(timePool)/static_cast<float>(timePerTick);
+        world.render(renderer, fTimePerTick, alpha);
     }
 
     return 0;
