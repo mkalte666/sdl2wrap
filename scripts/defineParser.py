@@ -81,6 +81,7 @@ def defineToEnum(infile, settings):
 
     result = DefineToEnumResult()
     result.settings = settings
+    duplicates = []
     for i, m in enumerate(allDefines):
         define = m.group(1)
         name = m.group(2)
@@ -89,6 +90,10 @@ def defineToEnum(infile, settings):
         name = name.lower()
         name = name.capitalize()
         name = re.sub(r"_([a-z0-1A-Z]{1})", lambda pat : pat.group(1).upper(), name)
+        if name in duplicates:
+            continue
+        duplicates.append(name)
+
         if settings.createConverter:
             result.enumBody += "    " + name + ", " + makeImplComment(define, settings.newName + "::" + name) + "\n"
             result.convertBody += "        case "+settings.newName+"::" + name + ": return " + define + ";\n"

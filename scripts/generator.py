@@ -13,6 +13,10 @@ headers = [
     ["SDL.h", [
         DefineToEnumSettings("SDL_INIT_", "InitFlags")
     ]],
+    ["SDL_audio.h", [
+        DefineToEnumSettings("AUDIO_", "AudioFormat"),
+        DefineToEnumSettings("SDL_AUDIO_ALLOW_", "AudioAllow")
+    ]],
     ["SDL_blendmode.h", []],
     ["SDL_events.h", []],
     ["SDL_hints.h", [

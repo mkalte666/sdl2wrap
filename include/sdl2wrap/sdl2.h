@@ -36,6 +36,7 @@
 #include "detail/generated/generated_sdl.h"
 #include "detail/result.h"
 
+#include "audio.h"
 #include "error.h"
 #include "events.h"
 #include "hints.h"

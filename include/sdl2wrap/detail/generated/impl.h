@@ -26,6 +26,7 @@ misrepresented as being the original software.
 #define sdl2wrap_generated_implfiles
 
 #include "../impl/impl_assert.h"
+#include "../impl/impl_audio.h"
 #include "../impl/impl_blendmode.h"
 #include "../impl/impl_error.h"
 #include "../impl/impl_events.h"

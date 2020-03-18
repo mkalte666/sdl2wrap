@@ -49,6 +49,7 @@ set(sdl2wrapSDL2Includes
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/typewrapper.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/detail/generated/impl.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/assert.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/audio.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/blendmode.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/error.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2wrap/events.h
