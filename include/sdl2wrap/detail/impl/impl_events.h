@@ -25,6 +25,15 @@
 #ifndef sdl2wrap_impl_events_h
 #define sdl2wrap_impl_events_h
 
+bool operator==(const Uint32& a, const EventType& b)
+{
+    return a == static_cast<Uint32>(b);
+}
+bool operator==(const EventType& a, const Uint32& b)
+{
+    return b == a;
+}
+
 namespace Input {
 
 SDL2WRAP_INLINE EventType getEventType(const Event& event) noexcept

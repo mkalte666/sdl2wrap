@@ -45,6 +45,15 @@ enum class EventState : int {
 /// \wrapImpl SDL_Event sdl2wrap::Event only a alias in the main namespace. we aint gonna touch the union!
 using Event = SDL_Event;
 
+/**
+ * \brief Explicitly allow comparison between EventType and Uint32
+ * \param a
+ * \param b
+ * \return
+ */
+bool operator==(const Uint32& a, const EventType& b);
+bool operator==(const EventType& a, const Uint32& b);
+
 namespace Input {
     using FilterCallback = SDL_EventFilter;
 

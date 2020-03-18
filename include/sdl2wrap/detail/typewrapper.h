@@ -119,6 +119,7 @@ public:
 /**
  * \brief Subtype for unowned instances of type wrapper.
  * \sa TypeWrapper
+ * \note This thing is as safe as a raw pointer. This means, not at all. Use with care, don't put it in containers, ...
  */
 template <class Child>
 class Unowned : public Child {
