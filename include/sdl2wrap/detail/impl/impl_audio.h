@@ -77,7 +77,7 @@ SDL2WRAP_INLINE int getNumDevices(bool isCapture) noexcept
     return SDL_GetNumAudioDevices(isCapture ? 1 : 0);
 }
 
-SDL2WRAP_INLINE const char* getAudioDeviceName(int index, bool isCapture) noexcept
+SDL2WRAP_INLINE const char* getDeviceName(int index, bool isCapture) noexcept
 {
     return SDL_GetAudioDeviceName(index, isCapture ? 1 : 0);
 }
