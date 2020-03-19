@@ -82,9 +82,14 @@ SDL2WRAP_INLINE const char* getDeviceName(int index, bool isCapture) noexcept
     return SDL_GetAudioDeviceName(index, isCapture ? 1 : 0);
 }
 
-SDL2WRAP_INLINE DeviceID openDevice(const char* device, bool isCapture, const Spec& desired, Spec& obtained, AudioAllow allowedChanges)
+SDL2WRAP_INLINE Result<DeviceID> openDevice(const char* device, bool isCapture, const Spec& desired, Spec& obtained, AudioAllow allowedChanges)
 {
-    return SDL_OpenAudioDevice(device, isCapture ? 1 : 0, &desired, &obtained, static_cast<int>(allowedChanges));
+    auto id = SDL_OpenAudioDevice(device, isCapture ? 1 : 0, &desired, &obtained, static_cast<int>(allowedChanges));
+    if (id == 0) {
+        return Result<DeviceID>::error(0);
+    }
+
+    return Result<DeviceID>::success(move(id));
 }
 
 SDL2WRAP_INLINE AudioStatus getStatus() noexcept

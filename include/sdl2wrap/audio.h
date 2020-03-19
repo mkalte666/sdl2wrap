@@ -50,7 +50,7 @@ namespace Audio {
 
     int getNumDevices(bool isCapture) noexcept;
     const char* getDeviceName(int index, bool isCapture) noexcept;
-    DeviceID openDevice(const char* device, bool isCapture, const Spec& desired, Spec& obtained, AudioAllow allowedChanges);
+    Result<DeviceID> openDevice(const char* device, bool isCapture, const Spec& desired, Spec& obtained, AudioAllow allowedChanges);
 
     AudioStatus getStatus() noexcept;
     AudioStatus getDeviceStatus(DeviceID device) noexcept;
