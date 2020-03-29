@@ -56,7 +56,7 @@ int main(int, char**)
         }
 
         // render
-        float alpha = static_cast<float>(timePool)/static_cast<float>(timePerTick);
+        float alpha = static_cast<float>(timePool) / static_cast<float>(timePerTick);
         world.render(renderer, fTimePerTick, alpha);
     }
 

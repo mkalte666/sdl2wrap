@@ -79,7 +79,7 @@ project(sdl2wrap C CXX)
 find_package(SDL2 REQUIRED)
 add_library(sdl2wrap_sdl2 INTERFACE)
 target_include_directories(sdl2wrap_sdl2 INTERFACE include/)
-target_link_libraries(sdl2wrap_sdl2 INTERFACE SDL2::SDL2 SDL2::SDL2main)
+target_link_libraries(sdl2wrap_sdl2 INTERFACE SDL2::SDL2)
 target_sources(sdl2wrap_sdl2 INTERFACE ${sdl2wrapSDL2Includes})
 add_library(sdl2wrap::sdl2 ALIAS sdl2wrap_sdl2)
 

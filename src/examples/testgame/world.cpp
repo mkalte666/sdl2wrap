@@ -50,8 +50,8 @@ PhysState interpolate(PhysState in, float dt, float alpha)
 {
     PhysState futureState = integrate(in, dt);
     PhysState out = in;
-    out.x = SDL_floorf(in.x*(1.0F-alpha) + futureState.x*alpha);
-    out.y = SDL_floorf(in.y*(1.0F-alpha) + futureState.y*alpha);
+    out.x = SDL_floorf(in.x * (1.0F - alpha) + futureState.x * alpha);
+    out.y = SDL_floorf(in.y * (1.0F - alpha) + futureState.y * alpha);
     return out;
 }
 
@@ -203,7 +203,6 @@ void World::render(Video::Renderer& renderer, float dt, float alpha) noexcept
             renderer.fillRectF(bulletCopy.rect());
         }
     }
-
 
     renderer.setDrawColor(notRed);
     for (auto& evil : evils) {
