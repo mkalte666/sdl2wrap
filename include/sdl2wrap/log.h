@@ -91,7 +91,7 @@ namespace Log {
      */
     void message(int category, LogPriority priority, const char* str) noexcept;
 
-}; // namespace Log
-}; // namespace sdl2wrap
+} // namespace Log
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_log_h

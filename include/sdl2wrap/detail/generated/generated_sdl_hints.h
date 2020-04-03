@@ -357,6 +357,6 @@ SDL2WRAP_INLINE const char* hintToBase(Hint value) noexcept
 }
 #endif // SDL2WRAP_DEFINITIONS
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif // sdl2wrap_generated_*

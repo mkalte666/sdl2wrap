@@ -21,46 +21,46 @@
 
 namespace File {
 
-SDL2WRAP_INLINE RWops::Result RWops::fromFile(const char* file, const char* mode) noexcept
+SDL2WRAP_INLINE RWops::ResultType RWops::fromFile(const char* file, const char* mode) noexcept
 {
     auto rwops = SDL_RWFromFile(file, mode);
     if (rwops == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(RWops(rwops));
+    return ResultType::success(RWops(rwops));
 }
 
 #ifdef HAVE_STDIO_H
-SDL2WRAP_INLINE RWops::Result RWops::fromFP(FILE* fp, bool autoclose) noexcept
+SDL2WRAP_INLINE RWops::ResultType RWops::fromFP(FILE* fp, bool autoclose) noexcept
 {
     auto rwops = SDL_RWFromFP(fp, autoclose ? SDL_TRUE : SDL_FALSE);
     if (rwops == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(RWops(rwops));
+    return ResultType::success(RWops(rwops));
 }
 #endif
 
-SDL2WRAP_INLINE RWops::Result RWops::fromMem(void* mem, int size) noexcept
+SDL2WRAP_INLINE RWops::ResultType RWops::fromMem(void* mem, int size) noexcept
 {
     auto rwops = SDL_RWFromMem(mem, size);
     if (rwops == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(RWops(rwops));
+    return ResultType::success(RWops(rwops));
 }
 
-SDL2WRAP_INLINE RWops::Result RWops::fromConstMem(const void* mem, int size) noexcept
+SDL2WRAP_INLINE RWops::ResultType RWops::fromConstMem(const void* mem, int size) noexcept
 {
     auto rwops = SDL_RWFromConstMem(mem, size);
     if (rwops == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(RWops(rwops));
+    return ResultType::success(RWops(rwops));
 }
 
 SDL2WRAP_INLINE EmptyResult RWops::close() noexcept
@@ -92,16 +92,16 @@ SDL2WRAP_INLINE Sint64 RWops::seek(Sint64 offset, RWSeek whence) noexcept
     return SDL_RWseek(get(), offset, static_cast<int>(whence));
 }
 
-SDL2WRAP_INLINE size_t RWops::read(void* ptr, size_t size, size_t maxnum) noexcept
+SDL2WRAP_INLINE size_t RWops::read(void* p, size_t size, size_t maxnum) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
-    return SDL_RWread(get(), ptr, size, maxnum);
+    return SDL_RWread(get(), p, size, maxnum);
 }
 
-SDL2WRAP_INLINE size_t RWops::write(const void* ptr, size_t size, size_t num) noexcept
+SDL2WRAP_INLINE size_t RWops::write(const void* p, size_t size, size_t num) noexcept
 {
     SDL2WRAP_ASSERT(get() != nullptr);
-    return SDL_RWwrite(get(), ptr, size, num);
+    return SDL_RWwrite(get(), p, size, num);
 }
 
 SDL2WRAP_INLINE sdl2wrap::Result<void*> RWops::loadFile(size_t& bytesRead) noexcept
@@ -218,4 +218,4 @@ SDL2WRAP_INLINE EmptyResult RWops::writeBE64(Uint64 value) noexcept
     return checkRwopsWriteRc(SDL_WriteBE64(get(), value));
 }
 
-}; //namespace File
+} // namespace File

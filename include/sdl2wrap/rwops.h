@@ -64,7 +64,7 @@ namespace File {
          * \return
          * \wrapImpl SDL_RWFromFile File::RWops::fromFile
          */
-        static Result fromFile(const char* file, const char* mode) noexcept;
+        static ResultType fromFile(const char* file, const char* mode) noexcept;
 
 #ifdef HAVE_STDIO_H
         /**
@@ -74,7 +74,7 @@ namespace File {
          * \return
          * \wrapImpl SDL_RWFromFP File::RWops::fromFP
          */
-        static Result fromFP(FILE* fp, bool autoclose) noexcept;
+        static ResultType fromFP(FILE* fp, bool autoclose) noexcept;
 #endif
 
         /**
@@ -84,7 +84,7 @@ namespace File {
          * \return
          * \wrapImpl SDL_RWFromMem File::RWops::fromMem
          */
-        static Result fromMem(void* mem, int size) noexcept;
+        static ResultType fromMem(void* mem, int size) noexcept;
 
         /**
          * \brief Create a RWops from const memory
@@ -93,7 +93,7 @@ namespace File {
          * \return
          * \wrapImpl SDL_RWFromConstMem File::RWops::fromConstMem
          */
-        static Result fromConstMem(const void* mem, int size) noexcept;
+        static ResultType fromConstMem(const void* mem, int size) noexcept;
 
         /**
          * \brief Close this rwops and get the result
@@ -138,13 +138,13 @@ namespace File {
 
         /**
          * \brief
-         * \param ptr
+         * \param p
          * \param size
          * \param num
          * \return
          * \wrapImpl SDL_RWwrite File::RWops::write
          */
-        size_t write(const void* ptr, size_t size, size_t num) noexcept;
+        size_t write(const void* p, size_t size, size_t num) noexcept;
 
         /**
          * \brief
@@ -197,7 +197,7 @@ namespace File {
         /// \}
     };
 
-}; // namespace File
-}; // namespace sdl2wrap
+} // namespace File
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_rwops_h

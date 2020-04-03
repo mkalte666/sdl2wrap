@@ -21,36 +21,36 @@
 
 namespace Video {
 
-SDL2WRAP_INLINE Surface::Result Surface::createRGB(int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::createRGB(int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
 {
     return checkPtr(SDL_CreateRGBSurface(0, width, height, depth, Rmask, Gmask, Bmask, Amask));
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::createRGBWithFormat(int width, int height, int depth, PixelFormatEnum format) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::createRGBWithFormat(int width, int height, int depth, PixelFormatEnum format) noexcept
 {
     return checkPtr(SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, static_cast<Uint32>(format)));
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::createRGBfrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::createRGBfrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept
 {
     return checkPtr(SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask));
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::createRGBWithFormatFrom(void* pixels, int width, int height, int depth, int pitch, PixelFormatEnum format) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::createRGBWithFormatFrom(void* pixels, int width, int height, int depth, int pitch, PixelFormatEnum format) noexcept
 {
     return checkPtr(SDL_CreateRGBSurfaceWithFormatFrom(pixels, width, height, depth, pitch, static_cast<Uint32>(format)));
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::loadBMP(File::RWops& rwops) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::loadBMP(File::RWops& rwops) noexcept
 {
     return checkPtr(SDL_LoadBMP_RW(rwops.get(), 0));
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::loadBMP(const char* filename) noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::loadBMP(const char* filename) noexcept
 {
     auto rwopsRes = File::RWops::fromFile(filename, "rb");
     if (!rwopsRes) {
-        return Result::error(rwopsRes);
+        return ResultType::error(rwopsRes);
     }
 
     return loadBMP(rwopsRes.getValue());
@@ -171,19 +171,19 @@ SDL2WRAP_INLINE bool Surface::resetClipRect() const noexcept
     ;
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::duplicate() const noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::duplicate() const noexcept
 {
     auto newPtr = SDL_DuplicateSurface(get());
     return checkPtr(newPtr);
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::convert(const PixelFormat& format) const noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::convert(const PixelFormat& format) const noexcept
 {
     auto newPtr = SDL_ConvertSurface(get(), format.get(), 0);
     return checkPtr(newPtr);
 }
 
-SDL2WRAP_INLINE Surface::Result Surface::convertFormat(PixelFormatEnum format) const noexcept
+SDL2WRAP_INLINE Surface::ResultType Surface::convertFormat(PixelFormatEnum format) const noexcept
 {
     auto newPtr = SDL_ConvertSurfaceFormat(get(), static_cast<SDL_PixelFormatEnum>(format), 0);
     return checkPtr(newPtr);
@@ -261,4 +261,4 @@ SDL2WRAP_INLINE EmptyResult Surface::softStretch(Rect& srcRect, Surface& dst, Re
     return checkEmptyResultRc(rc);
 }
 
-}; // namespace Video
+} // namespace Video

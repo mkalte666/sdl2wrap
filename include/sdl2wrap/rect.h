@@ -148,7 +148,7 @@ namespace Video {
 
     static_assert(sizeof(Rect) == sizeof(SDL_Rect), "Check Rect size against SDL_Rect");
     static_assert(sizeof(FRect) == sizeof(SDL_FRect), "Check FRect size against SDL_FRect");
-}; // namespace Video
-}; // sdl2wrap
+} // namespace Video
+} // sdl2wrap
 
 #endif //sdl2wrap_rect_h

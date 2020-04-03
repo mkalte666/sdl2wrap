@@ -331,6 +331,6 @@ inline HitTestResult operator|(HitTestResult a, HitTestResult b) noexcept
     return static_cast<HitTestResult>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif // sdl2wrap_generated_*

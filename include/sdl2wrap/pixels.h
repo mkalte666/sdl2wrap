@@ -51,7 +51,7 @@ namespace Video {
          * \return
          * \wrapImpl SDL_AllocPalette Video::Palette::alloc
          */
-        static Result alloc(int ncolors) noexcept;
+        static ResultType alloc(int ncolors) noexcept;
 
         EmptyResult setColors(const Color* colors, int firstcolor, int ncolors) noexcept;
     };
@@ -71,7 +71,7 @@ namespace Video {
          * \return
          * \wrapImpl SDL_AllocFormat Video::PixelFormat::allocalloc
          */
-        static Result alloc(PixelFormatEnum format) noexcept;
+        static ResultType alloc(PixelFormatEnum format) noexcept;
 
         /**
          * \brief Return the printable name of this format.
@@ -203,7 +203,7 @@ namespace Video {
      */
     void calculateGammaRamp(float gamma, Uint16* ramp) noexcept;
 
-}; // namespace Video
-}; // namespace sdl2wrap
+} // namespace Video
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_pixels_h

@@ -41,14 +41,14 @@ namespace Video {
     public:
         using TypeWrapperWithPtrOp::TypeWrapperWithPtrOp;
 
-        static Result createRGB(int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
-        static Result createRGBWithFormat(int width, int height, int depth, PixelFormatEnum format) noexcept;
+        static ResultType createRGB(int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
+        static ResultType createRGBWithFormat(int width, int height, int depth, PixelFormatEnum format) noexcept;
 
-        static Result createRGBfrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
-        static Result createRGBWithFormatFrom(void* pixels, int width, int height, int depth, int pitch, PixelFormatEnum format) noexcept;
+        static ResultType createRGBfrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask) noexcept;
+        static ResultType createRGBWithFormatFrom(void* pixels, int width, int height, int depth, int pitch, PixelFormatEnum format) noexcept;
 
-        static Result loadBMP(File::RWops& rwops) noexcept;
-        static Result loadBMP(const char* filename) noexcept;
+        static ResultType loadBMP(File::RWops& rwops) noexcept;
+        static ResultType loadBMP(const char* filename) noexcept;
         EmptyResult saveBMP(File::RWops& rwops) const noexcept;
         EmptyResult saveBMP(const char* filename) const noexcept;
 
@@ -73,9 +73,9 @@ namespace Video {
         bool setClipRect(const Rect& rect) noexcept;
         bool resetClipRect() const noexcept;
 
-        Result duplicate() const noexcept;
-        Result convert(const PixelFormat& format) const noexcept;
-        Result convertFormat(PixelFormatEnum format) const noexcept;
+        ResultType duplicate() const noexcept;
+        ResultType convert(const PixelFormat& format) const noexcept;
+        ResultType convertFormat(PixelFormatEnum format) const noexcept;
 
         static EmptyResult convertPixels(int width, int height, PixelFormatEnum srcFormat, const void* format, int srcPitch, PixelFormatEnum dstFormat, void* dst, int dstPitch) noexcept;
 
@@ -100,8 +100,8 @@ namespace Video {
     YUV_CONVERSION_MODE getYUVConversionMode() noexcept;
     YUV_CONVERSION_MODE getYUVConversionModeForResolution(int width, int height) noexcept;
 
-}; // namespace Video
+} // namespace Video
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_surface_h

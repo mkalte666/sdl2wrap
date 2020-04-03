@@ -99,4 +99,4 @@ SDL2WRAP_INLINE std::string getStr(Hint hint) noexcept
 
 #endif // SDL2WRAP_USE_STL
 
-}; // namespace Hints
+} // namespace Hints

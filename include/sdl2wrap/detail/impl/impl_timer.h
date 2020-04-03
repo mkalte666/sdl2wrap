@@ -64,6 +64,6 @@ SDL2WRAP_INLINE bool removeTimer(TimerID id) noexcept
     return SDL_RemoveTimer(id) == SDL_TRUE;
 }
 
-}; // namespace Timer
+} // namespace Timer
 
 #endif //sdl2wrap_impl_timer_h

@@ -145,37 +145,37 @@ SDL2WRAP_INLINE void Texture::unlock() noexcept
 {
     SDL_UnlockTexture(get());
 }
-Unowned<Surface>::Result Texture::lockToSurface(const Rect& rect) noexcept
+Unowned<Surface>::ResultType Texture::lockToSurface(const Rect& rect) noexcept
 {
-    SDL_Surface* ptr = nullptr;
-    auto rc = SDL_LockTextureToSurface(get(), &rect, &ptr);
-    if (rc != 0 || ptr == nullptr) {
-        Unowned<Surface> surf(ptr);
-        return Unowned<Surface>::Result::success(move(surf));
+    SDL_Surface* pSurface = nullptr;
+    auto rc = SDL_LockTextureToSurface(get(), &rect, &pSurface);
+    if (rc != 0 || pSurface == nullptr) {
+        Unowned<Surface> surf(pSurface);
+        return Unowned<Surface>::ResultType::success(move(surf));
     }
 
-    return Unowned<Surface>::Result::error(0);
+    return Unowned<Surface>::ResultType::error(0);
 }
 
-SDL2WRAP_INLINE Renderer::Result Renderer::create(Window& window, int index, RendererFlags flags) noexcept
+SDL2WRAP_INLINE Renderer::ResultType Renderer::create(Window& window, int index, RendererFlags flags) noexcept
 {
     auto renderer = SDL_CreateRenderer(window.get(), index, static_cast<Uint32>(flags));
     return checkPtr(renderer);
 }
 
-SDL2WRAP_INLINE Renderer::Result Renderer::createSoftwareRenderer(Surface& surface) noexcept
+SDL2WRAP_INLINE Renderer::ResultType Renderer::createSoftwareRenderer(Surface& surface) noexcept
 {
     auto renderer = SDL_CreateSoftwareRenderer(surface.get());
     return checkPtr(renderer);
 }
 
-SDL2WRAP_INLINE Texture::Result Renderer::createTexture(PixelFormatEnum format, TextureAccess access, int w, int h) noexcept
+SDL2WRAP_INLINE Texture::ResultType Renderer::createTexture(PixelFormatEnum format, TextureAccess access, int w, int h) noexcept
 {
     auto tex = SDL_CreateTexture(get(), static_cast<Uint32>(format), static_cast<int>(access), w, h);
     return Texture::checkPtr(tex);
 }
 
-SDL2WRAP_INLINE Texture::Result Renderer::createTextureFromSurface(Surface& surface) noexcept
+SDL2WRAP_INLINE Texture::ResultType Renderer::createTextureFromSurface(Surface& surface) noexcept
 {
     auto tex = SDL_CreateTextureFromSurface(get(), surface.get());
     return Texture::checkPtr(tex);
@@ -532,7 +532,7 @@ namespace GL {
         return checkEmptyResultRc(rc);
     }
 
-}; // namespace GL
+} // namespace GL
 
 namespace Metal {
 
@@ -546,7 +546,7 @@ namespace Metal {
         return SDL_RenderGetMetalCommandEncoder(renderer.get());
     }
 
-}; // namespace Metal
-}; // namespace Video
+} // namespace Metal
+} // namespace Video
 
 #endif //sdl2wrap_impl_render_h

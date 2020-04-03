@@ -21,14 +21,14 @@
 
 namespace Video {
 
-SDL2WRAP_INLINE Palette::Result Palette::alloc(int ncolors) noexcept
+SDL2WRAP_INLINE Palette::ResultType Palette::alloc(int ncolors) noexcept
 {
     auto ptr = SDL_AllocPalette(ncolors);
     if (ptr == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(Palette(ptr));
+    return ResultType::success(Palette(ptr));
 }
 
 SDL2WRAP_INLINE EmptyResult Palette::setColors(const Color* colors, int firstcolor, int ncolors) noexcept
@@ -41,14 +41,14 @@ SDL2WRAP_INLINE EmptyResult Palette::setColors(const Color* colors, int firstcol
     return EmptyResult::success(true);
 }
 
-SDL2WRAP_INLINE PixelFormat::Result PixelFormat::alloc(PixelFormatEnum format) noexcept
+SDL2WRAP_INLINE PixelFormat::ResultType PixelFormat::alloc(PixelFormatEnum format) noexcept
 {
     auto ptr = SDL_AllocFormat(static_cast<Uint32>(format));
     if (ptr == nullptr) {
-        return Result::error(0);
+        return ResultType::error(0);
     }
 
-    return Result::success(PixelFormat(ptr));
+    return ResultType::success(PixelFormat(ptr));
 }
 
 SDL2WRAP_INLINE Uint32 PixelFormat::mapRGB(Uint8 r, Uint8 g, Uint8 b) const noexcept
@@ -131,4 +131,4 @@ SDL2WRAP_INLINE void calculateGammaRamp(float gamma, Uint16* ramp) noexcept
     SDL_CalculateGammaRamp(gamma, ramp);
 }
 
-}; // namespace Video
+} // namespace Video

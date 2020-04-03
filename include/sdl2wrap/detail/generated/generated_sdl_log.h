@@ -97,6 +97,6 @@ inline LogPriority operator|(LogPriority a, LogPriority b) noexcept
     return static_cast<LogPriority>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif // sdl2wrap_generated_*

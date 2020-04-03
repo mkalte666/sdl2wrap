@@ -146,6 +146,6 @@ SDL2WRAP_INLINE Result<EventType> registerEvents(int numEvents) noexcept
     return Result<EventType>::success(move(eventType));
 }
 
-}; // namespace Events
+} // namespace Events
 
 #endif //sdl2wrap_impl_events_h

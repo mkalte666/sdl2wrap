@@ -50,7 +50,7 @@ namespace Video {
         BlendFactor dstAlphaFactor,
         BlendOperation alphaOperation) noexcept;
 
-}; // namespace Video
-}; // namespace sdl2wrap
+} // namespace Video
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_blendmode_h

@@ -36,7 +36,7 @@ SDL2WRAP_INLINE SDL2& SDL2::operator=(SDL2&& rhs) noexcept
     valid = rhs.valid;
     rhs.valid = false;
     return *this;
-};
+}
 
 SDL2WRAP_INLINE EmptyResult SDL2::initSubSystem(InitFlags subsystem) noexcept
 {

@@ -24,8 +24,8 @@
 
 namespace Video {
 
-SDL2WRAP_INLINE Rect::Rect(int x, int y, int w, int h) noexcept
-    : SDL_Rect({ x, y, w, h })
+SDL2WRAP_INLINE Rect::Rect(int nx, int ny, int nw, int nh) noexcept
+    : SDL_Rect({ nx, ny, nw, nh })
 {
 }
 
@@ -84,8 +84,8 @@ SDL2WRAP_INLINE bool Rect::enclosePoints(Point points[], int count, const Rect& 
     return SDL_EnclosePoints(points, count, &clip, &result) == SDL_TRUE; // NOLINT
 }
 
-SDL2WRAP_INLINE FRect::FRect(float x, float y, float w, float h) noexcept
-    : SDL_FRect({ x, y, w, h })
+SDL2WRAP_INLINE FRect::FRect(float nx, float ny, float nw, float nh) noexcept
+    : SDL_FRect({ nx, ny, nw, nh })
 {
 }
 
@@ -99,4 +99,4 @@ SDL2WRAP_INLINE Rect FRect::toRect() const noexcept
     return result;
 }
 
-}; //namespace Video
+} // namespace Video

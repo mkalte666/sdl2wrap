@@ -210,8 +210,8 @@ namespace Input {
      * \wrapImpl SDL_RegisterEvents Input::registerEvents
      */
     Result<EventType> registerEvents(int numEvents) noexcept;
-}; // namespace Events
+} // namespace Events
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_events_h

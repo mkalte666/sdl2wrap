@@ -39,4 +39,4 @@ SDL2WRAP_INLINE BlendMode composeCustomBlendMode(BlendFactor srcColorFactor,
     return static_cast<BlendMode>(res);
 }
 
-}; // namespace Video
+} // namespace Video

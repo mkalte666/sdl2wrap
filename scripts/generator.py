@@ -84,7 +84,7 @@ for header in headers:
 
 namespace sdl2wrap {
 %(fileBody)s
-}; // namespace sdl2wrap 
+} // namespace sdl2wrap 
 
 #endif // sdl2wrap_generated_*
 """ \

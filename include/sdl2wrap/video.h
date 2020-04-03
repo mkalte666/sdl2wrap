@@ -218,7 +218,7 @@ namespace Video {
              * \return
              * \wrapImpl SDL_GL_CreateContext Video::GL::Context::create
              */
-            static Result create(Window& window) noexcept;
+            static ResultType create(Window& window) noexcept;
         };
 
         /**
@@ -312,7 +312,7 @@ namespace Video {
          * \wrapImpl SDL_GL_MakeCurrent Video::GL::makeCurrent
          */
         void makeCurrent(Window& window, Context& context) noexcept;
-    };
+    }
 
     /**
      * \brief Wraps SDL_Window
@@ -335,7 +335,7 @@ namespace Video {
          * \return
          * \wrapImpl SDL_CreateWindow Video::Window::create
          */
-        static Result create(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
+        static ResultType create(const char* title, int x, int y, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
 
         /**
          * \brief
@@ -347,7 +347,7 @@ namespace Video {
          * \sa Video::Window::create
          * \sa SDL_CreateWindow
          */
-        static Result createCentered(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
+        static ResultType createCentered(const char* title, int w, int h, WindowFlags flags = static_cast<WindowFlags>(0)) noexcept;
 
         /**
          * \brief
@@ -355,7 +355,7 @@ namespace Video {
          * \return
          * \wrapImpl SDL_CreateWindowFrom Video::Window::createFrom
          */
-        static Result createFrom(void* nativeWindow) noexcept;
+        static ResultType createFrom(void* nativeWindow) noexcept;
 
         /**
          * \brief
@@ -651,7 +651,7 @@ namespace Video {
         void restore() noexcept;
     };
 
-}; // namespace Video
-}; // namespace sdl2wrap
+} // namespace Video
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_window_h

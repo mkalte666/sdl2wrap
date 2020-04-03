@@ -57,4 +57,4 @@ SDL2WRAP_INLINE int getLinkedRevisionNumber() noexcept
     return SDL_GetRevisionNumber();
 }
 
-}; // namespace Version
+} // namespace Version

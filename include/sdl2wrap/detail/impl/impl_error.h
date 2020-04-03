@@ -50,4 +50,4 @@ SDL2WRAP_INLINE std::string getStr() noexcept
 
 #endif // SDL2WRAP_USE_STL
 
-}; // namespace Error
+} // namespace Error

@@ -215,8 +215,8 @@ private:
      * \brief Ctor is Private. use success() or error() instead
      * \param value
      */
-    explicit Result(T&& value) noexcept
-        : value(move(value))
+    explicit Result(T&& val) noexcept
+        : value(move(val))
     {
     }
 
@@ -247,6 +247,6 @@ inline EmptyResult checkEmptyResultRc(RCType rc, RCType expceted = 0)
     return EmptyResult::error(static_cast<int>(rc));
 }
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif // sdl2wrap_result_h

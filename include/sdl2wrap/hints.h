@@ -164,7 +164,7 @@ namespace Hints {
      */
     std::string getStr(Hint hint) noexcept;
 #endif // SDL2WRAP_USE_STL
-}; // namespace Hints
-}; // namespace sdl2wrap
+} // namespace Hints
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_hints_h

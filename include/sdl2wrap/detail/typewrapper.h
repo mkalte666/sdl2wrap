@@ -47,13 +47,13 @@ template <class Child, class SDLPtrType, SDLDestructorFunc<SDLPtrType> destructo
 class TypeWrapper {
 public:
     friend class Result<Child>;
-    using Result = Result<Child>;
+    using ResultType = Result<Child>;
     using PtrType = SDLPtrType;
 
     TypeWrapper() noexcept = default;
 
-    explicit TypeWrapper(SDLPtrType ptr) noexcept
-        : ptr(ptr)
+    explicit TypeWrapper(SDLPtrType newPtr) noexcept
+        : ptr(newPtr)
     {
     }
     TypeWrapper(const TypeWrapper&) = delete;
@@ -85,13 +85,13 @@ public:
         return ptr;
     }
 
-    static Result checkPtr(SDLPtrType ptr) noexcept
+    static ResultType checkPtr(SDLPtrType ptr) noexcept
     {
         if (ptr == nullptr) {
-            return Result::error(0);
+            return ResultType::error(0);
         }
 
-        return Result::success(Child(ptr));
+        return ResultType::success(Child(ptr));
     }
 
 protected:
@@ -126,10 +126,10 @@ class Unowned : public Child {
 public:
     using Child::Child;
     friend class Result<Child>;
-    using Result = Result<Child>;
+    using ResultType = Result<Child>;
 
-    explicit Unowned(typename Child::PtrType ptr) noexcept
-        : Child(ptr)
+    explicit Unowned(typename Child::PtrType p) noexcept
+        : Child(p)
     {
     }
 

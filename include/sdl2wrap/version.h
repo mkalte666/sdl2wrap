@@ -69,7 +69,7 @@ namespace Version {
      * \wrapImpl SDL_GetRevisionNumber getLinkedRevisionNumber
      */
     int getLinkedRevisionNumber() noexcept;
-}; // namespace Version
-}; // namespace sdl2wrap
+} // namespace Version
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_version_h

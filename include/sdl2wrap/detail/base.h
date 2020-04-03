@@ -79,7 +79,7 @@ constexpr typename removeRef<T>::type&& move(T&& arg)
 }
 ///\}
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #ifdef NDEBUG
 // NOLINTNEXTLINE

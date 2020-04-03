@@ -149,7 +149,7 @@ SDL2WRAP_INLINE void disableScreenSaver() noexcept
 
 namespace GL {
 
-    SDL2WRAP_INLINE Context::Result Context::create(Window& window) noexcept
+    SDL2WRAP_INLINE Context::ResultType Context::create(Window& window) noexcept
     {
         auto ptr = SDL_GL_CreateContext(window.get());
         return checkPtr(ptr);
@@ -229,22 +229,22 @@ namespace GL {
         SDL_GL_MakeCurrent(window.get(), context.get());
     }
 
-}; // namespace GL
+} // namespace GL
 
-SDL2WRAP_INLINE Window::Result Window::create(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
+SDL2WRAP_INLINE Window::ResultType Window::create(const char* title, int x, int y, int w, int h, WindowFlags flags) noexcept
 {
     SDL_Window* window = SDL_CreateWindow(title, x, y, w, h, static_cast<Uint32>(flags));
     return checkPtr(window);
 }
 
-SDL2WRAP_INLINE Window::Result Window::createCentered(const char* title, int w, int h, WindowFlags flags) noexcept
+SDL2WRAP_INLINE Window::ResultType Window::createCentered(const char* title, int w, int h, WindowFlags flags) noexcept
 {
     // sign conversion for SDL_WINDOWPOS_CENTERED
     // NOLINTNEXTLINE
     return create(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
 }
 
-SDL2WRAP_INLINE Window::Result Window::createFrom(void* nativeWindow) noexcept
+SDL2WRAP_INLINE Window::ResultType Window::createFrom(void* nativeWindow) noexcept
 {
     return checkPtr(SDL_CreateWindowFrom(nativeWindow));
 }
@@ -296,9 +296,9 @@ SDL2WRAP_INLINE void Window::setIcon(const Surface& icon) noexcept
     SDL_SetWindowIcon(get(), icon.get());
 }
 
-SDL2WRAP_INLINE void Window::setData(const char* name, void* ptr) noexcept
+SDL2WRAP_INLINE void Window::setData(const char* name, void* p) noexcept
 {
-    SDL_SetWindowData(get(), name, ptr);
+    SDL_SetWindowData(get(), name, p);
 }
 
 SDL2WRAP_INLINE void* Window::getData(const char* name) const noexcept
@@ -465,4 +465,4 @@ SDL2WRAP_INLINE void Window::restore() noexcept
     SDL_RestoreWindow(get());
 }
 
-};
+}

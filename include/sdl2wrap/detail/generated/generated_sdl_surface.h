@@ -53,6 +53,6 @@ inline YUV_CONVERSION_MODE operator|(YUV_CONVERSION_MODE a, YUV_CONVERSION_MODE 
     return static_cast<YUV_CONVERSION_MODE>(static_cast<Uint32>(a) | static_cast<Uint32>(b));
 }
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif // sdl2wrap_generated_*

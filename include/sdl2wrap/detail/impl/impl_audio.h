@@ -132,4 +132,4 @@ SDL2WRAP_INLINE void unlockDevice(DeviceID dev) noexcept
     SDL_UnlockAudioDevice(dev);
 }
 
-}; // namespace Audio
+} // namespace Audio

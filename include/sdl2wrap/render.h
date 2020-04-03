@@ -57,18 +57,18 @@ namespace Video {
             const Uint8* Vplane, int Vpitch) noexcept;
         EmptyResult lock(const Rect& rect, void*& pixels, int& pitch) noexcept;
         void unlock() noexcept;
-        Unowned<Surface>::Result lockToSurface(const Rect& rect) noexcept;
+        Unowned<Surface>::ResultType lockToSurface(const Rect& rect) noexcept;
     };
 
     class Renderer : public TypeWrapper<Renderer, SDL_Renderer*, SDL_DestroyRenderer> {
     public:
         using TypeWrapper::TypeWrapper;
-        static Result create(Window& window, int index, RendererFlags flags) noexcept;
-        static Result createSoftwareRenderer(Surface& surface) noexcept;
+        static ResultType create(Window& window, int index, RendererFlags flags) noexcept;
+        static ResultType createSoftwareRenderer(Surface& surface) noexcept;
         //static Result getRenderer(Window& window) noexcept;
 
-        Texture::Result createTexture(PixelFormatEnum format, TextureAccess access, int w, int h) noexcept;
-        Texture::Result createTextureFromSurface(Surface& surface) noexcept;
+        Texture::ResultType createTexture(PixelFormatEnum format, TextureAccess access, int w, int h) noexcept;
+        Texture::ResultType createTextureFromSurface(Surface& surface) noexcept;
 
         sdl2wrap::Result<RendererInfo> getInfo() const noexcept;
         EmptyResult getOutputSize(int& w, int& h) const noexcept;
@@ -164,7 +164,7 @@ namespace Video {
         void* renderGetMetalCommandEncoder(Renderer& renderer) noexcept;
     }
 
-}; // namespace Video
-}; // namespace sdl2wrap
+} // namespace Video
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_render_h

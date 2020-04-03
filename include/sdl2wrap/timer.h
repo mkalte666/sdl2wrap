@@ -44,7 +44,7 @@ namespace Timer {
 
     TimerID addTimer(Uint32 interval, TimerCallback callback, void* param) noexcept;
     bool removeTimer(TimerID id) noexcept;
-}; // namespace Timer
-}; // namespace sdl2wrap
+} // namespace Timer
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_timer_h

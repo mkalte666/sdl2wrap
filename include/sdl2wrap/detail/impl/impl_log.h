@@ -51,4 +51,4 @@ SDL2WRAP_INLINE void message(int category, LogPriority priority, const char* str
     SDL_LogMessage(category, static_cast<SDL_LogPriority>(priority), "%s", str); //NOLINT
 }
 
-}; //namespace Log
+} // namespace Log

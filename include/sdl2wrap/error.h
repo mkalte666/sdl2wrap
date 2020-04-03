@@ -73,7 +73,7 @@ namespace Error {
     std::string getStr() noexcept;
 #endif
 
-}; //namespace Error
-}; // namespace sdl2wrap
+} // namespace Error
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_error_h

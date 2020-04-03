@@ -63,8 +63,8 @@ namespace Audio {
     void unlock() noexcept;
     void unlockDevice(DeviceID dev) noexcept;
 
-}; // namespace Audio
+} // namespace Audio
 
-}; // namespace sdl2wrap
+} // namespace sdl2wrap
 
 #endif //sdl2wrap_audio_h
